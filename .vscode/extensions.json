@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "astro-build.astro-vscode",
+    "mikestead.dotenv",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "christian-kohler.path-intellisense",
+    "YoavBls.pretty-ts-errors",
+    "github.vscode-github-actions",
+    "biomejs.biome",
+    "mikestead.dotenv",
+    "tamasfe.even-better-toml"
+  ]
+}

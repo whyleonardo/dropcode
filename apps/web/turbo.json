@@ -1,0 +1,17 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "^db:migrate"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "passThroughEnv": [
+        "ANALYZE",
+        "DATABASE_URL",
+        "AUTH_GITHUB_ID",
+        "AUTH_GITHUB_SECRET",
+        "AUTH_SECRET"
+      ]
+    }
+  }
+}

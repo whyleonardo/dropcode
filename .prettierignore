@@ -1,0 +1,7 @@
+bun.lockb
+.prettierignore
+**/.next
+**/analyze
+
+.env
+.env.*

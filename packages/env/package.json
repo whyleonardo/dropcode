@@ -1,0 +1,17 @@
+{
+  "name": "@soli/env",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    "./web": {
+      "import": "./src/web/index.ts",
+      "types": "./src/web/index.ts"
+    }
+  },
+  "devDependencies": {
+    "@soli/tsconfig": "workspace:*",
+    "@t3-oss/env-core": "0.11.0",
+    "@t3-oss/env-nextjs": "0.11.0",
+    "zod": "3.23.8"
+  }
+}

@@ -1,0 +1,3 @@
+{
+  "extends": ["@soli/tsconfig/base.json"]
+}

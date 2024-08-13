@@ -1,0 +1,25 @@
+{
+  "name": "@soli/auth",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "bun run rm -rf dist *.tsbuildinfo",
+    "dev": "tsc -w -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "2.4.2",
+    "@soli/db": "workspace:*",
+    "@soli/env": "workspace:*",
+    "next-auth": "5.0.0-beta.20"
+  },
+  "devDependencies": {
+    "@soli/tsconfig": "workspace:*"
+  }
+}

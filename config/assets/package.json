@@ -1,0 +1,8 @@
+{
+  "name": "@soli/assets",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "**/*"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "name": "soli",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "config/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "auth:gen-secret": "openssl rand -base64 33",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "format": "bun format:write",
+    "format:check": "prettier \"**/*\" --ignore-unknown --list-different",
+    "format:write": "prettier \"**/*\" --ignore-unknown --list-different --write",
+    "lint": "biome lint --diagnostic-level=error --no-errors-on-unmatched .",
+    "lint:fix": "biome check --write --unsafe .",
+    "lint:spell": "cspell \"**\" --gitignore --dot --no-progress --cache --unique ",
+    "prepare": "husky",
+    "release": "turbo run build lint typecheck && changeset version && changeset publish",
+    "reset:changelog": "bun run rm -rf */**/CHANGELOG.md"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*": [
+      "cspell --no-must-find-files",
+      "prettier --list-different"
+    ],
+    "**/*.{ts,tsx,js,jsx,cjs,mjs}": [
+      "biome check --error-on-warnings --no-errors-on-unmatched --staged ."
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "dependencies": {
+    "@changesets/cli": "2.27.7",
+    "turbo": "2.0.12"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@commitlint/cli": "19.4.0",
+    "@commitlint/config-conventional": "19.2.2",
+    "@commitlint/cz-commitlint": "19.4.0",
+    "@soli/tsconfig": "workspace:*",
+    "@trivago/prettier-plugin-sort-imports": "4.3.0",
+    "commitizen": "4.3.0",
+    "cspell": "8.13.1",
+    "husky": "9.1.4",
+    "lint-staged": "15.2.8",
+    "prettier": "3.3.3",
+    "prettier-plugin-packagejson": "2.5.1",
+    "prettier-plugin-tailwindcss": "0.6.5",
+    "typescript": "5.5.4"
+  },
+  "packageManager": "bun@1.1.21",
+  "engines": {
+    "node": ">=18"
+  },
+  "prisma": {
+    "schema": "packages/db/prisma/schema.prisma",
+    "env": "./env"
+  }
+}
