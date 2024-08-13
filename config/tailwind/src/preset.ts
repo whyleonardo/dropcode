@@ -76,7 +76,7 @@ export const soliTailwindPreset: Config = {
         },
 
         accent: {
-          DEFAULT: colors.alias("gray.4"),
+          DEFAULT: colors.alias("gray.3"),
           foreground: colors.alias("gray.12"),
         },
 
