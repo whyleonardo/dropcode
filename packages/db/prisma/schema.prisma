@@ -13,6 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum FileExtension {
+  TS
+  JS
+  JSON
+  CSS
+  VUE
+  SVELTE
+  ANGULAR
+}
+
+enum Language {
+  TYPESCRIPT
+  JAVASCRIPT
+  JSON
+  CSS
+  VUE
+  SVELTE
+  ANGULAR
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -22,8 +42,11 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  snippets    Snippet[]
+  collections Collection[]
+  tags        Tag[]
 
   @@map("users")
 }
@@ -69,4 +92,58 @@ model VerificationToken {
 
   @@id([identifier, token])
   @@map("verificationtokens")
+}
+
+model Snippet {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  tags        String[]
+  files       File[]
+
+  isFavorite Boolean @default(false) @map("is_favorite")
+  isPublic   Boolean @default(false) @map("is_public")
+
+  collection   Collection? @relation(fields: [collectionId], references: [id])
+  collectionId String?     @map("collection_id")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("snippets")
+}
+
+model File {
+  id        String        @id @default(uuid())
+  name      String
+  extension FileExtension
+  language  Language
+  content   String
+
+  snippet   Snippet @relation(fields: [snippetId], references: [id])
+  snippetId String  @map("snippet_id")
+
+  @@map("files")
+}
+
+model Tag {
+  id   String @id @default(uuid())
+  slug String @unique
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("tags")
+}
+
+model Collection {
+  id    String @id @default(uuid())
+  title String
+
+  snippets Snippet[]
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("collections")
 }
