@@ -10,7 +10,13 @@
     "enabled": true,
     "ignore": ["node_modules"],
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "a11y": {
+        "noSvgWithoutTitle": "off"
+      },
+      "style": {
+        "useNumberNamespace": "off"
+      }
     }
   }
 }
