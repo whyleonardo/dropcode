@@ -2,7 +2,7 @@ import { auth as middleware } from "@soli/auth"
 
 export default middleware((req) => {
   if (!req.auth && req.nextUrl.pathname !== "/auth/login") {
-    const newUrl = new URL("/login", req.nextUrl.origin)
+    const newUrl = new URL("/auth/login", req.nextUrl.origin)
     return Response.redirect(newUrl)
   }
 
