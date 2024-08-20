@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const Page = () => {
@@ -7,9 +9,7 @@ const Page = () => {
         <ThemeToggle />
       </div>
 
-      <h1 className="~/2xl:~text-4xl/7xl font-bold tracking-tight">
-        Home Page
-      </h1>
+      <Link href="/auth/login">Login</Link>
     </div>
   )
 }
