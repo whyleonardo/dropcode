@@ -1,0 +1,25 @@
+import { Icons } from "@/components/icons"
+
+export const langs = {
+  ANGULAR: { id: "angular-ts", name: "Angular", icon: Icons.angular },
+  // ASTRO: { id: "astro", name: "Astro", icon: Icons.astro },
+  CSS: { id: "css", name: "CSS", icon: Icons.css },
+  // HTML: { id: "html", name: "HTML", icon: Icons.html },
+  // JAVA: { id: "java", name: "Java", icon: Icons.java },
+  JAVASCRIPT: { id: "javascript", name: "JavaScript", icon: Icons.javascript },
+  JSON: { id: "json", name: "JSON", icon: Icons.json },
+  // JSX: { id: "jsx", name: "JSX", icon: Icons.jsx },
+  // MARKDOWN: { id: "markdown", name: "Markdown", icon: Icons.markdown },
+  // MDX: { id: "mdx", name: "MDX", icon: Icons.mdx },
+  // PHP: { id: "php", name: "PHP", icon: Icons.php },
+  // POSTCSS: { id: "postcss", name: "PostCSS", icon: Icons.postcss },
+  // PYTHON: { id: "python", name: "Python", icon: Icons.python },
+  // RUBY: { id: "ruby", name: "Ruby", icon: Icons.ruby },
+  // SASS: { id: "sass", name: "Sass", icon: Icons.sass },
+  // SCSS: { id: "scss", name: "SCSS", icon: Icons.scss },
+  SVELTE: { id: "svelte", name: "Svelte", icon: Icons.svelte },
+  // TSX: { id: "tsx", name: "TSX", icon: Icons.tsx },
+  TYPESCRIPT: { id: "typescript", name: "TypeScript", icon: Icons.typescript },
+  VUE: { id: "vue", name: "Vue", icon: Icons.vue },
+  // YAML: { id: "yaml", name: "YAML", icon: Icons.yaml },
+} as const
