@@ -97,8 +97,8 @@ export const soliTailwindPreset: Config = {
           12: colors.alias("red.12"),
         },
 
-        border: colors.alias("gray.4"),
-        ring: colors.alias("gray.4"),
+        border: colors.alias("gray.3"),
+        ring: colors.alias("gray.3"),
       },
       borderRadius: {
         radius: "0.5rem",
@@ -131,7 +131,6 @@ export const soliTailwindPreset: Config = {
   plugins: [
     animate,
     typography,
-    forms,
     fluid,
     aspectRatio,
     {
