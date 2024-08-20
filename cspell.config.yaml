@@ -16,6 +16,7 @@ ignorePaths:
 words:
   - acst
   - aest
+  - Ebene
   - Activedescendant
   - Tabindex
   - Focusable
