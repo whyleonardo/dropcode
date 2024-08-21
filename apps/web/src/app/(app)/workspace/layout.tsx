@@ -10,7 +10,9 @@ const WorkspaceLayout = ({ children }: { children: React.ReactNode }) => {
           <Sidebar />
         </div>
 
-        <div className="h-full flex-1">{children}</div>
+        <div className="h-full max-w-full flex-1 overflow-hidden">
+          {children}
+        </div>
       </div>
     </QueryProvider>
   )

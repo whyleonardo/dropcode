@@ -17,33 +17,28 @@ interface SnippetSlugPageProps {
 const SnippetSlugPage = async ({
   params: { snippetSlug },
 }: SnippetSlugPageProps) => {
-  const userSession = await auth()
-
-  const userId = userSession?.user?.id
-
-  const snippet = await db.snippet.findUnique({
+  const files = await db.file.findMany({
     where: {
-      userId,
-      slug: snippetSlug,
-    },
-    include: {
-      files: {
-        orderBy: {
-          updatedAt: "desc",
-        },
+      snippet: {
+        slug: snippetSlug,
       },
+    },
+    orderBy: {
+      updatedAt: "desc",
     },
   })
 
-  const code2 = `const highlighter = await createHighlighter({
-    langs: ["html", "css", "ts"],
-    themes: ["github-dark", "github-light"],
-  })`
+  const highlighter = await createHighlighter(highlighterConfig)
+
+  const firstFile = files[0].name + files[0].id
 
   return (
-    <Tabs defaultValue="account" className="h-full overflow-hidden">
-      <TabsList className="flex w-full justify-start gap-2 border p-2">
-        {snippet?.files.map((file) => {
+    <Tabs
+      defaultValue={firstFile}
+      className="h-full max-w-full rounded-lg border"
+    >
+      <TabsList className="flex w-full justify-start gap-2 rounded-none border-b p-2 px-4">
+        {files.map((file) => {
           const Icon = langs[file.language].icon
 
           return (
@@ -61,9 +56,7 @@ const SnippetSlugPage = async ({
         })}
       </TabsList>
 
-      {snippet?.files.map(async (file) => {
-        const highlighter = await createHighlighter(highlighterConfig)
-
+      {files.map(async (file) => {
         const code = highlighter.codeToHtml(file.content, {
           lang: langs[file.language].id,
           theme: "min-dark",
@@ -71,7 +64,7 @@ const SnippetSlugPage = async ({
 
         return (
           <TabsContent
-            className="h-auto"
+            className="h-auto px-4"
             key={file.id}
             value={file.name + file.id}
           >
