@@ -63,7 +63,7 @@ const CardSkeleton = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "bg-gray-2 h-36 min-h-36 w-[332px] max-w-[332px] animate-pulse rounded-xl p-4 transition-all hover:opacity-85",
+        "dark:bg-gray-2 bg-gray-3 h-36 min-h-36 w-[332px] max-w-[332px] animate-pulse rounded-xl p-4 transition-all hover:opacity-85",
         className
       )}
     />
