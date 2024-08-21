@@ -1,9 +1,9 @@
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { langs } from "@/config/langs"
 import { highlighterConfig } from "@/config/shiki"
 
-import { auth } from "@soli/auth"
 import { db } from "@soli/db"
 
 import { CodeXml } from "lucide-react"
@@ -55,24 +55,28 @@ const SnippetSlugPage = async ({
         defaultValue={firstFile}
         className="bg-gray-1 h-full max-w-full rounded-lg border"
       >
-        <TabsList className="bg-gray-2 flex w-full justify-start gap-2 rounded-none border-b p-2 px-4">
-          {files.map((file) => {
-            const Icon = langs[file.language].icon
+        <ScrollArea className="w-full">
+          <TabsList className="bg-gray-2 flex h-fit w-full justify-start gap-2 rounded-none border-b p-2 px-4">
+            {files.map((file) => {
+              const Icon = langs[file.language].icon
 
-            return (
-              <TabsTrigger
-                key={file.id}
-                value={file.name + file.id}
-                className="space-x-2 font-mono"
-              >
-                <Icon className="size-3" />
-                <span>
-                  {file.name}.{langs[file.language].extension}
-                </span>
-              </TabsTrigger>
-            )
-          })}
-        </TabsList>
+              return (
+                <TabsTrigger
+                  key={file.id}
+                  value={file.name + file.id}
+                  className="space-x-2 font-mono"
+                >
+                  <Icon className="size-3.5" />
+                  <span>
+                    {file.name}.{langs[file.language].extension}
+                  </span>
+                </TabsTrigger>
+              )
+            })}
+          </TabsList>
+
+          <ScrollBar orientation="horizontal" className="h-1.5" />
+        </ScrollArea>
 
         {files.map(async (file) => {
           const code = highlighter.codeToHtml(file.content, {
