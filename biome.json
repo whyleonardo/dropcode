@@ -16,6 +16,9 @@
       },
       "style": {
         "useNumberNamespace": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
       }
     }
   }

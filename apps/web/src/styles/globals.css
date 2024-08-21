@@ -14,3 +14,36 @@
       "calt" 1;
   }
 }
+
+/* html.dark .shiki, */
+/* html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: transparent !important;
+  /* Optional, if you also want font styles */
+/* text-decoration: var(--shiki-dark-text-decoration) !important; */
+/* } */
+
+.shiki {
+  counter-reset: step;
+  counter-increment: step 0;
+  .line {
+    &::before {
+      counter-increment: step;
+      @apply text-muted-foreground mr-6 inline-block w-4 border-transparent text-right content-[counter(step)];
+    }
+  }
+}
+
+.shiki,
+.shiki span {
+  background-color: transparent !important;
+  /* Optional, if you also want font styles */
+}
+
+::selection {
+  background-color: #e0dffe;
+}
+
+.dark ::selection {
+  background-color: #e6e7ff4d;
+}

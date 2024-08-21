@@ -1,5 +1,12 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+import { langs } from "@/config/langs"
+import { highlighterConfig } from "@/config/shiki"
+
 import { auth } from "@soli/auth"
 import { db } from "@soli/db"
+
+import { createHighlighter } from "shiki/bundle/web"
 
 interface SnippetSlugPageProps {
   params: {
@@ -20,11 +27,64 @@ const SnippetSlugPage = async ({
       slug: snippetSlug,
     },
     include: {
-      files: true,
+      files: {
+        orderBy: {
+          updatedAt: "desc",
+        },
+      },
     },
   })
 
-  return <div>{snippet?.files.map((file) => file.content)}</div>
+  const code2 = `const highlighter = await createHighlighter({
+    langs: ["html", "css", "ts"],
+    themes: ["github-dark", "github-light"],
+  })`
+
+  return (
+    <Tabs defaultValue="account" className="h-full overflow-hidden">
+      <TabsList className="flex w-full justify-start gap-2 border p-2">
+        {snippet?.files.map((file) => {
+          const Icon = langs[file.language].icon
+
+          return (
+            <TabsTrigger
+              key={file.id}
+              value={file.name + file.id}
+              className="space-x-2 font-mono"
+            >
+              <Icon className="size-3" />
+              <span>
+                {file.name}.{langs[file.language].extension}
+              </span>
+            </TabsTrigger>
+          )
+        })}
+      </TabsList>
+
+      {snippet?.files.map(async (file) => {
+        const highlighter = await createHighlighter(highlighterConfig)
+
+        const code = highlighter.codeToHtml(file.content, {
+          lang: langs[file.language].id,
+          theme: "min-dark",
+        })
+
+        return (
+          <TabsContent
+            className="h-auto"
+            key={file.id}
+            value={file.name + file.id}
+          >
+            <div
+              dangerouslySetInnerHTML={{
+                __html: code,
+              }}
+            />
+          </TabsContent>
+        )
+      })}
+    </Tabs>
+  )
 }
 
 export default SnippetSlugPage

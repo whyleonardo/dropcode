@@ -129,6 +129,8 @@ model File {
   snippet   Snippet @relation(fields: [snippetId], references: [id])
   snippetId String  @map("snippet_id")
 
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
   @@map("files")
 }
 

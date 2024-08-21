@@ -24,8 +24,10 @@ words:
   - Noninteractive
   - akst
   - Anson
+  - catppuccin
   - datasource
   - bitnami
+  - shiki
   - zustand
   - Preact
   - rarr
