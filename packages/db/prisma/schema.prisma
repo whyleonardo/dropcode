@@ -13,24 +13,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum FileExtension {
-  TS
-  JS
-  JSON
-  CSS
-  VUE
-  SVELTE
-  ANGULAR
-}
-
 enum Language {
-  TYPESCRIPT
+  ANGULAR
+  ASTRO
+  CSS
+  CPP
+  HTML
+  JAVA
   JAVASCRIPT
   JSON
-  CSS
-  VUE
+  JSX
+  PHP
+  PYTHON
   SVELTE
-  ANGULAR
+  TSX
+  TYPESCRIPT
+  VUE
+  YAML
 }
 
 model User {
@@ -120,11 +119,10 @@ model Snippet {
 }
 
 model File {
-  id        String        @id @default(uuid())
-  name      String
-  extension FileExtension
-  language  Language
-  content   String
+  id       String   @id @default(uuid())
+  name     String
+  language Language
+  content  String
 
   snippet   Snippet @relation(fields: [snippetId], references: [id])
   snippetId String  @map("snippet_id")
