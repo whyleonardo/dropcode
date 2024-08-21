@@ -6,6 +6,7 @@ import { highlighterConfig } from "@/config/shiki"
 import { auth } from "@soli/auth"
 import { db } from "@soli/db"
 
+import { CodeXml } from "lucide-react"
 import { createHighlighter } from "shiki/bundle/web"
 
 interface SnippetSlugPageProps {
@@ -26,57 +27,75 @@ const SnippetSlugPage = async ({
     orderBy: {
       updatedAt: "desc",
     },
+    include: {
+      snippet: {
+        select: {
+          title: true,
+        },
+      },
+    },
   })
 
   const highlighter = await createHighlighter(highlighterConfig)
 
+  const snippetTitle = files[0].snippet.title
+
   const firstFile = files[0].name + files[0].id
 
   return (
-    <Tabs
-      defaultValue={firstFile}
-      className="h-full max-w-full rounded-lg border"
-    >
-      <TabsList className="flex w-full justify-start gap-2 rounded-none border-b p-2 px-4">
-        {files.map((file) => {
-          const Icon = langs[file.language].icon
+    <div className="flex h-full flex-col gap-4">
+      <header className="flex h-14 items-center justify-between">
+        <button type="button" className="flex items-center gap-2">
+          <CodeXml className="text-gray-10 size-5" />
+          <span className="font-mono text-lg font-medium">{snippetTitle}</span>
+        </button>
+      </header>
+
+      <Tabs
+        defaultValue={firstFile}
+        className="bg-gray-1 h-full max-w-full rounded-lg border"
+      >
+        <TabsList className="bg-gray-2 flex w-full justify-start gap-2 rounded-none border-b p-2 px-4">
+          {files.map((file) => {
+            const Icon = langs[file.language].icon
+
+            return (
+              <TabsTrigger
+                key={file.id}
+                value={file.name + file.id}
+                className="space-x-2 font-mono"
+              >
+                <Icon className="size-3" />
+                <span>
+                  {file.name}.{langs[file.language].extension}
+                </span>
+              </TabsTrigger>
+            )
+          })}
+        </TabsList>
+
+        {files.map(async (file) => {
+          const code = highlighter.codeToHtml(file.content, {
+            lang: langs[file.language].id,
+            theme: "min-dark",
+          })
 
           return (
-            <TabsTrigger
+            <TabsContent
+              className="h-auto px-4"
               key={file.id}
               value={file.name + file.id}
-              className="space-x-2 font-mono"
             >
-              <Icon className="size-3" />
-              <span>
-                {file.name}.{langs[file.language].extension}
-              </span>
-            </TabsTrigger>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: code,
+                }}
+              />
+            </TabsContent>
           )
         })}
-      </TabsList>
-
-      {files.map(async (file) => {
-        const code = highlighter.codeToHtml(file.content, {
-          lang: langs[file.language].id,
-          theme: "min-dark",
-        })
-
-        return (
-          <TabsContent
-            className="h-auto px-4"
-            key={file.id}
-            value={file.name + file.id}
-          >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: code,
-              }}
-            />
-          </TabsContent>
-        )
-      })}
-    </Tabs>
+      </Tabs>
+    </div>
   )
 }
 

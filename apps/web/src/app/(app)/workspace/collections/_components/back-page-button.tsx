@@ -14,12 +14,12 @@ export const BackPageButton = () => {
     <button
       type="button"
       onClick={() => router.back()}
-      className="group flex items-center gap-1.5"
+      className="group flex items-center gap-2"
     >
-      <ArrowLeft className="text-gray-10 group-hover size-4 transition-all group-hover:-translate-x-0.5" />
-      <h2 className="font-mono text-lg font-medium">
+      <ArrowLeft className="text-gray-10 size-5 transition-all group-hover:-translate-x-0.5" />
+      <span className="font-mono text-lg font-medium">
         {isSnippetPathname ?? "Collections"}
-      </h2>
+      </span>
     </button>
   )
 }

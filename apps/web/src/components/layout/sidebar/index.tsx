@@ -10,11 +10,13 @@ import {
 
 import { sidebarMenuLinks } from "@/config/sidebar-menu-links"
 
+import { cn } from "@soli/tailwind/utils"
+
 import { UserInfo } from "./user-info"
 
 export const Sidebar = () => {
   return (
-    <aside className="bg-gray-2 flex h-full w-14 flex-col items-center rounded-lg px-2 py-4">
+    <aside className="bg-gray-2 flex h-full w-14 flex-col items-center border-r px-2 py-4">
       <TooltipProvider delayDuration={30}>
         <Tooltip>
           <TooltipTrigger asChild>
@@ -38,7 +40,14 @@ export const Sidebar = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" size="icon" asChild>
-                    <Link href={link.href}>
+                    <Link
+                      href={link.href}
+                      aria-disabled={link.isDisabled}
+                      className={cn(
+                        link.isDisabled &&
+                          "pointer-events-none cursor-not-allowed opacity-50"
+                      )}
+                    >
                       <Icon className="size-5" />
                     </Link>
                   </Button>

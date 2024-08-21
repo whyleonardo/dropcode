@@ -57,17 +57,15 @@ const CollectionSlugPage = async ({
 
   if (snippets.length === 0)
     return (
-      <div className="flex h-full flex-col gap-4">
-        <div className="flex size-full h-auto flex-1 flex-wrap items-center justify-center gap-4 px-4">
-          <p className="text-lg">No snippets created on this collection yet</p>
-        </div>
+      <div className="flex size-full h-full flex-1 flex-wrap items-center justify-center gap-4">
+        <p className="text-lg">No snippets created on this collection yet</p>
       </div>
     )
 
   return (
     <div className="flex h-full flex-col gap-4">
       <ScrollArea>
-        <div className="flex size-full h-auto flex-1 flex-wrap justify-start gap-4 px-4">
+        <div className="flex size-full h-auto flex-1 flex-wrap justify-start gap-4">
           {snippets.map((snippet) => (
             <Link
               key={snippet.id}
@@ -81,6 +79,7 @@ const CollectionSlugPage = async ({
                   <CardIcons>
                     {snippet.files.map((file) => {
                       const Icon = langs[file.language].icon
+
                       return (
                         <TooltipProvider key={file.id}>
                           <Tooltip delayDuration={30}>
@@ -90,7 +89,7 @@ const CollectionSlugPage = async ({
 
                             <TooltipContent>
                               <span className="normal-case">
-                                {file.language}
+                                {langs[file.language].name}
                               </span>
                             </TooltipContent>
                           </Tooltip>
