@@ -44,13 +44,6 @@ const SnippetSlugPage = async ({
 
   return (
     <div className="flex h-full flex-col gap-4">
-      <header className="flex h-14 items-center justify-between">
-        <button type="button" className="flex items-center gap-2">
-          <CodeXml className="text-gray-10 size-5" />
-          <span className="font-mono text-lg font-medium">{snippetTitle}</span>
-        </button>
-      </header>
-
       <Tabs
         defaultValue={firstFile}
         className="bg-gray-1 h-full max-w-full rounded-lg border"
