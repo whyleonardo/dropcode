@@ -17,4 +17,13 @@ export const authConfig = {
   session: {
     strategy: "jwt",
   },
+  callbacks: {
+    async session({ session, ...params }) {
+      if ("token" in params && session.user) {
+        session.user.id = params.token.sub as string
+      }
+
+      return session
+    },
+  },
 } satisfies NextAuthConfig
