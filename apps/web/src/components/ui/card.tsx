@@ -10,7 +10,7 @@ const CardRoot = ({
   return (
     <div
       className={cn(
-        "bg-gray-2 min-h-36 max-w-[332px] space-y-2 rounded-xl border p-4 transition-all hover:opacity-85",
+        "bg-gray-2 min-h-36 space-y-2 rounded-xl border p-4 transition-all hover:opacity-85",
         className
       )}
     >
