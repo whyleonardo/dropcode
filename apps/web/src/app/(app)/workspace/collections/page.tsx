@@ -69,7 +69,16 @@ const CollectionsPage = async () => {
               </CardHeader>
 
               <CardDescription className="min-h-fit">
-                This collection has {collection._count.snippets} snippets
+                {collection._count.snippets > 0 ? (
+                  <>
+                    This collection have {collection._count.snippets}
+                    {collection._count.snippets === 1
+                      ? " snippet"
+                      : " snippets"}
+                  </>
+                ) : (
+                  <>This collection is empty</>
+                )}
               </CardDescription>
             </CardRoot>
           </Link>
