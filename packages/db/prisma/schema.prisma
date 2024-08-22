@@ -108,7 +108,7 @@ model Snippet {
   isFavorite Boolean @default(false) @map("is_favorite")
   isPublic   Boolean @default(false) @map("is_public")
 
-  collection   Collection? @relation(fields: [collectionId], references: [id])
+  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   collectionId String?     @map("collection_id")
 
   user   User   @relation(fields: [userId], references: [id])
@@ -124,7 +124,7 @@ model File {
   language Language
   content  String
 
-  snippet   Snippet @relation(fields: [snippetId], references: [id])
+  snippet   Snippet @relation(fields: [snippetId], references: [id], onDelete: Cascade)
   snippetId String  @map("snippet_id")
 
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -136,7 +136,7 @@ model Tag {
   id   String @id @default(uuid())
   slug String @unique
 
-  User   User   @relation(fields: [userId], references: [id])
+  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @map("user_id")
 
   createdAt DateTime  @default(now()) @map("created_at")
@@ -154,7 +154,7 @@ model Collection {
 
   snippets Snippet[]
 
-  User   User   @relation(fields: [userId], references: [id])
+  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @map("user_id")
 
   createdAt DateTime @default(now()) @map("created_at")
