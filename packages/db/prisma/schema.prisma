@@ -41,11 +41,13 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  createdAt   DateTime     @default(now()) @map("created_at")
-  updatedAt   DateTime     @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
   snippets    Snippet[]
   collections Collection[]
   tags        Tag[]
+  files       File[]
 
   @@map("users")
 }
@@ -115,6 +117,7 @@ model Snippet {
   userId String @map("user_id")
 
   @@unique([collectionId, slug])
+  @@index([slug, userId])
   @@map("snippets")
 }
 
@@ -127,8 +130,12 @@ model File {
   snippet   Snippet @relation(fields: [snippetId], references: [id], onDelete: Cascade)
   snippetId String  @map("snippet_id")
 
+  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  @@index([userId, snippetId])
   @@map("files")
 }
 
@@ -139,11 +146,12 @@ model Tag {
   User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @map("user_id")
 
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-  snippets  Snippet[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@index([userId])
+  snippets Snippet[]
+
+  @@index([userId, slug])
   @@map("tags")
 }
 
@@ -161,5 +169,6 @@ model Collection {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@index([userId])
+  @@index([slug, userId])
   @@map("collections")
 }
