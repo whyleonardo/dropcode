@@ -14,57 +14,53 @@ ignorePaths:
   - "**/.next"
   - "**/tsconfig.build.tsbuildinfo"
 words:
-  - acst
-  - aest
-  - Ebene
   - Activedescendant
-  - Tabindex
-  - Focusable
-  - Autofocus
-  - Noninteractive
-  - akst
+  - acst
   - Anson
-  - catppuccin
-  - datasource
-  - bitnami
-  - shiki
-  - zustand
-  - Preact
-  - rarr
-  - astro
-  - astrojs
+  - Autofocus
   - autodocs
   - autoplay
   - awst
+  - aest
+  - akst
+  - astro
+  - astrojs
+  - Autofocus
+  - awst
   - Beamer
-  - Binni
   - biomejs
+  - Binni
+  - bitnami
   - branchname
   - bunx
-  - bvaughn
   - Byrom
+  - bvaughn
   - callees
-  - cjsx
+  - catppuccin
   - classname
   - clsx
+  - cjsx
   - cmdk
-  - codespace
-  - codespaces
   - Colm
   - commitlint
   - commitlintrc
   - compat
   - consts
+  - codespace
+  - codespaces
   - crossorigin
   - ctsx
+  - datasource
   - datetime
   - dbaeumer
   - degit
   - dotenv
   - dsznajder
   - Duarte
+  - Ebene
   - Embla
   - esbenp
+  - Focusable
   - hookform
   - ixahmedxi
   - jiti
@@ -84,6 +80,7 @@ words:
   - neonctl
   - neondatabase
   - nextjs
+  - Noninteractive
   - nuxt
   - nzst
   - onwarn
@@ -95,10 +92,14 @@ words:
   - pageview
   - peduarte
   - pids
+  - Preact
   - posthog
   - quickstart
   - Ratelimit
+  - rarr
   - shadcn
+  - shiki
+  - sonner
   - sslmode
   - starterkit
   - starterkits
@@ -106,6 +107,7 @@ words:
   - stylelintcache
   - stylesheet
   - superjson
+  - Tabindex
   - tada
   - tailwindcss
   - tamasfe
@@ -123,15 +125,16 @@ words:
   - Tuite
   - turborepo
   - typecheck
-  - typeof
   - typesafe
+  - typeof
   - unifiedjs
   - unkey
   - uploadthing
   - vaul
+  - Vercel
   - viewports
   - vuepress
   - WITA
   - wscript
   - yoav
-  - Vercel
+  - zustand
