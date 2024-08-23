@@ -11,6 +11,7 @@ export const ThemeToggle = () => {
 
   return (
     <button
+      type="button"
       className="relative flex"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >

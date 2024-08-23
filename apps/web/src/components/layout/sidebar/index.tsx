@@ -1,6 +1,5 @@
 import Link from "next/link"
 
-import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
@@ -8,10 +7,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-import { sidebarMenuLinks } from "@/config/sidebar-menu-links"
-
-import { cn } from "@soli/tailwind/utils"
-
+import { NavMenuLinks } from "./nav-menu-links"
 import { UserInfo } from "./user-info"
 
 export const Sidebar = () => {
@@ -21,8 +17,8 @@ export const Sidebar = () => {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              className="border-border rounded-full border"
-              href="/workspace/me"
+              className="border-border pointer-events-none rounded-full border"
+              href="/me"
             >
               <UserInfo />
             </Link>
@@ -32,31 +28,7 @@ export const Sidebar = () => {
       </TooltipProvider>
 
       <div className="mt-8 flex flex-col gap-2">
-        {sidebarMenuLinks.map((link, index) => {
-          const Icon = link.icon
-
-          return (
-            <TooltipProvider delayDuration={30} key={`${link.href}-${index}`}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" asChild>
-                    <Link
-                      href={link.href}
-                      aria-disabled={link.isDisabled}
-                      className={cn(
-                        link.isDisabled &&
-                          "pointer-events-none cursor-not-allowed opacity-50"
-                      )}
-                    >
-                      <Icon className="size-5" />
-                    </Link>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent side="right">{link.label}</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          )
-        })}
+        <NavMenuLinks />
       </div>
     </aside>
   )
