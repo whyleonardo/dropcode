@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -6,7 +8,6 @@ import { highlighterConfig } from "@/config/shiki"
 
 import { db } from "@soli/db"
 
-import { CodeXml } from "lucide-react"
 import { createHighlighter } from "shiki/bundle/web"
 
 interface SnippetSlugPageProps {
@@ -38,18 +39,18 @@ const SnippetSlugPage = async ({
 
   const highlighter = await createHighlighter(highlighterConfig)
 
-  const snippetTitle = files[0].snippet.title
-
-  const firstFile = files[0].name + files[0].id
+  const firstFile = files.length > 0 ? files[0].name + files[0].id : ""
 
   return (
     <div className="flex h-full flex-col gap-4">
+      <Link href="#">Create new file</Link>
+
       <Tabs
         defaultValue={firstFile}
         className="bg-gray-1 h-full max-w-full rounded-lg border"
       >
         <ScrollArea className="w-full">
-          <TabsList className="bg-gray-2 flex h-fit w-full justify-start gap-2 rounded-none border-b p-2 px-4">
+          <TabsList className="bg-gray-2 flex h-fit min-h-12 w-full justify-start gap-2 rounded-none border-b p-2 px-4">
             {files.map((file) => {
               const Icon = langs[file.language].icon
 
@@ -71,7 +72,7 @@ const SnippetSlugPage = async ({
           <ScrollBar orientation="horizontal" className="h-1.5" />
         </ScrollArea>
 
-        {files.map(async (file) => {
+        {files.map((file) => {
           const code = highlighter.codeToHtml(file.content, {
             lang: langs[file.language].id,
             theme: "min-dark",

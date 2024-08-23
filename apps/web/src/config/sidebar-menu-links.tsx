@@ -10,25 +10,25 @@ type SidebarMenuLink = {
 export const sidebarMenuLinks: SidebarMenuLink[] = [
   {
     label: "Home",
-    href: "/workspace",
+    href: "/",
     icon: House,
     isDisabled: false,
   },
   {
     label: "Snippets",
-    href: "/workspace/snippets",
+    href: "/snippets",
     icon: CodeXml,
     isDisabled: true,
   },
   {
     label: "Collections",
-    href: "/workspace/collections",
+    href: "/collections",
     icon: Folder,
     isDisabled: false,
   },
   {
     label: "Favorites",
-    href: "/workspace/favorites",
+    href: "/favorites",
     icon: Star,
     isDisabled: false,
   },

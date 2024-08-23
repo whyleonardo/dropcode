@@ -3,9 +3,18 @@ import { Sidebar } from "@/components/layout/sidebar"
 
 import { QueryProvider } from "@/providers/query-provider"
 
-const WorkspaceLayout = ({ children }: { children: React.ReactNode }) => {
+import { Toaster } from "sonner"
+
+const WorkspaceLayout = ({
+  children,
+  modal,
+}: {
+  readonly children: React.ReactNode
+  readonly modal: React.ReactNode
+}) => {
   return (
     <QueryProvider>
+      <Toaster richColors />
       <div className="flex h-screen w-full overflow-hidden">
         <div>
           <Sidebar />
@@ -16,7 +25,11 @@ const WorkspaceLayout = ({ children }: { children: React.ReactNode }) => {
             <BackPageButton />
           </header>
 
-          <div className="h-[calc(100%-3.5rem)]">{children}</div>
+          <div className="h-[calc(100%-3.5rem)]">
+            {children}
+
+            {modal}
+          </div>
         </div>
       </div>
     </QueryProvider>

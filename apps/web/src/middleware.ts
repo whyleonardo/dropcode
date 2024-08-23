@@ -7,7 +7,7 @@ export default middleware((req) => {
   }
 
   if (req.auth && req.nextUrl.pathname === "/auth/login") {
-    const newUrl = new URL("/workspace", req.nextUrl.origin)
+    const newUrl = new URL("/", req.nextUrl.origin)
     return Response.redirect(newUrl)
   }
 })
