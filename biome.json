@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "ignore": ["node_modules", ".next", "out", "dist", "build", "public"]
+  },
   "organizeImports": {
     "enabled": false
   },
@@ -14,11 +17,18 @@
       "a11y": {
         "noSvgWithoutTitle": "off"
       },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      },
       "style": {
         "useNumberNamespace": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"
+      },
+      "suspicious": {
+        "noMisleadingCharacterClass": "off"
       }
     }
   }
