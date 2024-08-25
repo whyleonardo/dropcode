@@ -1,4 +1,4 @@
-import NextAuth, { type NextAuthResult, Session } from "next-auth"
+import NextAuth, { type NextAuthResult } from "next-auth"
 
 import { authConfig } from "./auth.config"
 
