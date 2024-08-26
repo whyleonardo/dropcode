@@ -40,7 +40,7 @@ export const Breadcrumbs = () => {
           const href = `/${segments.slice(0, index + 1).join("/")}`
           const isActive = segment === pathname.split("/").at(-1)
 
-          if (segment === "snippet") {
+          if (segment === "snippet" && index === 0) {
             return (
               <Fragment key={segment}>
                 <BreadcrumbItem>
