@@ -56,6 +56,8 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
       array.findIndex((file2) => file2.language === file.language) === index
   )
 
+  console.log({ MAX_TAGS_TO_SHOW }, snippet.tags.length)
+
   return (
     <Dialog>
       <ContextMenu>
@@ -94,7 +96,8 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
                     )
                   })}
 
-                  {MAX_ICONS_TO_SHOW < onlyNotDuplicatedFilesIcons.length && (
+                  {MAX_ICONS_TO_SHOW <
+                    onlyNotDuplicatedFilesIcons.length - 1 && (
                     <TooltipProvider>
                       <Tooltip delayDuration={30}>
                         <TooltipTrigger>
@@ -105,7 +108,7 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
                           <span className="normal-case">
                             {onlyNotDuplicatedFilesIcons.length -
                               MAX_ICONS_TO_SHOW -
-                              1}
+                              1}{" "}
                             more
                           </span>
                         </TooltipContent>
@@ -129,7 +132,7 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
                   </Tag>
                 ))}
 
-                {MAX_TAGS_TO_SHOW < snippet.tags.length && (
+                {MAX_TAGS_TO_SHOW < snippet.tags.length - 1 && (
                   <TooltipProvider>
                     <Tooltip delayDuration={30}>
                       <TooltipTrigger className="ml-auto">
