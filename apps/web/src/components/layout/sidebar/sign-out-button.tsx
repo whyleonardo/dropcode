@@ -6,7 +6,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-import { signOut } from "@soli/auth"
+import { signOut } from "@dropcode/auth"
 
 import { LogOut } from "lucide-react"
 

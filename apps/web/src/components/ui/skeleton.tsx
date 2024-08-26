@@ -1,4 +1,4 @@
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 const Skeleton = ({
   className,

@@ -1,4 +1,4 @@
-import { auth as middleware } from "@soli/auth"
+import { auth as middleware } from "@dropcode/auth"
 
 export default middleware((req) => {
   if (!req.auth && req.nextUrl.pathname !== "/auth/login") {

@@ -8,8 +8,8 @@ import { UnauthorizedError } from "@/errors/unauthorized-error"
 import { UnexpectedError } from "@/errors/unexpected-error"
 import { createSlug } from "@/utils/create-slug"
 
-import { db } from "@soli/db"
-import type { Snippet } from "@soli/db/types"
+import { db } from "@dropcode/db"
+import type { Snippet } from "@dropcode/db/types"
 
 import { createSnippetSchema } from "./schema"
 

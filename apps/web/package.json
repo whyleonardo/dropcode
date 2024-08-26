@@ -1,5 +1,5 @@
 {
-  "name": "@soli/web",
+  "name": "@dropcode/web",
   "version": "0.2.0",
   "private": true,
   "type": "module",
@@ -11,6 +11,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@dropcode/auth": "workspace:*",
+    "@dropcode/db": "workspace:*",
     "@hookform/resolvers": "3.9.0",
     "@radix-ui/react-avatar": "1.1.0",
     "@radix-ui/react-context-menu": "2.2.1",
@@ -23,8 +25,6 @@
     "@radix-ui/react-switch": "1.1.0",
     "@radix-ui/react-tabs": "1.1.0",
     "@radix-ui/react-tooltip": "1.1.2",
-    "@soli/auth": "workspace:*",
-    "@soli/db": "workspace:*",
     "@tanstack/react-query": "5.51.23",
     "@tanstack/react-query-devtools": "5.51.23",
     "@total-typescript/ts-reset": "0.5.1",
@@ -45,12 +45,13 @@
     "zustand": "4.5.4"
   },
   "devDependencies": {
+    "@dropcode/tailwind": "workspace:*",
+    "@dropcode/tsconfig": "workspace:*",
     "@next/bundle-analyzer": "14.2.5",
-    "@soli/tailwind": "workspace:*",
-    "@soli/tsconfig": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "autoprefixer": "10.4.20",
     "dotenv": "16.4.5",
     "postcss": "^8",
     "shiki": "1.14.1",

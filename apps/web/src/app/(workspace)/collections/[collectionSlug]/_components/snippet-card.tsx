@@ -36,7 +36,7 @@ import { langs } from "@/config/langs"
 
 import type { SnippetWithFilesAndTags } from "@/@types/prisma"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 import { MoreHorizontal, Pencil, Trash } from "lucide-react"
 

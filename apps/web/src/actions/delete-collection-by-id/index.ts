@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache"
 import { authProcedure } from "@/actions/procedures"
 import { UnexpectedError } from "@/errors/unexpected-error"
 
-import { db } from "@soli/db"
+import { db } from "@dropcode/db"
 
 import { deleteCollectionByIdSchema } from "./schema"
 

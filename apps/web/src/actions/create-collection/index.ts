@@ -7,7 +7,7 @@ import { SameSlugError } from "@/errors/same-slug-error"
 import { UnexpectedError } from "@/errors/unexpected-error"
 import { createSlug } from "@/utils/create-slug"
 
-import { db } from "@soli/db"
+import { db } from "@dropcode/db"
 
 import { createCollectionSchema } from "./schema"
 

@@ -12,9 +12,9 @@ import {
 
 import { Label } from "@/components/ui/label"
 
+import { cn } from "@dropcode/tailwind/utils"
 import type * as LabelPrimitive from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
-import { cn } from "@soli/tailwind/utils"
 
 const Form = FormProvider
 

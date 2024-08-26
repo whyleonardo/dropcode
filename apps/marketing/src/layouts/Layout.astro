@@ -1,12 +1,13 @@
 ---
-import "@soli/assets/src/fonts/stylesheet.css"
+import "@dropcode/assets/src/fonts/stylesheet.css"
 import "@/styles/globals.css"
 
 interface Props {
   title: string
 }
 
-const { title } = Astro.props
+// biome-ignore lint/correctness/noUnusedVariables: Biome + Astro bug
+const { title }: Props = Astro.props
 ---
 
 <!doctype html>

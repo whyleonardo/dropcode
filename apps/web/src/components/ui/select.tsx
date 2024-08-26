@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
+import { cn } from "@dropcode/tailwind/utils"
 import * as SelectPrimitive from "@radix-ui/react-select"
-import { cn } from "@soli/tailwind/utils"
 
 import { Check, ChevronDown, ChevronUp, ChevronsUpDown } from "lucide-react"
 

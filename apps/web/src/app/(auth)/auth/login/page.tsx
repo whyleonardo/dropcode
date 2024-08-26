@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button"
 import { TypingAnimation } from "@/components/ui/motion/text-typing"
 import { Vignette } from "@/components/ui/vignette"
 
-import { signIn } from "@soli/auth"
-import { cn } from "@soli/tailwind/utils"
+import { signIn } from "@dropcode/auth"
+import { cn } from "@dropcode/tailwind/utils"
 
 const LoginPage = async () => {
   return (

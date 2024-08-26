@@ -6,7 +6,7 @@ import { authProcedure } from "@/actions/procedures"
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error"
 import { UnexpectedError } from "@/errors/unexpected-error"
 
-import { db } from "@soli/db"
+import { db } from "@dropcode/db"
 
 import { deleteFileByIdSchema } from "./schema"
 

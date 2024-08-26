@@ -1,7 +1,7 @@
 import * as React from "react"
 
+import { cn } from "@dropcode/tailwind/utils"
 import { Slot } from "@radix-ui/react-slot"
-import { cn } from "@soli/tailwind/utils"
 
 import { Loader2 } from "lucide-react"
 import { type VariantProps, tv } from "tailwind-variants"

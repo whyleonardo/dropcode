@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 interface TypingAnimationProps {
   text: string

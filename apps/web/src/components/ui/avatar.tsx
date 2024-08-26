@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
+import { cn } from "@dropcode/tailwind/utils"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
-import { cn } from "@soli/tailwind/utils"
 
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,

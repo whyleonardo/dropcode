@@ -1,3 +1,3 @@
 {
-  "extends": ["./tsconfig.json", "@soli/tsconfig/build.json"]
+  "extends": ["./tsconfig.json", "@dropcode/tsconfig/build.json"]
 }

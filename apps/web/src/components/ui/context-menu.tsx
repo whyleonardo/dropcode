@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
+import { cn } from "@dropcode/tailwind/utils"
 import * as ContextMenuPrimitive from "@radix-ui/react-context-menu"
-import { cn } from "@soli/tailwind/utils"
 
 import { Check, ChevronRight, Circle } from "lucide-react"
 

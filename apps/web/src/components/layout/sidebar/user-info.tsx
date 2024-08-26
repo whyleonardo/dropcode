@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-import { auth } from "@soli/auth"
+import { auth } from "@dropcode/auth"
 
 export const UserInfo = async () => {
   const userSession = await auth()

@@ -2,7 +2,7 @@
 
 import { authProcedure } from "@/actions/procedures"
 
-import { db } from "@soli/db"
+import { db } from "@dropcode/db"
 
 import { fetchCollectionsSchema } from "./schema"
 

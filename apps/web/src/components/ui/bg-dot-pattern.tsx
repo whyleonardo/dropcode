@@ -1,6 +1,6 @@
 import { useId } from "react"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 interface DotPatternProps {
   width?: string | number | undefined

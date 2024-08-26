@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
+import { cn } from "@dropcode/tailwind/utils"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
-import { cn } from "@soli/tailwind/utils"
 
 import { X } from "lucide-react"
 

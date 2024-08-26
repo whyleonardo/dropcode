@@ -1,4 +1,4 @@
-import { extract, soliTailwindPreset } from "@soli/tailwind"
+import { dropcodeTailwindPreset, extract } from "@dropcode/tailwind"
 
 import type { Config } from "tailwindcss"
 
@@ -11,7 +11,7 @@ const config = {
     extract,
   },
   darkMode: ["class"],
-  presets: [soliTailwindPreset],
+  presets: [dropcodeTailwindPreset],
 } satisfies Config
 
 export default config

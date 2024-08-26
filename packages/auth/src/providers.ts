@@ -1,6 +1,6 @@
 import GitHub from "next-auth/providers/github"
 
-import { env } from "@soli/env/web"
+import { env } from "@dropcode/env/web"
 
 export const providers = [
   GitHub({

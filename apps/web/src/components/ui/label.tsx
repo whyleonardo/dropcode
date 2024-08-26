@@ -2,8 +2,8 @@
 
 import * as React from "react"
 
+import { cn } from "@dropcode/tailwind/utils"
 import * as LabelPrimitive from "@radix-ui/react-label"
-import { cn } from "@soli/tailwind/utils"
 
 import { type VariantProps, tv } from "tailwind-variants"
 

@@ -6,8 +6,8 @@ import { authProcedure } from "@/actions/procedures"
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error"
 import { UnexpectedError } from "@/errors/unexpected-error"
 
-import { db } from "@soli/db"
-import type { File } from "@soli/db/types"
+import { db } from "@dropcode/db"
+import type { File } from "@dropcode/db/types"
 
 import { createFileSchema } from "./schema"
 

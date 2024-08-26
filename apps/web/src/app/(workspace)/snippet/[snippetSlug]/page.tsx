@@ -6,7 +6,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-import { db } from "@soli/db"
+import { db } from "@dropcode/db"
 
 import { LockKeyhole } from "lucide-react"
 

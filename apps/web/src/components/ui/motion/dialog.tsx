@@ -15,7 +15,7 @@ import { createPortal } from "react-dom"
 
 import { useClickOutside } from "@/hooks/use-click-outside"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 import {
   AnimatePresence,

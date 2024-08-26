@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons"
 
-import { env } from "@soli/env/web"
+import { env } from "@dropcode/env/web"
 
 export const ScreenSizeIndicator = () => {
   if (env.NODE_ENV === "production") return null

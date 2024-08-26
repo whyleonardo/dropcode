@@ -1,4 +1,4 @@
-# @soli/tsconfig
+# @dropcode/tsconfig
 
 ## 0.2.0
 

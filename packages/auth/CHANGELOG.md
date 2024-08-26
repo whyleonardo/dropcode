@@ -1,4 +1,4 @@
-# @soli/auth
+# @dropcode/auth
 
 ## 0.1.0
 
@@ -9,5 +9,5 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @soli/db@0.1.0
-  - @soli/env@0.1.0
+  - @dropcode/db@0.1.0
+  - @dropcode/env@0.1.0

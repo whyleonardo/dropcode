@@ -1,6 +1,6 @@
 import { UnauthorizedError } from "@/errors/unauthorized-error"
 
-import { auth } from "@soli/auth"
+import { auth } from "@dropcode/auth"
 
 import { createServerActionProcedure } from "zsa"
 

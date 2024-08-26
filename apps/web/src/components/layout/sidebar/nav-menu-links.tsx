@@ -13,7 +13,7 @@ import {
 
 import { sidebarMenuLinks } from "@/config/sidebar-menu-links"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 export const NavMenuLinks = () => {
   const pathname = usePathname()

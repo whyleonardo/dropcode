@@ -14,7 +14,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 import { Home } from "lucide-react"
 

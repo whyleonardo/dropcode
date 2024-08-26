@@ -11,5 +11,5 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @soli/auth@0.1.0
-  - @soli/db@0.1.0
+  - @dropcode/auth@0.1.0
+  - @dropcode/db@0.1.0

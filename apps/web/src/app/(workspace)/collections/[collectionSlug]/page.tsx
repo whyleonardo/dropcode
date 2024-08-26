@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { fetchCollectionsBySlug } from "@/actions/fetch-collection-by-slug"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 import { PlusIcon } from "lucide-react"
 

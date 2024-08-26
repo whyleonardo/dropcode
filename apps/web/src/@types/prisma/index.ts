@@ -1,4 +1,4 @@
-import type { $Enums } from "@soli/db/types"
+import type { $Enums } from "@dropcode/db/types"
 
 export type FileWithSnippetInfo = {
   snippet: {

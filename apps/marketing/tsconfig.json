@@ -1,5 +1,5 @@
 {
-  "extends": ["astro/tsconfigs/strictest", "@soli/tsconfig/react.json"],
+  "extends": ["astro/tsconfigs/strictest", "@dropcode/tsconfig/react.json"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

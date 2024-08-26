@@ -1,5 +1,5 @@
 {
-  "name": "@soli/tailwind",
+  "name": "@dropcode/tailwind",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -22,6 +22,6 @@
     "windy-radix-typography": "1.0.0-beta.0"
   },
   "devDependencies": {
-    "@soli/tsconfig": "workspace:*"
+    "@dropcode/tsconfig": "workspace:*"
   }
 }

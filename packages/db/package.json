@@ -1,5 +1,5 @@
 {
-  "name": "@soli/db",
+  "name": "@dropcode/db",
   "version": "0.1.0",
   "private": true,
   "exports": {
@@ -18,8 +18,8 @@
     "dotenv-cli": "7.4.2"
   },
   "devDependencies": {
-    "@soli/env": "workspace:*",
-    "@soli/tsconfig": "workspace:*",
+    "@dropcode/env": "workspace:*",
+    "@dropcode/tsconfig": "workspace:*",
     "prisma": "5.18.0"
   }
 }

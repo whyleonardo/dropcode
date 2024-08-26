@@ -18,7 +18,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { fetchCollections } from "@/actions/fetch-collections"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 import { Pencil, PlusIcon, Trash } from "lucide-react"
 

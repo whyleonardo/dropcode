@@ -1,7 +1,7 @@
 import * as React from "react"
 
+import { cn } from "@dropcode/tailwind/utils"
 import { Slot } from "@radix-ui/react-slot"
-import { cn } from "@soli/tailwind/utils"
 
 import { ChevronRight, MoreHorizontal } from "lucide-react"
 

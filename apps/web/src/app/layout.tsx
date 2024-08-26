@@ -7,7 +7,7 @@ import "@/styles/globals.css"
 
 import { ThemeProvider } from "@/providers/theme-provider"
 
-import { cn } from "@soli/tailwind/utils"
+import { cn } from "@dropcode/tailwind/utils"
 
 export const metadata: Metadata = {
   title: {

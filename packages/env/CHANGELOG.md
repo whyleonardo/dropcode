@@ -1,4 +1,4 @@
-# @soli/env
+# @dropcode/env
 
 ## 0.1.0
 

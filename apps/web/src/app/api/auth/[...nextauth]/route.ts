@@ -1,3 +1,3 @@
-import { handlers } from "@soli/auth"
+import { handlers } from "@dropcode/auth"
 
 export const { GET, POST } = handlers

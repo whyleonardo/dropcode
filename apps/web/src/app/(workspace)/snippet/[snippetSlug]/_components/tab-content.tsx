@@ -6,8 +6,8 @@ import { TabsContent } from "@/components/ui/tabs"
 import { langs } from "@/config/langs"
 import { highlighterConfig } from "@/config/shiki"
 
+import type { File } from "@dropcode/db/types"
 import { getSingletonHighlighterCore } from "@shikijs/core"
-import type { File } from "@soli/db/types"
 
 import { ClipboardCopyButton } from "./clipboard-copy-button"
 

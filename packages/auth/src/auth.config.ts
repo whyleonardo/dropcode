@@ -1,8 +1,8 @@
 import type { NextAuthConfig } from "next-auth"
 
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { db } from "@soli/db"
-import { env } from "@soli/env/web"
+import { db } from "@dropcode/db"
+import { env } from "@dropcode/env/web"
 
 import { providers } from "./providers"
 

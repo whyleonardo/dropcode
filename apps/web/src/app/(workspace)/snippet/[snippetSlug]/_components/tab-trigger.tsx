@@ -26,7 +26,7 @@ import { langs } from "@/config/langs"
 import { deleteFileById } from "@/actions/delete-file-by-id"
 import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
-import type { File } from "@soli/db/types"
+import type { File } from "@dropcode/db/types"
 
 import { Loader2, Pencil, Trash } from "lucide-react"
 
