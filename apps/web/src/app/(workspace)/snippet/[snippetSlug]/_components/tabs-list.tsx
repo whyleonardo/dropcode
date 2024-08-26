@@ -4,6 +4,7 @@ import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
+  ContextMenuLabel,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
 import { DialogTrigger } from "@/components/ui/dialog"
@@ -11,7 +12,7 @@ import { TabsList as List } from "@/components/ui/tabs"
 
 import type { FileWithSnippetInfo } from "@/@types/prisma"
 
-import { FilePlus2 } from "lucide-react"
+import { FilePlus } from "lucide-react"
 
 import { TabTrigger } from "./tab-trigger"
 
@@ -30,9 +31,11 @@ export const TabsList = ({ files }: TabsListProps) => {
         </List>
       </ContextMenuTrigger>
       <ContextMenuContent>
+        <ContextMenuLabel>Menu</ContextMenuLabel>
+
         <DialogTrigger asChild>
           <ContextMenuItem className="cursor-pointer">
-            <FilePlus2 className="mr-2 size-4" />
+            <FilePlus className="mr-2 size-4" />
             New file
           </ContextMenuItem>
         </DialogTrigger>
