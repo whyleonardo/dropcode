@@ -15,14 +15,6 @@
   }
 }
 
-/* html.dark .shiki, */
-/* html.dark .shiki span {
-  color: var(--shiki-dark) !important;
-  background-color: transparent !important;
-  /* Optional, if you also want font styles */
-/* text-decoration: var(--shiki-dark-text-decoration) !important; */
-/* } */
-
 .shiki {
   counter-reset: step;
   counter-increment: step 0;
@@ -37,7 +29,6 @@
 .shiki,
 .shiki span {
   background-color: transparent !important;
-  /* Optional, if you also want font styles */
 }
 
 ::selection {
