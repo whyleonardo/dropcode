@@ -1,35 +1,17 @@
-import Link from "next/link"
+import { notFound } from "next/navigation"
 
-import { Tag } from "@/components/tag"
 import { buttonVariants } from "@/components/ui/button"
-import {
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardIcons,
-  CardRoot,
-  CardTitle,
-} from "@/components/ui/card"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 
-import { langs } from "@/config/langs"
+import { fetchCollectionsBySlug } from "@/actions/fetch-collection-by-slug"
 
-import { sleep } from "@/utils/sleep"
-
-import { auth } from "@soli/auth"
-import { db } from "@soli/db"
 import { cn } from "@soli/tailwind/utils"
 
 import { PlusIcon } from "lucide-react"
 
 import { CreateSnippetFormModal } from "./_components/create-snippet-form-modal"
+import { SnippetCard } from "./_components/snippet-card"
 
 interface CollectionSlugPageProps {
   params: {
@@ -40,29 +22,15 @@ interface CollectionSlugPageProps {
 const CollectionSlugPage = async ({
   params: { collectionSlug },
 }: CollectionSlugPageProps) => {
-  await sleep(1432)
-
-  const userSession = await auth()
-
-  const userId = userSession?.user?.id
-
-  const snippets = await db.snippet.findMany({
-    where: {
-      userId,
-      collection: {
-        slug: collectionSlug,
-      },
-    },
-    include: {
-      tags: true,
-      files: true,
-    },
-    orderBy: {
-      updatedAt: "desc",
-    },
+  const [collection] = await fetchCollectionsBySlug({
+    collectionSlug,
   })
 
-  const snippetsIsEmpty = snippets?.length === 0
+  if (!collection) {
+    notFound()
+  }
+
+  const noSnippets = collection.snippets.length === 0
 
   return (
     <div className="flex size-full flex-col gap-8">
@@ -74,7 +42,7 @@ const CollectionSlugPage = async ({
               className: "min-h-10 w-fit self-end",
               size: "sm",
             }),
-            snippetsIsEmpty && "hidden"
+            noSnippets && "hidden"
           )}
         >
           Create snippet
@@ -83,53 +51,17 @@ const CollectionSlugPage = async ({
 
         <ScrollArea className="flex flex-1">
           <div className="flex h-full flex-1 flex-wrap justify-center gap-8">
-            {snippets.map((snippet) => (
-              <Link
+            {collection.snippets.map((snippet) => (
+              <SnippetCard
                 key={snippet.id}
-                href={`/snippet/${snippet.slug}`}
-                className="group w-full max-w-[332px] cursor-pointer select-none outline-none"
-              >
-                <CardRoot className="group-focus-visible:border-primary-10 min-h-40">
-                  <CardHeader>
-                    <CardTitle>{snippet.title}</CardTitle>
-
-                    <CardIcons>
-                      {snippet.files.map((file) => {
-                        const Icon = langs[file.language].icon
-
-                        return (
-                          <TooltipProvider key={file.id}>
-                            <Tooltip delayDuration={30}>
-                              <TooltipTrigger>
-                                <Icon className="size-4" />
-                              </TooltipTrigger>
-
-                              <TooltipContent>
-                                <span className="normal-case">
-                                  {langs[file.language].name}
-                                </span>
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
-                        )
-                      })}
-                    </CardIcons>
-                  </CardHeader>
-
-                  <CardDescription>{snippet.description}</CardDescription>
-
-                  <CardFooter>
-                    {snippet.tags.map((tag) => (
-                      <Tag key={tag.id}>{tag.slug}</Tag>
-                    ))}
-                  </CardFooter>
-                </CardRoot>
-              </Link>
+                snippet={snippet}
+                collectionSlug={collectionSlug}
+              />
             ))}
           </div>
         </ScrollArea>
 
-        {snippetsIsEmpty && (
+        {noSnippets && (
           <div className="flex size-full items-center justify-center">
             <div className="space-y-2 text-center">
               <span className="text-muted-foreground block text-base">
@@ -142,7 +74,7 @@ const CollectionSlugPage = async ({
                     className: "min-h-10 w-fit self-end",
                     size: "sm",
                   }),
-                  !snippetsIsEmpty && "hidden"
+                  !noSnippets && "hidden"
                 )}
               >
                 Create now
