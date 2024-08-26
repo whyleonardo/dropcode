@@ -42,7 +42,10 @@ export const Breadcrumbs = () => {
 
           if (segment === "snippet" && index === 0) {
             return (
-              <Fragment key={segment}>
+              <Fragment
+                // biome-ignore lint/suspicious/noArrayIndexKey: Using index here with another information
+                key={`${segment}-${index}`}
+              >
                 <BreadcrumbItem>
                   <BreadcrumbEllipsis />
                 </BreadcrumbItem>
