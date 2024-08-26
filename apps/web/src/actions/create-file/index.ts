@@ -7,6 +7,7 @@ import { ResourceNotFoundError } from "@/errors/resource-not-found-error"
 import { UnexpectedError } from "@/errors/unexpected-error"
 
 import { db } from "@soli/db"
+import type { File } from "@soli/db/types"
 
 import { createFileSchema } from "./schema"
 
@@ -32,8 +33,10 @@ export const createFile = authProcedure
       throw new ResourceNotFoundError()
     }
 
+    let file: File
+
     try {
-      await db.file.create({
+      file = await db.file.create({
         data: {
           content,
           language,
@@ -47,4 +50,6 @@ export const createFile = authProcedure
     }
 
     revalidatePath(`/snippet/${snippetSlug}`)
+
+    return { fileId: file.id }
   })
