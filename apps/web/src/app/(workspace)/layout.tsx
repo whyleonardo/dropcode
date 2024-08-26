@@ -1,4 +1,4 @@
-import { BackPageButton } from "@/components/back-page-button"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Sidebar } from "@/components/layout/sidebar"
 
 import { QueryProvider } from "@/providers/query-provider"
@@ -22,7 +22,7 @@ const WorkspaceLayout = ({
 
         <div className="bg-gray-1 h-full w-full overflow-hidden px-8 py-4">
           <header className="flex h-14 items-center justify-between">
-            <BackPageButton />
+            <Breadcrumbs />
           </header>
 
           <div className="h-[calc(100%-3.5rem)]">
