@@ -20,7 +20,7 @@ import { fetchCollections } from "@/actions/fetch-collections"
 
 import { cn } from "@soli/tailwind/utils"
 
-import { PlusIcon, Trash } from "lucide-react"
+import { Pencil, PlusIcon, Trash } from "lucide-react"
 
 import { DeleteCollectionModal } from "./_components/delete-collection-modal"
 
@@ -86,6 +86,11 @@ const CollectionsPage = async () => {
                 </ContextMenuTrigger>
 
                 <ContextMenuContent>
+                  <ContextMenuItem className="cursor-pointer" disabled>
+                    <Pencil className="mr-2 size-4" />
+                    Edit
+                  </ContextMenuItem>
+
                   <DialogTrigger asChild>
                     <ContextMenuItem className="text-destructive hover:!text-destructive-11 cursor-pointer">
                       <Trash className="mr-2 size-4" />

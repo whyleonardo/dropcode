@@ -36,7 +36,7 @@ import { langs } from "@/config/langs"
 
 import type { SnippetWithFilesAndTags } from "@/@types/prisma"
 
-import { Trash } from "lucide-react"
+import { Pencil, Trash } from "lucide-react"
 
 import { DeleteSnippetButton } from "./delete-snippet-button"
 
@@ -95,6 +95,11 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
           </Link>
         </ContextMenuTrigger>
         <ContextMenuContent>
+          <ContextMenuItem className="cursor-pointer" disabled>
+            <Pencil className="mr-2 size-4" />
+            Edit
+          </ContextMenuItem>
+
           <DialogTrigger asChild>
             <ContextMenuItem className="text-destructive hover:!text-destructive-11 cursor-pointer">
               <Trash className="mr-2 size-4" />

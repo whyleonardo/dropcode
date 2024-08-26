@@ -70,7 +70,7 @@ export const TabTrigger = ({ file }: { file: File }) => {
           </TabsTrigger>
         </ContextMenuTrigger>
         <ContextMenuContent>
-          <ContextMenuItem className="cursor-pointer">
+          <ContextMenuItem className="cursor-pointer" disabled>
             <Pencil className="mr-2 size-4" />
             Edit
           </ContextMenuItem>
