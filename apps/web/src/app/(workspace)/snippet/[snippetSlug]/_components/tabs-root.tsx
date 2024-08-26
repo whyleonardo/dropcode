@@ -29,7 +29,7 @@ export const TabsRoot = ({ files, children }: TabsRootProps) => {
   return (
     <Tabs
       defaultValue={defaultFile}
-      value={tabFileId}
+      value={tabFileId ?? defaultFile}
       className="bg-gray-1 group relative flex h-full w-full select-none flex-col overflow-hidden rounded-lg border"
     >
       <ScrollArea className="h-12 min-h-12 w-full">
