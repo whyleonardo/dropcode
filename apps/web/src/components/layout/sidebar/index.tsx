@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Tooltip,
   TooltipContent,
@@ -8,6 +9,7 @@ import {
 } from "@/components/ui/tooltip"
 
 import { NavMenuLinks } from "./nav-menu-links"
+import { SignOutButton } from "./sign-out-button"
 import { UserInfo } from "./user-info"
 
 export const Sidebar = () => {
@@ -26,9 +28,13 @@ export const Sidebar = () => {
           <TooltipContent side="right">User</TooltipContent>
         </Tooltip>
       </TooltipProvider>
-
       <div className="mt-8 flex flex-col gap-2">
         <NavMenuLinks />
+      </div>
+      <div className="mt-auto flex flex-col items-center justify-center gap-2">
+        <ThemeToggle />
+
+        <SignOutButton />
       </div>
     </aside>
   )
