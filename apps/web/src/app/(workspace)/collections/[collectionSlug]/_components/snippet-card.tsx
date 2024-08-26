@@ -56,8 +56,6 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
       array.findIndex((file2) => file2.language === file.language) === index
   )
 
-  console.log({ MAX_TAGS_TO_SHOW }, snippet.tags.length)
-
   return (
     <Dialog>
       <ContextMenu>
@@ -109,7 +107,7 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
                             {onlyNotDuplicatedFilesIcons.length -
                               MAX_ICONS_TO_SHOW -
                               1}{" "}
-                            more
+                            more language(s)
                           </span>
                         </TooltipContent>
                       </Tooltip>
