@@ -1,9 +1,8 @@
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Sidebar } from "@/components/layout/sidebar"
+import { Toaster } from "@/components/ui/toaster"
 
 import { QueryProvider } from "@/providers/query-provider"
-
-import { Toaster } from "sonner"
 
 const WorkspaceLayout = ({
   children,
@@ -14,7 +13,7 @@ const WorkspaceLayout = ({
 }) => {
   return (
     <QueryProvider>
-      <Toaster richColors invert />
+      <Toaster />
       <div className="flex h-screen w-full overflow-hidden">
         <div>
           <Sidebar />
