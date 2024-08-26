@@ -175,7 +175,11 @@ export const CreateNewFileModal = () => {
               <FormItem>
                 <FormLabel>Content</FormLabel>
                 <FormControl>
-                  <Textarea {...field} />
+                  <Textarea
+                    placeholder="Insert the content here"
+                    className="h-96 resize-none"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
