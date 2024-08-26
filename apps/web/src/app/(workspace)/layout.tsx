@@ -14,7 +14,7 @@ const WorkspaceLayout = ({
 }) => {
   return (
     <QueryProvider>
-      <Toaster richColors />
+      <Toaster richColors invert />
       <div className="flex h-screen w-full overflow-hidden">
         <div>
           <Sidebar />

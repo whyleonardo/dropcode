@@ -1,14 +1,18 @@
-import Link from "next/link"
-
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
-import { langs } from "@/config/langs"
-import { highlighterConfig } from "@/config/shiki"
+import { Dialog } from "@/components/ui/dialog"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 import { db } from "@soli/db"
 
-import { createHighlighter } from "shiki/bundle/web"
+import { LockKeyhole } from "lucide-react"
+
+import { CreateNewFileModal } from "./_components/create-new-file-modal"
+import { TabContent } from "./_components/tab-content"
+import { TabsRoot } from "./_components/tabs-root"
 
 interface SnippetSlugPageProps {
   params: {
@@ -32,67 +36,37 @@ const SnippetSlugPage = async ({
       snippet: {
         select: {
           title: true,
+          isPublic: true,
         },
       },
     },
   })
 
-  const highlighter = await createHighlighter(highlighterConfig)
-
-  const firstFile = files.length > 0 ? files[0].name + files[0].id : ""
+  const isPublic = files.at(0)?.snippet.isPublic
 
   return (
-    <div className="flex h-full flex-col gap-4">
-      <Link href="#">Create new file</Link>
+    <div className="flex h-full flex-col gap-4 overflow-hidden">
+      <div className="flex items-center gap-2">
+        <h2 className="text-xl font-bold">{snippetSlug}</h2>
+        <TooltipProvider delayDuration={30}>
+          <Tooltip>
+            <TooltipTrigger className="cursor-default">
+              {!isPublic && <LockKeyhole className="size-4" />}
+            </TooltipTrigger>
 
-      <Tabs
-        defaultValue={firstFile}
-        className="bg-gray-1 h-full max-w-full rounded-lg border"
-      >
-        <ScrollArea className="w-full">
-          <TabsList className="bg-gray-2 flex h-fit min-h-12 w-full justify-start gap-2 rounded-none border-b p-2 px-4">
-            {files.map((file) => {
-              const Icon = langs[file.language].icon
+            <TooltipContent side="right">Private</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+      <Dialog>
+        <TabsRoot files={files}>
+          {files.map((file) => (
+            <TabContent key={file.id} file={file} />
+          ))}
+        </TabsRoot>
 
-              return (
-                <TabsTrigger
-                  key={file.id}
-                  value={file.name + file.id}
-                  className="space-x-2 font-mono"
-                >
-                  <Icon className="size-3.5" />
-                  <span>
-                    {file.name}.{langs[file.language].extension}
-                  </span>
-                </TabsTrigger>
-              )
-            })}
-          </TabsList>
-
-          <ScrollBar orientation="horizontal" className="h-1.5" />
-        </ScrollArea>
-
-        {files.map((file) => {
-          const code = highlighter.codeToHtml(file.content, {
-            lang: langs[file.language].id,
-            theme: "min-dark",
-          })
-
-          return (
-            <TabsContent
-              className="h-auto px-4"
-              key={file.id}
-              value={file.name + file.id}
-            >
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: code,
-                }}
-              />
-            </TabsContent>
-          )
-        })}
-      </Tabs>
+        <CreateNewFileModal />
+      </Dialog>
     </div>
   )
 }
