@@ -48,61 +48,62 @@ interface SnippetCardProps {
 export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
   return (
     <Dialog>
-      <DialogTrigger className="w-full max-w-[332px]">
-        <ContextMenu>
-          <ContextMenuTrigger asChild>
-            <Link
-              key={snippet.id}
-              href={`/snippet/${snippet.slug}`}
-              className="group cursor-pointer select-none outline-none"
-            >
-              <CardRoot className="group-focus-visible:border-primary-10 min-h-40">
-                <CardHeader>
-                  <CardTitle>{snippet.title}</CardTitle>
+      <ContextMenu>
+        <ContextMenuTrigger className="w-full max-w-[332px]">
+          <Link
+            key={snippet.id}
+            href={`/snippet/${snippet.slug}`}
+            className="group cursor-pointer select-none outline-none"
+          >
+            <CardRoot className="group-focus-visible:border-primary-10 min-h-40">
+              <CardHeader>
+                <CardTitle>{snippet.title}</CardTitle>
 
-                  <CardIcons>
-                    {snippet.files.map((file) => {
-                      const Icon = langs[file.language].icon
+                <CardIcons>
+                  {snippet.files.map((file) => {
+                    const Icon = langs[file.language].icon
 
-                      return (
-                        <TooltipProvider key={file.id}>
-                          <Tooltip delayDuration={30}>
-                            <TooltipTrigger>
-                              <Icon className="size-4" />
-                            </TooltipTrigger>
+                    return (
+                      <TooltipProvider key={file.id}>
+                        <Tooltip delayDuration={30}>
+                          <TooltipTrigger>
+                            <Icon className="size-4" />
+                          </TooltipTrigger>
 
-                            <TooltipContent>
-                              <span className="normal-case">
-                                {langs[file.language].name}
-                              </span>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      )
-                    })}
-                  </CardIcons>
-                </CardHeader>
+                          <TooltipContent>
+                            <span className="normal-case">
+                              {langs[file.language].name}
+                            </span>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )
+                  })}
+                </CardIcons>
+              </CardHeader>
 
-                <CardDescription className="text-start">
-                  {snippet.description}
-                </CardDescription>
+              <CardDescription className="text-start">
+                {snippet.description}
+              </CardDescription>
 
-                <CardFooter>
-                  {snippet.tags.map((tag) => (
-                    <Tag key={tag.id}>{tag.slug}</Tag>
-                  ))}
-                </CardFooter>
-              </CardRoot>
-            </Link>
-          </ContextMenuTrigger>
-          <ContextMenuContent>
+              <CardFooter>
+                {snippet.tags.map((tag) => (
+                  <Tag key={tag.id}>{tag.slug}</Tag>
+                ))}
+              </CardFooter>
+            </CardRoot>
+          </Link>
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <DialogTrigger asChild>
             <ContextMenuItem className="text-destructive hover:!text-destructive-11 cursor-pointer">
               <Trash className="mr-2 size-4" />
               Delete
             </ContextMenuItem>
-          </ContextMenuContent>
-        </ContextMenu>
-      </DialogTrigger>
+          </DialogTrigger>
+        </ContextMenuContent>
+      </ContextMenu>
+
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
