@@ -4,7 +4,7 @@ const CollectionsLayout = async ({
   children: React.ReactNode
 }) => {
   return (
-    <div className="flex h-full flex-col gap-4">
+    <div className="relative z-10 flex h-full flex-col gap-4">
       <div className="h-full">{children}</div>
     </div>
   )
