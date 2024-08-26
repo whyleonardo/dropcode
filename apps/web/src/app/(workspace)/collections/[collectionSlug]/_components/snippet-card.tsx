@@ -36,7 +36,9 @@ import { langs } from "@/config/langs"
 
 import type { SnippetWithFilesAndTags } from "@/@types/prisma"
 
-import { Pencil, Trash } from "lucide-react"
+import { cn } from "@soli/tailwind/utils"
+
+import { MoreHorizontal, Pencil, Trash } from "lucide-react"
 
 import { DeleteSnippetButton } from "./delete-snippet-button"
 
@@ -45,7 +47,15 @@ interface SnippetCardProps {
   collectionSlug: string
 }
 
+const MAX_ICONS_TO_SHOW = 2
+const MAX_TAGS_TO_SHOW = 2
+
 export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
+  const onlyNotDuplicatedFilesIcons = snippet.files.filter(
+    (file, index, array) =>
+      array.findIndex((file2) => file2.language === file.language) === index
+  )
+
   return (
     <Dialog>
       <ContextMenu>
@@ -60,13 +70,17 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
                 <CardTitle>{snippet.title}</CardTitle>
 
                 <CardIcons>
-                  {snippet.files.map((file) => {
+                  {onlyNotDuplicatedFilesIcons.map((file, index) => {
                     const Icon = langs[file.language].icon
 
                     return (
                       <TooltipProvider key={file.id}>
                         <Tooltip delayDuration={30}>
-                          <TooltipTrigger>
+                          <TooltipTrigger
+                            className={cn(
+                              index > MAX_ICONS_TO_SHOW && "hidden"
+                            )}
+                          >
                             <Icon className="size-4" />
                           </TooltipTrigger>
 
@@ -79,6 +93,25 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
                       </TooltipProvider>
                     )
                   })}
+
+                  {MAX_ICONS_TO_SHOW < onlyNotDuplicatedFilesIcons.length && (
+                    <TooltipProvider>
+                      <Tooltip delayDuration={30}>
+                        <TooltipTrigger>
+                          <MoreHorizontal className="size-4" />
+                        </TooltipTrigger>
+
+                        <TooltipContent>
+                          <span className="normal-case">
+                            {onlyNotDuplicatedFilesIcons.length -
+                              MAX_ICONS_TO_SHOW -
+                              1}
+                            more
+                          </span>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )}
                 </CardIcons>
               </CardHeader>
 
@@ -87,13 +120,36 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
               </CardDescription>
 
               <CardFooter>
-                {snippet.tags.map((tag) => (
-                  <Tag key={tag.id}>{tag.slug}</Tag>
+                {snippet.tags.map((tag, index) => (
+                  <Tag
+                    className={cn(index > MAX_TAGS_TO_SHOW && "hidden")}
+                    key={tag.id}
+                  >
+                    {tag.slug}
+                  </Tag>
                 ))}
+
+                {MAX_TAGS_TO_SHOW < snippet.tags.length && (
+                  <TooltipProvider>
+                    <Tooltip delayDuration={30}>
+                      <TooltipTrigger className="ml-auto">
+                        <MoreHorizontal className="size-4" />
+                      </TooltipTrigger>
+
+                      <TooltipContent>
+                        <span className="normal-case">
+                          more {snippet.tags.length - MAX_TAGS_TO_SHOW - 1}{" "}
+                          tag(s)
+                        </span>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
               </CardFooter>
             </CardRoot>
           </Link>
         </ContextMenuTrigger>
+
         <ContextMenuContent>
           <ContextMenuItem className="cursor-pointer" disabled>
             <Pencil className="mr-2 size-4" />
