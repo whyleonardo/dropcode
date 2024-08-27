@@ -6,7 +6,7 @@ export const Toaster = () => {
       className=""
       richColors
       toastOptions={{
-        duration: 800,
+        duration: 2400,
         classNames: {
           error: "!text-destructive-10 !bg-destructive-3 !border-none",
           success: "!text-green-10 !bg-green-3 !border-none",
