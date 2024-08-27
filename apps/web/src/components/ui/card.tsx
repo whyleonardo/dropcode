@@ -34,7 +34,11 @@ const CardHeader = ({
 }
 
 const CardTitle = ({ children }: { children: React.ReactNode }) => {
-  return <span className="text-xl font-medium">{children}</span>
+  return (
+    <span className="text-lg font-semibold leading-none tracking-tight">
+      {children}
+    </span>
+  )
 }
 
 const CardIcons = ({ children }: { children: React.ReactNode }) => {
@@ -55,8 +59,16 @@ const CardDescription = ({
   )
 }
 
-const CardFooter = ({ children }: { children: React.ReactNode }) => {
-  return <div className="flex items-center gap-1">{children}</div>
+const CardFooter = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) => {
+  return (
+    <div className={cn("flex items-center gap-1", className)}>{children}</div>
+  )
 }
 
 const CardSkeleton = ({ className }: { className?: string }) => {

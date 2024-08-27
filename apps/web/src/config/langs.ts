@@ -11,6 +11,7 @@ type Lang = Record<
     icon: (props: LucideProps) => JSX.Element
     extension: string
     enum: string
+    color: string
   }
 >
 
@@ -21,6 +22,7 @@ export const langs: Lang = {
     icon: Icons.angular,
     extension: "angular",
     enum: "ANGULAR",
+    color: "#dd1b16",
   },
   ASTRO: {
     id: "astro",
@@ -28,6 +30,7 @@ export const langs: Lang = {
     icon: Icons.astro,
     extension: "astro",
     enum: "ASTRO",
+    color: "#ff5a1f",
   },
   CSS: {
     id: "css",
@@ -35,6 +38,7 @@ export const langs: Lang = {
     icon: Icons.css,
     extension: "css",
     enum: "CSS",
+    color: "#2965f1",
   },
   CPP: {
     id: "cpp",
@@ -42,6 +46,7 @@ export const langs: Lang = {
     icon: Icons.cpp,
     extension: "cpp",
     enum: "CPP",
+    color: "#00599c",
   },
   HTML: {
     id: "html",
@@ -49,6 +54,7 @@ export const langs: Lang = {
     icon: Icons.html,
     extension: "html",
     enum: "HTML",
+    color: "#e34c26",
   },
   JAVA: {
     id: "java",
@@ -56,6 +62,7 @@ export const langs: Lang = {
     icon: Icons.java,
     extension: "java",
     enum: "JAVA",
+    color: "#5382a1",
   },
   JAVASCRIPT: {
     id: "javascript",
@@ -63,6 +70,7 @@ export const langs: Lang = {
     icon: Icons.javascript,
     extension: "js",
     enum: "JAVASCRIPT",
+    color: "#f0db4f",
   },
   JSON: {
     id: "jsonc",
@@ -70,6 +78,7 @@ export const langs: Lang = {
     icon: Icons.json,
     extension: "json",
     enum: "JSON",
+    color: "#4a4a4a",
   },
   JSX: {
     id: "jsx",
@@ -77,6 +86,7 @@ export const langs: Lang = {
     icon: Icons.jsx,
     extension: "jsx",
     enum: "JSX",
+    color: "#61dafb",
   },
   PHP: {
     id: "php",
@@ -84,6 +94,7 @@ export const langs: Lang = {
     icon: Icons.php,
     extension: "php",
     enum: "PHP",
+    color: "#4f5b93",
   },
   PYTHON: {
     id: "python",
@@ -91,6 +102,7 @@ export const langs: Lang = {
     icon: Icons.python,
     extension: "py",
     enum: "PYTHON",
+    color: "#3572a5",
   },
   SVELTE: {
     id: "svelte",
@@ -98,6 +110,7 @@ export const langs: Lang = {
     icon: Icons.svelte,
     extension: "svelte",
     enum: "SVELTE",
+    color: "#ff3e00",
   },
   TSX: {
     id: "tsx",
@@ -105,6 +118,7 @@ export const langs: Lang = {
     icon: Icons.tsx,
     extension: "tsx",
     enum: "TSX",
+    color: "#007acc",
   },
   TYPESCRIPT: {
     id: "typescript",
@@ -112,6 +126,7 @@ export const langs: Lang = {
     icon: Icons.typescript,
     extension: "ts",
     enum: "TYPESCRIPT",
+    color: "#3178c6",
   },
   VUE: {
     id: "vue",
@@ -119,6 +134,7 @@ export const langs: Lang = {
     icon: Icons.vue,
     extension: "vue",
     enum: "VUE",
+    color: "#42b883",
   },
   YAML: {
     id: "yaml",
@@ -126,5 +142,6 @@ export const langs: Lang = {
     icon: Icons.yaml,
     extension: "yaml",
     enum: "YAML",
+    color: "#cb171e",
   },
 } as const
