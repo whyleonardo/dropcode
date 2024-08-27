@@ -18,9 +18,7 @@ const WorkspaceLayout = ({
     <QueryProvider>
       <Toaster />
       <div className="flex h-screen w-full overflow-hidden">
-        <div>
-          <Sidebar />
-        </div>
+        <Sidebar />
 
         <div className="bg-gray-1 h-full w-full overflow-hidden px-8 py-4">
           <header className="flex h-14 items-center justify-between">
