@@ -10,7 +10,12 @@ import {
 } from "@/components/ui/dialog"
 
 import { deleteCollectionById } from "@/actions/delete-collection-by-id"
-import { useServerActionMutation } from "@/hooks/server-action-hooks"
+import {
+  QueryKeyFactory,
+  useServerActionMutation,
+} from "@/hooks/server-action-hooks"
+
+import { useQueryClient } from "@tanstack/react-query"
 
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
@@ -22,11 +27,17 @@ interface DeleteCollectionModalProps {
 export const DeleteCollectionModal = ({
   collectionId,
 }: DeleteCollectionModalProps) => {
+  const queryClient = useQueryClient()
+
   const {
     mutateAsync: executeCollectionDelete,
     isPending: isDeletingCollection,
   } = useServerActionMutation(deleteCollectionById, {
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
+      })
+
       toast.info("Collection deleted")
     },
   })

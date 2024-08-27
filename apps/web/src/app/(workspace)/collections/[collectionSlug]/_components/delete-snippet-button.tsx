@@ -3,7 +3,12 @@
 import { Button } from "@/components/ui/button"
 
 import { deleteSnippetById } from "@/actions/delete-snippet-by-id"
-import { useServerActionMutation } from "@/hooks/server-action-hooks"
+import {
+  QueryKeyFactory,
+  useServerActionMutation,
+} from "@/hooks/server-action-hooks"
+
+import { useQueryClient } from "@tanstack/react-query"
 
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
@@ -17,9 +22,15 @@ export const DeleteSnippetButton = ({
   collectionSlug,
   snippetId,
 }: DeleteSnippetButtonProps) => {
+  const queryClient = useQueryClient()
+
   const { mutateAsync: executeSnippetDelete, isPending: isDeletingSnippet } =
     useServerActionMutation(deleteSnippetById, {
       onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
+        })
+
         toast.info("Snippet deleted")
       },
     })

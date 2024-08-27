@@ -33,9 +33,13 @@ import { langs } from "@/config/langs"
 
 import { createFile } from "@/actions/create-file"
 import { createFileSchema } from "@/actions/create-file/schema"
-import { useServerActionMutation } from "@/hooks/server-action-hooks"
+import {
+  QueryKeyFactory,
+  useServerActionMutation,
+} from "@/hooks/server-action-hooks"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useQueryClient } from "@tanstack/react-query"
 
 import { toast } from "sonner"
 import type { z } from "zod"
@@ -47,11 +51,17 @@ const languages = Object.values(langs)
 export const CreateNewFileModal = () => {
   const router = useRouter()
   const pathname = usePathname()
+  const queryClient = useQueryClient()
+
   const snippetSlug = pathname.split("/").at(-1)
   const closeDialogButtonRef = useRef<HTMLButtonElement>(null)
 
   const { mutateAsync, isPending } = useServerActionMutation(createFile, {
     onSuccess: ({ fileId }) => {
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
+      })
+
       toast.success("File created")
       closeDialogButtonRef.current?.click()
       router.push(`${pathname}?tabFileId=${fileId}`)

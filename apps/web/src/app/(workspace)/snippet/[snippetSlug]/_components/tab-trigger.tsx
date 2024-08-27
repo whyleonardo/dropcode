@@ -24,9 +24,13 @@ import { TabsTrigger } from "@/components/ui/tabs"
 import { langs } from "@/config/langs"
 
 import { deleteFileById } from "@/actions/delete-file-by-id"
-import { useServerActionMutation } from "@/hooks/server-action-hooks"
+import {
+  QueryKeyFactory,
+  useServerActionMutation,
+} from "@/hooks/server-action-hooks"
 
 import type { File } from "@dropcode/db/types"
+import { useQueryClient } from "@tanstack/react-query"
 
 import { Loader2, Pencil, Trash } from "lucide-react"
 
@@ -34,10 +38,15 @@ export const TabTrigger = ({ file }: { file: File }) => {
   const Icon = langs[file.language].icon
   const triggerRef = useRef<HTMLButtonElement>(null)
   const searchParams = useSearchParams()
+  const queryClient = useQueryClient()
 
   const { mutateAsync: executeFileDelete, isPending: isDeletingFile } =
     useServerActionMutation(deleteFileById, {
       onSuccess: ({ fileIdToRedirect }) => {
+        queryClient.invalidateQueries({
+          queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
+        })
+
         if (fileIdToRedirect) {
           router.push(`${pathname}?tabFileId=${fileIdToRedirect}`)
         } else {
