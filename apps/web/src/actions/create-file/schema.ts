@@ -1,7 +1,10 @@
 import { z } from "zod"
 
 export const createFileSchema = z.object({
-  name: z.string({ message: "Name is required" }).trim().min(1).max(40),
+  name: z
+    .string({ message: "Name is required" })
+    .trim()
+    .min(1, { message: "Name is too short" }),
   language: z.union(
     [
       z.literal("ANGULAR", { message: "Invalid language" }),
