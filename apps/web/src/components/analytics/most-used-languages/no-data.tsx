@@ -21,7 +21,7 @@ export const NoData = () => {
         <div className="relative mx-auto mt-12 flex size-72 min-h-44 items-center justify-center">
           <div className="bg-muted absolute size-52 rounded-full" />
 
-          <div className="bg-background relative z-10 flex size-28 rounded-full" />
+          <div className="bg-gray-2 relative z-10 flex size-28 rounded-full" />
         </div>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-center text-sm">
