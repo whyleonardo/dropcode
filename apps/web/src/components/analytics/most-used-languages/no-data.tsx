@@ -13,7 +13,7 @@ export const NoData = () => {
     <Card className="bg-gray-2 size-fit h-[28rem] w-full lg:w-fit lg:min-w-[32rem]">
       <CardHeader className="items-center justify-center gap-2 pb-0">
         <div className="flex w-full items-center justify-between">
-          <CardTitle>Lines per Language</CardTitle>
+          <CardTitle>Most Files per Language</CardTitle>
         </div>
       </CardHeader>
 
