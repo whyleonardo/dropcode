@@ -8,6 +8,11 @@ import { db } from "@dropcode/db"
 
 import { fetchLinesCreatedInPeriodSchema } from "./schema"
 
+type AccumulatorReduce = {
+  lines: number
+  language: string
+}
+
 export const fetchLinesCreatedInPeriod = authProcedure
   .createServerAction()
   .input(fetchLinesCreatedInPeriodSchema)
@@ -39,11 +44,6 @@ export const fetchLinesCreatedInPeriod = authProcedure
         language: true,
       },
     })
-
-    type AccumulatorReduce = {
-      lines: number
-      language: string
-    }
 
     const linesInPeriodPerLanguage = files.reduce(
       (acc, file) => {
