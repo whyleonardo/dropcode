@@ -18,6 +18,7 @@ enum Language {
   ASTRO
   CSS
   CPP
+  GO
   HTML
   JAVA
   JAVASCRIPT
