@@ -7,6 +7,7 @@ import {
 
 export const QueryKeyFactory = createServerActionsKeyFactory({
   fetchLinesCreatedInPeriod: () => ["lines-created-in-period"],
+  fetchMostUsedLanguages: () => ["most-used-languages"],
 })
 
 const {
