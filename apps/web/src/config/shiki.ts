@@ -11,6 +11,7 @@ export const highlighterConfig: HighlighterCoreOptions = {
     import("shiki/langs/css.mjs"),
     import("shiki/langs/cpp.mjs"),
     import("shiki/langs/html.mjs"),
+    import("shiki/langs/go.mjs"),
     import("shiki/langs/java.mjs"),
     import("shiki/langs/javascript.mjs"),
     import("shiki/langs/jsonc.mjs"),

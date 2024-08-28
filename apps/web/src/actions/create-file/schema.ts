@@ -11,6 +11,7 @@ export const createFileSchema = z.object({
       z.literal("ASTRO"),
       z.literal("CSS"),
       z.literal("CPP"),
+      z.literal("GO"),
       z.literal("HTML"),
       z.literal("JAVA"),
       z.literal("JAVASCRIPT"),

@@ -13,7 +13,7 @@ type AccumulatorReduce = {
   count: number
 }
 
-const MAX_LANGUAGES_TO_RETURN = 4
+const MAX_LANGUAGES_TO_RETURN = 5
 
 export const fetchMostUsedLanguages = authProcedure
   .createServerAction()
@@ -53,16 +53,15 @@ export const fetchMostUsedLanguages = authProcedure
     )
 
     const chartData = Object.entries(fiveMostUsedLanguages)
-      .map(([_, { language, count }], index) => {
-        if (index > MAX_LANGUAGES_TO_RETURN) return
-
+      .map(([_, { language, count }]) => {
         return {
           fill: langs[language].color,
           language: langs[language].name,
           count,
         }
       })
-      .sort((a, b) => (a && b ? b.count - a.count : 0))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, MAX_LANGUAGES_TO_RETURN)
 
     return chartData
   })

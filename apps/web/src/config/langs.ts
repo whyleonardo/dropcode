@@ -1,7 +1,7 @@
 import { Icons } from "@/components/icons"
 
 import type { LucideProps } from "lucide-react"
-import type { BundledLanguage } from "shiki/bundle/web"
+import type { BundledLanguage } from "shiki/bundle-full.mjs"
 
 type Lang = Record<
   string,
@@ -47,6 +47,14 @@ export const langs: Lang = {
     extension: "cpp",
     enum: "CPP",
     color: "#00599c",
+  },
+  GO: {
+    id: "go",
+    name: "Go",
+    icon: Icons.go,
+    extension: "go",
+    enum: "GO",
+    color: "#23AFD0",
   },
   HTML: {
     id: "html",
