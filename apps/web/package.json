@@ -13,6 +13,7 @@
   "dependencies": {
     "@dropcode/auth": "workspace:*",
     "@dropcode/db": "workspace:*",
+    "@dropcode/redis": "workspace:*",
     "@hookform/resolvers": "3.9.0",
     "@radix-ui/react-avatar": "1.1.0",
     "@radix-ui/react-context-menu": "2.2.1",
