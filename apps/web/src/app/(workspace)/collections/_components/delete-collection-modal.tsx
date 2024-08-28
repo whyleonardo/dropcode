@@ -38,6 +38,10 @@ export const DeleteCollectionModal = ({
         queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
       })
 
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchMostUsedLanguages(),
+      })
+
       toast.info("Collection deleted")
     },
   })

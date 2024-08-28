@@ -31,6 +31,10 @@ export const DeleteSnippetButton = ({
           queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
         })
 
+        queryClient.invalidateQueries({
+          queryKey: QueryKeyFactory.fetchMostUsedLanguages(),
+        })
+
         toast.info("Snippet deleted")
       },
     })

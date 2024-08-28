@@ -47,6 +47,10 @@ export const TabTrigger = ({ file }: { file: File }) => {
           queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
         })
 
+        queryClient.invalidateQueries({
+          queryKey: QueryKeyFactory.fetchMostUsedLanguages(),
+        })
+
         if (fileIdToRedirect) {
           router.push(`${pathname}?tabFileId=${fileIdToRedirect}`)
         } else {

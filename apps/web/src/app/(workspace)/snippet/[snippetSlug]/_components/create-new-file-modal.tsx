@@ -62,6 +62,10 @@ export const CreateNewFileModal = () => {
         queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
       })
 
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchMostUsedLanguages(),
+      })
+
       toast.success("File created")
       closeDialogButtonRef.current?.click()
       router.push(`${pathname}?tabFileId=${fileId}`)
