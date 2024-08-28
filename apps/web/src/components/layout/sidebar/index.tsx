@@ -14,7 +14,7 @@ import { UserInfo } from "./user-info"
 
 export const Sidebar = () => {
   return (
-    <aside className="bg-gray-2 flex h-full w-14 flex-col items-center border-r px-2 py-4">
+    <aside className="bg-gray-2 flex hidden h-full w-14 flex-col items-center border-r px-2 py-4 lg:flex">
       <TooltipProvider delayDuration={30}>
         <Tooltip>
           <TooltipTrigger asChild>
