@@ -22,14 +22,18 @@ export const Breadcrumbs = () => {
   const pathname = usePathname()
 
   const segments = pathname.split("/").filter((path) => path)
+  const isHome = pathname === "/"
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbPage>
           <BreadcrumbLink asChild>
-            <Link className="transition-opacity hover:opacity-85" href="/">
-              <Home className="size-4" />
+            <Link
+              className="text-2xl font-medium tracking-tighter transition-opacity hover:opacity-85"
+              href="/"
+            >
+              {isHome ? "Dashboard" : <Home className="size-4" />}
             </Link>
           </BreadcrumbLink>
         </BreadcrumbPage>
