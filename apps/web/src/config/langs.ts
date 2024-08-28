@@ -22,7 +22,7 @@ export const langs: Lang = {
     icon: Icons.angular,
     extension: "angular",
     enum: "ANGULAR",
-    color: "#dd1b16",
+    color: "#E40035",
   },
   ASTRO: {
     id: "astro",
@@ -30,7 +30,7 @@ export const langs: Lang = {
     icon: Icons.astro,
     extension: "astro",
     enum: "ASTRO",
-    color: "#ff5a1f",
+    color: "#FF5D01",
   },
   CSS: {
     id: "css",
@@ -38,7 +38,7 @@ export const langs: Lang = {
     icon: Icons.css,
     extension: "css",
     enum: "CSS",
-    color: "#2965f1",
+    color: "#0c73b8",
   },
   CPP: {
     id: "cpp",
@@ -46,7 +46,7 @@ export const langs: Lang = {
     icon: Icons.cpp,
     extension: "cpp",
     enum: "CPP",
-    color: "#00599c",
+    color: "#00599C",
   },
   GO: {
     id: "go",
@@ -94,7 +94,7 @@ export const langs: Lang = {
     icon: Icons.jsx,
     extension: "jsx",
     enum: "JSX",
-    color: "#61dafb",
+    color: "#38BDF8",
   },
   PHP: {
     id: "php",
@@ -110,7 +110,7 @@ export const langs: Lang = {
     icon: Icons.python,
     extension: "py",
     enum: "PYTHON",
-    color: "#3572a5",
+    color: "#387EB8",
   },
   SVELTE: {
     id: "svelte",
@@ -126,7 +126,7 @@ export const langs: Lang = {
     icon: Icons.tsx,
     extension: "tsx",
     enum: "TSX",
-    color: "#007acc",
+    color: "#2563EB",
   },
   TYPESCRIPT: {
     id: "typescript",
@@ -150,6 +150,6 @@ export const langs: Lang = {
     icon: Icons.yaml,
     extension: "yaml",
     enum: "YAML",
-    color: "#cb171e",
+    color: "#A78BFA",
   },
 } as const
