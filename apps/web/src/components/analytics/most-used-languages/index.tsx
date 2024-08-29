@@ -13,6 +13,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { Skeleton } from "@/components/ui/skeleton"
 
 import { fetchMostUsedLanguages } from "@/actions/analytics/fetch-most-used-languages"
 import { useServerActionQuery } from "@/hooks/server-action-hooks"
@@ -28,7 +29,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export const MostUsedLanguages = () => {
-  const { data } = useServerActionQuery(fetchMostUsedLanguages, {
+  const { data, isLoading } = useServerActionQuery(fetchMostUsedLanguages, {
     queryKey: ["most-used-languages"],
     input: {},
   })
@@ -46,34 +47,41 @@ export const MostUsedLanguages = () => {
       </CardHeader>
 
       <CardContent>
-        <ChartContainer
-          config={chartConfig}
-          className="mt-12 h-72 min-h-44 w-full"
-        >
-          <BarChart
-            accessibilityLayer
-            data={data}
-            layout="vertical"
-            margin={{
-              left: 24,
-            }}
+        {isLoading ? (
+          <div className="relative mx-auto mt-12 flex size-72 min-h-44 items-center justify-center">
+            <Skeleton className="dark:bg-gray-4 bg-gray-4 absolute size-52 rounded-full" />
+            <div className="bg-gray-2 relative z-10 flex size-28 rounded-full" />
+          </div>
+        ) : (
+          <ChartContainer
+            config={chartConfig}
+            className="mt-12 h-72 min-h-44 w-full"
           >
-            <YAxis
-              dataKey="language"
-              type="category"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value}
-            />
-            <XAxis dataKey="count" type="number" hide />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Bar dataKey="count" layout="vertical" radius={5} />
-          </BarChart>
-        </ChartContainer>
+            <BarChart
+              accessibilityLayer
+              data={data}
+              layout="vertical"
+              margin={{
+                left: 24,
+              }}
+            >
+              <YAxis
+                dataKey="language"
+                type="category"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => value}
+              />
+              <XAxis dataKey="count" type="number" hide />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar dataKey="count" layout="vertical" radius={5} />
+            </BarChart>
+          </ChartContainer>
+        )}
       </CardContent>
       <CardFooter className="flex-col gap-2 text-center text-sm">
         <span className="text-muted-foreground flex items-center gap-2 leading-none">
