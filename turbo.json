@@ -18,7 +18,11 @@
     "db:generate": {
       "passThroughEnv": ["DATABASE_URL", "DIRECT_URL"]
     },
-
+    "db:migrate": {},
+    "db:migrate:deploy": {
+      "dependsOn": ["db:generate"],
+      "passThroughEnv": ["DATABASE_URL", "DIRECT_URL"]
+    },
     "db:push": {},
     "db:studio": {
       "cache": false,
