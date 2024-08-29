@@ -127,7 +127,10 @@ export const CreateSnippetFormModal = () => {
             control={form.control}
             name="isPublic"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+              <FormItem
+                className="flex hidden flex-row items-center justify-between rounded-lg border p-3 shadow-sm"
+                hidden
+              >
                 <div className="space-y-0.5">
                   <FormLabel>Snippet Visibility</FormLabel>
                   <FormDescription>
@@ -148,7 +151,7 @@ export const CreateSnippetFormModal = () => {
             control={form.control}
             name="collectionSlug"
             render={({ field }) => (
-              <FormItem>
+              <FormItem hidden>
                 <FormLabel>Collection Slug</FormLabel>
                 <FormControl>
                   <Input
@@ -172,10 +175,10 @@ export const CreateSnippetFormModal = () => {
             control={form.control}
             name="tags"
             render={({ field }) => (
-              <FormItem className="space-y-0.5">
+              <FormItem className="space-y-0.5" hidden>
                 <FormLabel>Tags</FormLabel>
                 <FormControl>
-                  <MultiInput {...field} />
+                  <MultiInput hidden aria-hidden="true" {...field} />
                 </FormControl>
 
                 <FormMessage />
