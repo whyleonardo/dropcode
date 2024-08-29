@@ -8,9 +8,9 @@
   },
   "scripts": {
     "db:generate": "prisma generate",
-    "db:migrate": "bun env:load prisma migrate dev",
-    "db:push": "bun env:load prisma db push --skip-generate",
-    "db:studio": "bun env:load prisma studio",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push --skip-generate",
+    "db:studio": "prisma studio",
     "env:load": "dotenv -e ../../.env -- "
   },
   "dependencies": {
