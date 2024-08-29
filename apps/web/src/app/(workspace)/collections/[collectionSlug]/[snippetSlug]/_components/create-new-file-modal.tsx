@@ -1,6 +1,5 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
 
@@ -55,13 +54,12 @@ const languages = Object.values(langs)
 export const CreateNewFileModal = ({
   snippetSlug,
 }: CreateNewFileModalProps) => {
-  const router = useRouter()
   const queryClient = useQueryClient()
 
   const closeDialogButtonRef = useRef<HTMLButtonElement>(null)
 
   const { mutateAsync, isPending } = useServerActionMutation(createFile, {
-    onSuccess: ({ fileId }) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
       })
@@ -76,7 +74,6 @@ export const CreateNewFileModal = ({
 
       closeDialogButtonRef.current?.click()
       toast.success("File created")
-      router.push(`/snippet/${snippetSlug}/${fileId}`)
     },
     onError: (err) => {
       toast.error(err.message)

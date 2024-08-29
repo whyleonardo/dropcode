@@ -1,6 +1,6 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
 
 import { authProcedure } from "@/actions/procedures"
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error"
@@ -34,6 +34,11 @@ export const deleteFileById = authProcedure
       where: { id: snippetId, userId: user.id },
       select: {
         slug: true,
+        collection: {
+          select: {
+            slug: true,
+          },
+        },
         files: {
           take: 1,
           orderBy: {
@@ -46,18 +51,5 @@ export const deleteFileById = authProcedure
     if (!snippet) {
       throw new ResourceNotFoundError()
     }
-
-    if (snippet.files.length === 0) {
-      revalidatePath(`/snippet/${snippet.slug}`)
-
-      return {
-        fileIdToRedirect: null,
-      }
-    }
-
-    revalidatePath(`/snippet/${snippet.slug}`)
-
-    return {
-      fileIdToRedirect: snippet.files[0].id,
-    }
+    redirect(`/collections/${snippet.collection?.slug}/${snippet.slug}/`)
   })

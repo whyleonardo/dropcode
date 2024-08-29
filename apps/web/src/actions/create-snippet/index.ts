@@ -1,6 +1,6 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
 
 import { authProcedure } from "@/actions/procedures"
 import { SameSlugError } from "@/errors/same-slug-error"
@@ -80,9 +80,5 @@ export const createSnippet = authProcedure
       )
     }
 
-    revalidatePath(`/collections/${collectionSlug}/${snippet.slug}`)
-
-    return {
-      snippetSlug: snippet.slug,
-    }
+    redirect(`/collections/${collectionSlug}/${snippet.slug}`)
   })

@@ -1,3 +1,5 @@
+import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
+
 import { cn } from "@dropcode/tailwind/utils"
 import { Slot } from "@radix-ui/react-slot"
 
@@ -11,7 +13,7 @@ interface DropContentProps {
   className?: string
 }
 
-interface DropFilesListProps {
+interface DropSidebarProps {
   children: React.ReactNode
   className?: string
 }
@@ -25,24 +27,20 @@ interface DropFileTriggerProps {
 
 const Drop = ({ children, className }: DropProps) => {
   return (
-    <div
-      className={cn("size-full overflow-hidden rounded-lg border", className)}
+    <ResizablePanelGroup
+      direction="horizontal"
+      className={cn("size-full rounded-xl border", className)}
     >
       {children}
-    </div>
+    </ResizablePanelGroup>
   )
 }
 
-const DropFilesList = ({ children, className }: DropFilesListProps) => {
+const DropSidebar = ({ children, className }: DropSidebarProps) => {
   return (
-    <header
-      className={cn(
-        "bg-gray-2 flex h-12 min-h-12 w-full items-center justify-start gap-2 overflow-y-hidden rounded-none border-b p-2 px-4",
-        className
-      )}
-    >
+    <ResizablePanel defaultSize={20} maxSize={20} className={cn(className)}>
       {children}
-    </header>
+    </ResizablePanel>
   )
 }
 
@@ -56,8 +54,8 @@ const DropFileTrigger = ({
   return (
     <Comp
       className={cn(
-        "bg-gray-3 hover:bg-gray-4 inline-flex h-7 items-center space-x-2 rounded-lg border p-2 font-mono text-sm transition-colors",
-        active && "bg-gray-5",
+        "dark:hover:bg-gray-3 hover:bg-gray-3 inline-flex h-10 w-full items-center gap-3 space-x-2 overflow-hidden truncate rounded-lg p-2 font-mono text-sm transition-colors duration-200",
+        active && "dark:bg-gray-1 bg-gray-4",
         className
       )}
     >
@@ -68,8 +66,10 @@ const DropFileTrigger = ({
 
 const DropContent = ({ children, className }: DropContentProps) => {
   return (
-    <main className={cn("bg-background size-full", className)}>{children}</main>
+    <ResizablePanel defaultSize={80} maxSize={100} className={cn(className)}>
+      {children}
+    </ResizablePanel>
   )
 }
 
-export { Drop, DropContent, DropFilesList, DropFileTrigger }
+export { Drop, DropContent, DropSidebar, DropFileTrigger }

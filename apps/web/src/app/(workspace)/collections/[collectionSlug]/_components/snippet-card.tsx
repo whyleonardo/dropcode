@@ -62,7 +62,7 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
         <ContextMenuTrigger className="w-full max-w-[332px]">
           <Link
             key={snippet.id}
-            href={`/snippet/${snippet.slug}`}
+            href={`${collectionSlug}/${snippet.slug}`}
             className="group cursor-pointer select-none outline-none"
           >
             <CardRoot className="group-focus-visible:border-primary-10 min-h-40">

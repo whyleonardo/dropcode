@@ -1,6 +1,6 @@
 "use client"
 
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
 
@@ -39,17 +39,15 @@ type createSnippetFormData = z.infer<typeof createSnippetSchema>
 const MAX_LENGTH_DESCRIPTION = 72
 
 export const CreateSnippetFormModal = () => {
-  const router = useRouter()
   const pathname = usePathname()
   const closeDialogButtonRef = useRef<HTMLButtonElement>(null)
 
   const collectionSlug = pathname.split("/").at(2) as string
 
   const { mutateAsync, isPending } = useServerActionMutation(createSnippet, {
-    onSuccess: ({ snippetSlug }) => {
+    onSuccess: () => {
       toast.success("Snippet created")
       closeDialogButtonRef.current?.click()
-      router.push(`/snippet/${snippetSlug}`)
     },
     onError: (err) => {
       toast.error(err.message)

@@ -1,4 +1,4 @@
-import { CodeXml, Folder, House, Star } from "lucide-react"
+import { Folder, House } from "lucide-react"
 
 type SidebarMenuLink = {
   label: string
@@ -15,21 +15,21 @@ export const sidebarMenuLinks: SidebarMenuLink[] = [
     isDisabled: false,
   },
   {
-    label: "Snippets",
-    href: "/snippets",
-    icon: CodeXml,
-    isDisabled: true,
-  },
-  {
     label: "Collections",
     href: "/collections",
     icon: Folder,
     isDisabled: false,
   },
-  {
-    label: "Favorites",
-    href: "/favorites",
-    icon: Star,
-    isDisabled: false,
-  },
+  // {
+  //   label: "Snippets",
+  //   href: "/snippets",
+  //   icon: CodeXml,
+  //   isDisabled: true,
+  // },
+  // {
+  //   label: "Favorites",
+  //   href: "/favorites",
+  //   icon: Star,
+  //   isDisabled: false,
+  // },
 ]

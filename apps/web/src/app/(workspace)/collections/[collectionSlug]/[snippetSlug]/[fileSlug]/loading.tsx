@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
-const FileIdLoadingPage = () => {
+const FileSlugLoadingPage = () => {
   return (
     <div className="group relative size-full">
       <div className="w-full flex-1 space-y-2 overflow-x-scroll px-4 pb-12 pt-4">
@@ -52,4 +52,4 @@ const FileIdLoadingPage = () => {
   )
 }
 
-export default FileIdLoadingPage
+export default FileSlugLoadingPage

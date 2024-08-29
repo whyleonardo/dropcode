@@ -1,6 +1,6 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
 
 import { langs } from "@/config/langs"
 
@@ -31,6 +31,12 @@ export const createFile = authProcedure
       },
       select: {
         id: true,
+        slug: true,
+        collection: {
+          select: {
+            slug: true,
+          },
+        },
       },
     })
 
@@ -63,7 +69,7 @@ export const createFile = authProcedure
       throw new UnexpectedError()
     }
 
-    revalidatePath(`/snippet/${snippetSlug}`)
-
-    return { fileId: file.id }
+    redirect(
+      `/collections/${snippet.collection?.slug}/${snippet.slug}/${file.slug}`
+    )
   })

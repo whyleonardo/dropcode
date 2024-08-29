@@ -130,6 +130,7 @@ model File {
   name     String
   language Language
   content  String
+  slug     String   @unique
 
   snippet   Snippet @relation(fields: [snippetId], references: [id], onDelete: Cascade)
   snippetId String  @map("snippet_id")

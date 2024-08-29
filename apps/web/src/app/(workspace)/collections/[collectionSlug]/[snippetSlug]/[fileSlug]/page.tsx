@@ -1,26 +1,26 @@
 import { Code } from "@/components/code"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
-import { getFileById } from "@/actions/get-file-by-id"
+import { getFileBySlug } from "@/actions/get-file-by-slug"
 
 import { ClipboardCopyButton } from "./_components/clipboard-copy-button"
 
-interface FileIdPageProps {
+interface FileSlugProps {
   params: {
     snippetSlug: string
-    fileId: string
+    fileSlug: string
   }
 }
 
-const FileIdPage = async ({
-  params: { fileId, snippetSlug },
-}: FileIdPageProps) => {
-  const [file] = await getFileById({ snippetSlug, fileId })
+const FileSlugPage = async ({
+  params: { fileSlug, snippetSlug },
+}: FileSlugProps) => {
+  const [file] = await getFileBySlug({ snippetSlug, fileSlug })
 
   return (
     <div className="group relative size-full">
       <ScrollArea className="size-full">
-        <div className="w-full flex-1 overflow-x-scroll px-4 pb-12 pt-4">
+        <div className="w-full flex-1 overflow-x-scroll px-4 pt-4">
           <Code
             code={file?.content as string}
             lang={file?.language as string}
@@ -35,4 +35,4 @@ const FileIdPage = async ({
   )
 }
 
-export default FileIdPage
+export default FileSlugPage

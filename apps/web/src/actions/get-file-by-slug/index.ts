@@ -5,21 +5,21 @@ import { ResourceNotFoundError } from "@/errors/resource-not-found-error"
 
 import { db } from "@dropcode/db"
 
-import { getFileByIdSchema } from "./schema"
+import { getFileBySlugSchema } from "./schema"
 
-export const getFileById = authProcedure
+export const getFileBySlug = authProcedure
   .createServerAction()
-  .input(getFileByIdSchema)
+  .input(getFileBySlugSchema)
   .handler(async ({ input, ctx }) => {
-    const { snippetSlug, fileId } = input
+    const { snippetSlug, fileSlug } = input
 
     const {
       user: { id: userId },
     } = ctx
 
-    const file = await db.file.findFirstOrThrow({
+    const file = await db.file.findUnique({
       where: {
-        id: fileId,
+        slug: fileSlug,
         userId,
         snippet: {
           slug: snippetSlug,

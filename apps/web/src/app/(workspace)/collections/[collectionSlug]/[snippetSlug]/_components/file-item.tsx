@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 
 import { DropFileTrigger } from "@/components/drop"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -20,7 +20,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Skeleton } from "@/components/ui/skeleton"
 
 import { langs } from "@/config/langs"
 
@@ -30,25 +29,29 @@ import {
   useServerActionMutation,
 } from "@/hooks/server-action-hooks"
 
-import type { File } from "@dropcode/db/types"
+import type { File as FileDBType } from "@dropcode/db/types"
 import { useQueryClient } from "@tanstack/react-query"
 
 import { Loader2, Pencil, Trash } from "lucide-react"
 
-interface FileNavButtonProps {
-  file: File
+interface FileItemProps {
+  file: FileDBType
   snippetSlug: string
+  collectionSlug: string
 }
 
-export const FileNavButton = ({ file, snippetSlug }: FileNavButtonProps) => {
+export const FileItem = ({
+  file,
+  snippetSlug,
+  collectionSlug,
+}: FileItemProps) => {
   const Icon = langs[file.language].icon
-  const pathname = usePathname()
   const queryClient = useQueryClient()
-  const router = useRouter()
+  const pathname = usePathname()
 
   const { mutateAsync: executeFileDelete, isPending: isDeletingFile } =
     useServerActionMutation(deleteFileById, {
-      onSuccess: ({ fileIdToRedirect }) => {
+      onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
         })
@@ -60,12 +63,6 @@ export const FileNavButton = ({ file, snippetSlug }: FileNavButtonProps) => {
         queryClient.invalidateQueries({
           queryKey: QueryKeyFactory.fetchFilesBySnippetSlug({ snippetSlug }),
         })
-
-        if (fileIdToRedirect) {
-          router.push(`/snippet/${snippetSlug}/${fileIdToRedirect}`)
-        } else {
-          router.push(`/snippet/${snippetSlug}`)
-        }
       },
     })
 
@@ -78,16 +75,17 @@ export const FileNavButton = ({ file, snippetSlug }: FileNavButtonProps) => {
   return (
     <Dialog>
       <ContextMenu>
-        <ContextMenuTrigger>
-          <DropFileTrigger asChild active={pathname.includes(file.id)}>
-            <Link href={`/snippet/${snippetSlug}/${file.id}`}>
-              <Icon className="size-3" />
-              <span>
-                {file.name}.{langs[file.language].extension}
-              </span>
-            </Link>
-          </DropFileTrigger>
+        <ContextMenuTrigger asChild>
+          <Link
+            href={`/collections/${collectionSlug}/${snippetSlug}/${file.slug}`}
+          >
+            <DropFileTrigger active={pathname.includes(file.slug)}>
+              <Icon className="size-4" />
+              {file.name}.{langs[file.language].extension}
+            </DropFileTrigger>
+          </Link>
         </ContextMenuTrigger>
+
         <ContextMenuContent>
           <ContextMenuItem className="cursor-pointer" disabled>
             <Pencil className="mr-2 size-4" />
@@ -140,6 +138,6 @@ export const FileNavButton = ({ file, snippetSlug }: FileNavButtonProps) => {
   )
 }
 
-FileNavButton.Skeleton = () => {
-  return <Skeleton className="dark:bg-gray-4 bg-gray-3 h-7 w-[7.5rem]" />
+FileItem.Skeleton = () => {
+  return <div className="bg-gray-3 h-10 w-full rounded-lg" />
 }
