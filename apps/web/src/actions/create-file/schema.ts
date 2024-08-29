@@ -27,6 +27,6 @@ export const createFileSchema = z.object({
     ],
     { message: "Invalid language" }
   ),
-  content: z.string().min(1),
+  content: z.string({ message: "Content is required" }).min(1),
   snippetSlug: z.string(),
 })
