@@ -2,12 +2,15 @@
 
 import { revalidatePath } from "next/cache"
 
+import { langs } from "@/config/langs"
+
 import { authProcedure } from "@/actions/procedures"
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error"
 import { UnexpectedError } from "@/errors/unexpected-error"
+import { createSlug } from "@/utils/create-slug"
 
 import { db } from "@dropcode/db"
-import type { File } from "@dropcode/db/types"
+import { type File, Prisma } from "@dropcode/db/types"
 
 import { createFileSchema } from "./schema"
 
@@ -18,6 +21,8 @@ export const createFile = authProcedure
     const { content, language, name, snippetSlug } = input
 
     const { user } = ctx
+
+    const slug = createSlug(`${name}-${langs[language].extension}`)
 
     const snippet = await db.snippet.findUnique({
       where: {
@@ -41,11 +46,20 @@ export const createFile = authProcedure
           content,
           language,
           name,
+          slug,
           snippetId: snippet.id,
           userId: user.id,
         },
       })
-    } catch {
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === "P2002") {
+          throw new Error(
+            "A file with the same language and name already exists"
+          )
+        }
+      }
+
       throw new UnexpectedError()
     }
 
