@@ -15,8 +15,8 @@
       "cache": false,
       "persistent": true
     },
-    "db:migrate": {},
     "db:generate": {},
+    "db:migrate": {},
     "db:push": {},
     "db:studio": {},
     "lint:spell": {},
