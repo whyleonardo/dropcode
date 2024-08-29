@@ -143,4 +143,7 @@ words:
   - WITA
   - wscript
   - yoav
+  - zincrby
+  - zrange
+  - zrem
   - zustand

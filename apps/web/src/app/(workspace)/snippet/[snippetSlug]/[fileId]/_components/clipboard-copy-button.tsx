@@ -46,7 +46,7 @@ export const ClipboardCopyButton = ({ code }: ClipboardCopyButtonProps) => {
             size="icon"
             variant="outline"
             disabled={isCopied}
-            className="absolute right-4 top-14 size-8 opacity-0 transition-opacity group-hover:opacity-100"
+            className="absolute right-4 top-2 z-[9999] size-8 opacity-0 transition-opacity group-hover:opacity-100"
             onClick={onClick}
           >
             <Check

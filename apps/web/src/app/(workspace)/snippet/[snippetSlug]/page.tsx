@@ -1,18 +1,13 @@
-import { Dialog } from "@/components/ui/dialog"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { redirect } from "next/navigation"
 
-import { db } from "@dropcode/db"
+import { buttonVariants } from "@/components/ui/button"
+import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 
-import { LockKeyhole } from "lucide-react"
+import { fetchFilesBySnippetSlug } from "@/actions/fetch-files-by-snippet-slug"
+
+import { PlusIcon } from "lucide-react"
 
 import { CreateNewFileModal } from "./_components/create-new-file-modal"
-import { TabContent } from "./_components/tab-content"
-import { TabsRoot } from "./_components/tabs-root"
 
 interface SnippetSlugPageProps {
   params: {
@@ -23,51 +18,35 @@ interface SnippetSlugPageProps {
 const SnippetSlugPage = async ({
   params: { snippetSlug },
 }: SnippetSlugPageProps) => {
-  const files = await db.file.findMany({
-    where: {
-      snippet: {
-        slug: snippetSlug,
-      },
-    },
-    orderBy: {
-      updatedAt: "desc",
-    },
-    include: {
-      snippet: {
-        select: {
-          title: true,
-          isPublic: true,
-        },
-      },
-    },
-  })
+  const [files] = await fetchFilesBySnippetSlug({ snippetSlug })
 
-  const isPublic = files.at(0)?.snippet.isPublic
+  // TODO: CLIENT COMPONENT HERE TO HANDLE THIS
+  if (files && files.length > 0) {
+    redirect(`/snippet/${snippetSlug}/${files[0].id}`)
+  }
 
   return (
-    <div className="flex h-full flex-col gap-4 overflow-hidden">
-      <div className="flex items-center gap-2">
-        <h2 className="text-xl font-bold">{snippetSlug}</h2>
-        <TooltipProvider delayDuration={30}>
-          <Tooltip>
-            <TooltipTrigger className="cursor-default">
-              {!isPublic && <LockKeyhole className="size-4" />}
-            </TooltipTrigger>
+    <Dialog>
+      <div className="flex h-2/4 w-full items-end justify-center">
+        <div className="space-y-2 text-center">
+          <span className="text-muted-foreground block text-base">
+            You don't have any files yet
+          </span>
+          <DialogTrigger
+            className={buttonVariants({
+              variant: "neutral",
+              className: "min-h-8 w-fit self-end",
+              size: "sm",
+            })}
+          >
+            Create now
+            <PlusIcon className="ml-2 size-4" />
+          </DialogTrigger>
 
-            <TooltipContent side="right">Private</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+          <CreateNewFileModal snippetSlug={snippetSlug} />
+        </div>
       </div>
-      <Dialog>
-        <TabsRoot files={files}>
-          {files.map((file) => (
-            <TabContent key={file.id} file={file} />
-          ))}
-        </TabsRoot>
-
-        <CreateNewFileModal />
-      </Dialog>
-    </div>
+    </Dialog>
   )
 }
 

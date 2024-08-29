@@ -1,6 +1,6 @@
 "use client"
 
-import { usePathname, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
 
@@ -44,16 +44,20 @@ import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import type { z } from "zod"
 
+interface CreateNewFileModalProps {
+  snippetSlug: string
+}
+
 type createFileFormData = z.infer<typeof createFileSchema>
 
 const languages = Object.values(langs)
 
-export const CreateNewFileModal = () => {
+export const CreateNewFileModal = ({
+  snippetSlug,
+}: CreateNewFileModalProps) => {
   const router = useRouter()
-  const pathname = usePathname()
   const queryClient = useQueryClient()
 
-  const snippetSlug = pathname.split("/").at(-1)
   const closeDialogButtonRef = useRef<HTMLButtonElement>(null)
 
   const { mutateAsync, isPending } = useServerActionMutation(createFile, {
@@ -66,9 +70,13 @@ export const CreateNewFileModal = () => {
         queryKey: QueryKeyFactory.fetchMostUsedLanguages(),
       })
 
-      toast.success("File created")
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchFilesBySnippetSlug({ snippetSlug }),
+      })
+
       closeDialogButtonRef.current?.click()
-      router.push(`${pathname}?tabFileId=${fileId}`)
+      toast.success("File created")
+      router.push(`/snippet/${snippetSlug}/${fileId}`)
     },
     onError: (err) => {
       toast.error(err.message)
@@ -95,7 +103,10 @@ export const CreateNewFileModal = () => {
   }
 
   return (
-    <DialogContent>
+    <DialogContent
+      aria-describedby="create-new-file-modal"
+      aria-description="create-new-file-modal"
+    >
       <DialogHeader>
         <DialogTitle>Create a new file</DialogTitle>
       </DialogHeader>

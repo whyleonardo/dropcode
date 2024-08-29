@@ -1,8 +1,9 @@
 "use client"
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useRef } from "react"
+import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
 
+import { DropFileTrigger } from "@/components/drop"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   ContextMenu,
@@ -19,7 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { TabsTrigger } from "@/components/ui/tabs"
+import { Skeleton } from "@/components/ui/skeleton"
 
 import { langs } from "@/config/langs"
 
@@ -34,11 +35,16 @@ import { useQueryClient } from "@tanstack/react-query"
 
 import { Loader2, Pencil, Trash } from "lucide-react"
 
-export const TabTrigger = ({ file }: { file: File }) => {
+interface FileNavButtonProps {
+  file: File
+  snippetSlug: string
+}
+
+export const FileNavButton = ({ file, snippetSlug }: FileNavButtonProps) => {
   const Icon = langs[file.language].icon
-  const triggerRef = useRef<HTMLButtonElement>(null)
-  const searchParams = useSearchParams()
+  const pathname = usePathname()
   const queryClient = useQueryClient()
+  const router = useRouter()
 
   const { mutateAsync: executeFileDelete, isPending: isDeletingFile } =
     useServerActionMutation(deleteFileById, {
@@ -51,36 +57,36 @@ export const TabTrigger = ({ file }: { file: File }) => {
           queryKey: QueryKeyFactory.fetchMostUsedLanguages(),
         })
 
-        if (fileIdToRedirect) {
-          router.push(`${pathname}?tabFileId=${fileIdToRedirect}`)
-        } else {
-          const params = new URLSearchParams(searchParams.toString())
+        queryClient.invalidateQueries({
+          queryKey: QueryKeyFactory.fetchFilesBySnippetSlug({ snippetSlug }),
+        })
 
-          params.delete("tabFileId")
-          router.push(`${pathname}?${params.toString()}`)
+        if (fileIdToRedirect) {
+          router.push(`/snippet/${snippetSlug}/${fileIdToRedirect}`)
+        } else {
+          router.push(`/snippet/${snippetSlug}`)
         }
       },
     })
 
-  const router = useRouter()
-  const pathname = usePathname()
+  const onExecute = async () =>
+    await executeFileDelete({
+      fileId: file.id,
+      snippetId: file.snippetId,
+    })
 
   return (
     <Dialog>
       <ContextMenu>
         <ContextMenuTrigger>
-          <TabsTrigger
-            key={file.id}
-            value={file.id}
-            ref={triggerRef}
-            className="space-x-2 font-mono"
-            onClick={() => router.push(`${pathname}?tabFileId=${file.id}`)}
-          >
-            <Icon className="size-3.5" />
-            <span>
-              {file.name}.{langs[file.language].extension}
-            </span>
-          </TabsTrigger>
+          <DropFileTrigger asChild active={pathname.includes(file.id)}>
+            <Link href={`/snippet/${snippetSlug}/${file.id}`}>
+              <Icon className="size-3" />
+              <span>
+                {file.name}.{langs[file.language].extension}
+              </span>
+            </Link>
+          </DropFileTrigger>
         </ContextMenuTrigger>
         <ContextMenuContent>
           <ContextMenuItem className="cursor-pointer" disabled>
@@ -123,12 +129,7 @@ export const TabTrigger = ({ file }: { file: File }) => {
             className="min-w-24"
             size="sm"
             variant="destructive"
-            onClick={async () =>
-              executeFileDelete({
-                fileId: file.id,
-                snippetId: file.snippetId,
-              })
-            }
+            onClick={onExecute}
           >
             {isDeletingFile && <Loader2 className="mr-2 size-4 animate-spin" />}
             Delete
@@ -137,4 +138,8 @@ export const TabTrigger = ({ file }: { file: File }) => {
       </DialogContent>
     </Dialog>
   )
+}
+
+FileNavButton.Skeleton = () => {
+  return <Skeleton className="dark:bg-gray-4 bg-gray-3 h-7 w-[7.5rem]" />
 }

@@ -64,10 +64,7 @@ export const Breadcrumbs = () => {
               <BreadcrumbItem>
                 <BreadcrumbLink
                   asChild
-                  className={cn(
-                    "capitalize",
-                    isActive && "underline underline-offset-4"
-                  )}
+                  className={cn(isActive && "underline underline-offset-4")}
                 >
                   <Link href={href}>{segment}</Link>
                 </BreadcrumbLink>
