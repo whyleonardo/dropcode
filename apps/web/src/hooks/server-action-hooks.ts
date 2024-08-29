@@ -8,6 +8,10 @@ import {
 export const QueryKeyFactory = createServerActionsKeyFactory({
   fetchLinesCreatedInPeriod: () => ["lines-created-in-period"],
   fetchMostUsedLanguages: () => ["most-used-languages"],
+  fetchFilesBySnippetSlug: ({ snippetSlug }: { snippetSlug: string }) => [
+    "files-by-snippet-slug",
+    snippetSlug,
+  ],
 })
 
 const {
