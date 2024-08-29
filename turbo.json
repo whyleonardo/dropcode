@@ -15,10 +15,21 @@
       "cache": false,
       "persistent": true
     },
-    "db:generate": {},
-    "db:migrate": {},
+    "db:generate": {
+      "passThroughEnv": ["DATABASE_URL"],
+      "inputs": ["schema.prisma"],
+      "outputs": ["prisma/**"]
+    },
+    "db:migrate": {
+      "dependsOn": ["db:generate"],
+      "passThroughEnv": ["DATABASE_URL"],
+      "inputs": ["db/**"]
+    },
     "db:push": {},
-    "db:studio": {},
+    "db:studio": {
+      "cache": false,
+      "persistent": true
+    },
     "lint:spell": {},
     "clean": {
       "cache": false
