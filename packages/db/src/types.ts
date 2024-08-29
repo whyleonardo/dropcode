@@ -9,3 +9,5 @@ export type {
   Tag,
   Collection,
 } from "@prisma/client"
+
+export { Prisma } from "@prisma/client"
