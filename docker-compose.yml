@@ -1,5 +1,3 @@
-version: "4"
-
 services:
   pg:
     image: bitnami/postgresql:latest
@@ -10,7 +8,7 @@ services:
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=dropcode
   redis:
-    image: bitnami/redis:latest
+    image: redis
     ports:
       - "6379:6379"
   serverless-redis-http:
@@ -19,5 +17,5 @@ services:
     image: hiett/serverless-redis-http:latest
     environment:
       SRH_MODE: env
-      SRH_TOKEN: example_token
+      SRH_TOKEN: u380guj3wujA24W9SHDF908V42O4G
       SRH_CONNECTION_STRING: "redis://redis:6379"
