@@ -16,14 +16,11 @@
       "persistent": true
     },
     "db:generate": {
-      "passThroughEnv": ["DATABASE_URL"],
-      "inputs": ["schema.prisma"],
-      "outputs": ["prisma/**"]
+      "passThroughEnv": ["DATABASE_URL", "DIRECT_URL"]
     },
     "db:migrate": {
       "dependsOn": ["db:generate"],
-      "passThroughEnv": ["DATABASE_URL"],
-      "inputs": ["db/**"]
+      "passThroughEnv": ["DATABASE_URL", "DIRECT_URL"]
     },
     "db:push": {},
     "db:studio": {
