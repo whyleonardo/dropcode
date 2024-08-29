@@ -3,7 +3,7 @@ import { Toaster as ToasterComponent } from "sonner"
 export const Toaster = () => {
   return (
     <ToasterComponent
-      className=""
+      position="top-center"
       richColors
       toastOptions={{
         duration: 2400,
