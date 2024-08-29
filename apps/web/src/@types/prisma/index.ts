@@ -12,6 +12,7 @@ export type FileWithSnippetInfo = {
   content: string
   snippetId: string
   userId: string
+  createdAt: Date
   updatedAt: Date
 }
 
@@ -24,6 +25,7 @@ export type SnippetWithFilesAndTags = {
     snippetId: string
     userId: string
     updatedAt: Date
+    createdAt: Date
   }[]
   tags: {
     id: string
