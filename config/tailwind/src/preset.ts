@@ -130,6 +130,7 @@ export const dropcodeTailwindPreset: Config = {
   plugins: [
     animate,
     typography,
+    require("tailwind-scrollbar")({ nocompatible: true }),
     fluid,
     aspectRatio,
     {
