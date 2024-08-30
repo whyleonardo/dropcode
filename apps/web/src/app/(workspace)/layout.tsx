@@ -17,7 +17,7 @@ const WorkspaceLayout = ({
   return (
     <QueryProvider>
       <Toaster />
-      <div className="flex size-full">
+      <div className="flex size-full gap-4">
         <Sidebar />
 
         <div className="relative z-10 flex size-full flex-col gap-4 px-4 py-6 pt-7">

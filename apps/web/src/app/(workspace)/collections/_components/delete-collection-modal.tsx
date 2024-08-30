@@ -51,18 +51,18 @@ export const DeleteCollectionModal = ({
       <DialogHeader>
         <DialogTitle>Are you absolutely sure?</DialogTitle>
         <DialogDescription>
-          This action cannot be undone. This will permanently delete your
-          collection, including all its snippets and files.
+          This will permanently delete your collection, including all its
+          snippets and files.
         </DialogDescription>
       </DialogHeader>
 
-      <div className="flex items-center gap-2">
+      <div className="mt-4 flex items-center justify-center gap-2 md:justify-end">
         <DialogClose
           type="button"
           className={buttonVariants({
             size: "sm",
             variant: "ghost",
-            className: "ml-auto min-w-24 border",
+            className: "w-full border",
           })}
         >
           Cancel
@@ -70,7 +70,7 @@ export const DeleteCollectionModal = ({
 
         <Button
           disabled={isDeletingCollection}
-          className="min-w-24"
+          className="w-full"
           size="sm"
           variant="destructive"
           onClick={async () =>
