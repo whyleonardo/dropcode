@@ -1,5 +1,4 @@
 import { Drop, DropContent, DropSidebar } from "@/components/drop"
-import { ResizableHandle } from "@/components/ui/resizable"
 
 import { SidebarContent } from "./_components/sidebar-content"
 
@@ -16,7 +15,7 @@ const SnippetSlugLayout = ({
   params: { snippetSlug, collectionSlug },
 }: SnippetSlugLayoutProps) => {
   return (
-    <div className="h-full">
+    <div className="h-full max-h-[calc(100dvh-5.5rem)]">
       <Drop>
         <DropSidebar>
           <SidebarContent
@@ -24,7 +23,7 @@ const SnippetSlugLayout = ({
             collectionSlug={collectionSlug}
           />
         </DropSidebar>
-        <ResizableHandle withHandle />
+
         <DropContent className="bg-background p-4">{children}</DropContent>
       </Drop>
     </div>

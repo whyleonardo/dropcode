@@ -18,62 +18,6 @@ import { FilePlus } from "lucide-react"
 import { CreateNewFileModal } from "./create-new-file-modal"
 import { FileItem } from "./file-item"
 
-// const ELEMENTS = [
-//   {
-//     id: "1",
-//     isSelectable: true,
-//     name: "src",
-//     children: [
-//       {
-//         id: "2",
-//         isSelectable: true,
-//         name: "app",
-//         children: [
-//           {
-//             id: "3",
-//             isSelectable: true,
-//             name: "layout.tsx",
-//           },
-//           {
-//             id: "4",
-//             isSelectable: true,
-//             name: "page.tsx",
-//           },
-//         ],
-//       },
-//       {
-//         id: "5",
-//         isSelectable: true,
-//         name: "components",
-//         children: [
-//           {
-//             id: "6",
-//             isSelectable: true,
-//             name: "header.tsx",
-//           },
-//           {
-//             id: "7",
-//             isSelectable: true,
-//             name: "footer.tsx",
-//           },
-//         ],
-//       },
-//       {
-//         id: "8",
-//         isSelectable: true,
-//         name: "lib",
-//         children: [
-//           {
-//             id: "9",
-//             isSelectable: true,
-//             name: "utils.ts",
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ]
-
 interface SidebarContentProps {
   snippetSlug: string
   collectionSlug: string
@@ -96,8 +40,8 @@ export const SidebarContent = ({
 
   if (isLoadingFiles || isFetchingFiles) {
     return (
-      <div className="bg-gray-2 size-full space-y-2 p-4">
-        <span className="text-muted-foreground w-full truncate font-medium tracking-tight">
+      <div className="bg-gray-2 size-full w-72 space-y-3 p-4">
+        <span className="text-muted-foreground w-full truncate font-mono text-lg font-medium tracking-tight">
           Files
         </span>
         <Separator />
@@ -111,12 +55,12 @@ export const SidebarContent = ({
   }
 
   return (
-    <div className="h-full select-none">
+    <div className="h-full w-72 select-none">
       <Dialog>
         <ContextMenu>
           <ContextMenuTrigger className="size-full" asChild>
-            <div className="bg-gray-2 flex size-full flex-col gap-2 p-4">
-              <span className="text-muted-foreground w-full truncate font-medium tracking-tight">
+            <div className="bg-gray-2 flex size-full flex-col gap-3 p-4">
+              <span className="text-muted-foreground w-full truncate font-mono text-lg font-medium tracking-tight">
                 Files
               </span>
 

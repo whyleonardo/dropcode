@@ -17,20 +17,19 @@ const FileSlugPage = async ({
 }: FileSlugProps) => {
   const [file] = await getFileBySlug({ snippetSlug, fileSlug })
 
+  // TODO - Handle 404
+  if (!file) {
+    return null
+  }
+
   return (
-    <div className="group relative size-full">
-      <ScrollArea className="size-full">
-        <div className="w-full flex-1 overflow-x-scroll px-4 pt-4">
-          <Code
-            code={file?.content as string}
-            lang={file?.language as string}
-          />
-        </div>
+    <div>
+      <ScrollArea className="size-full px-4 pt-4">
+        <Code code={file?.content as string} lang={file?.language} />
 
         <ScrollBar className="h-2.5" orientation="horizontal" />
       </ScrollArea>
-
-      <ClipboardCopyButton code={file?.content as string} />
+      <ClipboardCopyButton code={file?.content} />
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Sidebar } from "@/components/layout/sidebar"
 import { DotPattern } from "@/components/ui/bg-dot-pattern"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Toaster } from "@/components/ui/toaster"
 
 import { QueryProvider } from "@/providers/query-provider"
@@ -18,21 +17,19 @@ const WorkspaceLayout = ({
   return (
     <QueryProvider>
       <Toaster />
-      <div className="flex size-full gap-4">
+      <div className="flex size-full h-screen gap-4">
         <Sidebar />
 
-        <ScrollArea className="size-full">
-          <div className="relative z-10 flex size-full flex-col gap-4 px-4 py-6 pt-7">
-            <header className="flex h-fit items-center justify-between">
-              <Breadcrumbs />
-            </header>
+        <div className="scrollbar scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-border scrollbar-track-transparent relative z-10 flex size-full flex-col gap-4 overflow-y-scroll px-4 py-6 pt-7">
+          <header className="relative z-50 flex h-fit items-center justify-between">
+            <Breadcrumbs />
+          </header>
 
-            <main className="size-full">
-              {children}
+          <main className="relative z-50 flex-1">
+            {children}
 
-              {modal}
-            </main>
-          </div>
+            {modal}
+          </main>
 
           <DotPattern
             width={20}
@@ -44,7 +41,7 @@ const WorkspaceLayout = ({
               "[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]"
             )}
           />
-        </ScrollArea>
+        </div>
       </div>
     </QueryProvider>
   )
