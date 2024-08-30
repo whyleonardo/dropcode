@@ -25,7 +25,7 @@ const LoginPage = async () => {
       />
 
       <form
-        className="flex w-full flex-col gap-8 overflow-hidden p-12"
+        className="flex flex-col gap-8 overflow-hidden border p-12"
         action={async () => {
           "use server"
           await signIn("github")
@@ -46,11 +46,7 @@ const LoginPage = async () => {
           </span>
         </div>
 
-        <Button
-          type="submit"
-          variant="neutral"
-          className="g:min-w-80 ~/ border"
-        >
+        <Button type="submit" variant="neutral" className="max-w-80 border">
           <Icons.github className="fill-background mr-2 size-5" />
           Sign in with GitHub
         </Button>
