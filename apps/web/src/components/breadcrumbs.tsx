@@ -25,7 +25,7 @@ export const Breadcrumbs = () => {
   const isHome = pathname === "/"
 
   return (
-    <Breadcrumb>
+    <Breadcrumb className="hidden md:block">
       <BreadcrumbList>
         <BreadcrumbPage>
           <BreadcrumbLink asChild>
@@ -33,7 +33,7 @@ export const Breadcrumbs = () => {
               className="text-2xl font-medium tracking-tighter transition-opacity hover:opacity-85"
               href="/"
             >
-              {isHome ? "Dashboard" : <Home className="size-4" />}
+              {isHome ? "Dashboard" : <Home className="size-5" />}
             </Link>
           </BreadcrumbLink>
         </BreadcrumbPage>
