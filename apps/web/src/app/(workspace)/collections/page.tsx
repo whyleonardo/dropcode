@@ -1,5 +1,3 @@
-import { ScrollArea } from "@/components/ui/scroll-area"
-
 import { fetchCollections } from "@/actions/fetch-collections"
 
 import { cn } from "@dropcode/tailwind/utils"
@@ -30,22 +28,15 @@ const CollectionsPage = async () => {
         )}
       />
 
-      <ScrollArea
-        className={cn(
-          "flex h-[calc(100%-3rem)] md:h-[calc(100%-5rem)]",
-          collectionsIsEmpty && "hidden"
-        )}
-      >
-        <div className="flex flex-wrap justify-center gap-8 overflow-y-auto">
-          {collections?.map((collection) => (
-            <CollectionCard
-              collection={collection}
-              key={collection.id}
-              snippetCount={collection._count.snippets}
-            />
-          ))}
-        </div>
-      </ScrollArea>
+      <div className="flex flex-wrap justify-center gap-8 overflow-y-auto">
+        {collections?.map((collection) => (
+          <CollectionCard
+            collection={collection}
+            key={collection.id}
+            snippetCount={collection._count.snippets}
+          />
+        ))}
+      </div>
 
       {collectionsIsEmpty && (
         <div className="fixed inset-0 top-2/4 space-y-2 text-center">
@@ -57,7 +48,7 @@ const CollectionsPage = async () => {
 
           <CreateNewCollectionDrawer
             triggerClassName="md:hidden"
-            triggerLabel="New collection"
+            triggerLabel="Create now"
           />
         </div>
       )}

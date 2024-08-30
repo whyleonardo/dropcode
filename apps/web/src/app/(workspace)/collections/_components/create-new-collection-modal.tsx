@@ -29,7 +29,7 @@ export const CreateNewCollectionModal = ({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild className={cn(triggerClassName)}>
         <Button size="sm" variant="neutral">
-          New collection
+          Create now
           <Plus className="ml-2 size-4" />
         </Button>
       </DialogTrigger>
