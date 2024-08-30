@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
+import { CoolMode } from "@/components/ui/motion/cool-mode"
 import {
   Tooltip,
   TooltipContent,
@@ -41,28 +42,34 @@ export const ClipboardCopyButton = ({ code }: ClipboardCopyButtonProps) => {
     <TooltipProvider delayDuration={30}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button
-            type="button"
-            size="icon"
-            variant="outline"
-            disabled={isCopied}
-            className="absolute right-4 top-2 z-[9999] size-8 opacity-0 transition-opacity group-hover:opacity-100"
-            onClick={onClick}
+          <CoolMode
+            options={{
+              size: 10,
+            }}
           >
-            <Check
-              className={cn(
-                "relative size-4 opacity-0 transition-opacity",
-                isCopied && "opacity-100"
-              )}
-            />
+            <Button
+              type="button"
+              size="icon"
+              variant="outline"
+              disabled={isCopied}
+              className="overflow- fixed right-8 top-20 z-[9999] size-8 overflow-hidden disabled:opacity-100"
+              onClick={onClick}
+            >
+              <Check
+                className={cn(
+                  "absolute size-4 -translate-y-12 transition-transform",
+                  isCopied && "translate-y-0"
+                )}
+              />
 
-            <Clipboard
-              className={cn(
-                "absolute size-4 opacity-100 transition-opacity",
-                isCopied && "opacity-0"
-              )}
-            />
-          </Button>
+              <Clipboard
+                className={cn(
+                  "absolute size-4 transition-transform",
+                  isCopied && "translate-y-10"
+                )}
+              />
+            </Button>
+          </CoolMode>
         </TooltipTrigger>
 
         <TooltipContent side="left">Copy content to clipboard</TooltipContent>
