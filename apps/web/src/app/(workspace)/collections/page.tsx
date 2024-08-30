@@ -38,20 +38,23 @@ const CollectionsPage = async () => {
         ))}
       </div>
 
-      {collectionsIsEmpty && (
-        <div className="fixed inset-0 top-2/4 space-y-2 text-center">
-          <span className="text-muted-foreground block text-base">
-            You don't have any collections yet
-          </span>
+      <div
+        className={cn(
+          "fixed inset-x-2/4 top-2/4 size-fit -translate-x-1/2 space-y-2 text-center",
+          !collectionsIsEmpty && "hidden"
+        )}
+      >
+        <span className="text-muted-foreground block min-w-max text-base">
+          You don't have any collections yet
+        </span>
 
-          <CreateNewCollectionModal triggerClassName="hidden min-h-10 w-fit self-end md:inline-flex" />
+        <CreateNewCollectionModal triggerClassName="hidden min-h-10 w-fit self-end md:inline-flex" />
 
-          <CreateNewCollectionDrawer
-            triggerClassName="md:hidden"
-            triggerLabel="Create now"
-          />
-        </div>
-      )}
+        <CreateNewCollectionDrawer
+          triggerClassName="md:hidden"
+          triggerLabel="Create now"
+        />
+      </div>
     </div>
   )
 }
