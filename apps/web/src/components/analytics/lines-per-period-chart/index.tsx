@@ -14,13 +14,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
 
 import type { Period } from "@/@types/analytics"
@@ -47,12 +40,13 @@ const cardInfos = {
 }
 
 export const LinesPerPeriodChart = () => {
-  const [period, setPeriod] = useState<Period>("last-24-hours")
+  const [period] = useState<Period>("all-time")
 
   const { data, isLoading } = useServerActionQuery(fetchLinesCreatedInPeriod, {
     queryKey: ["lines-created-in-period"],
     input: {
-      period: period,
+      // TODO:  Refactor this to apply filter globally
+      period: "all-time",
     },
   })
 
@@ -63,9 +57,10 @@ export const LinesPerPeriodChart = () => {
   return (
     <Card className="bg-gray-2 size-fit h-[28rem] w-full lg:w-fit lg:min-w-[32rem]">
       <CardHeader className="relative items-start justify-center gap-2 pb-0">
-        <CardTitle>Lines per Language</CardTitle>
+        <CardTitle className="truncate">Lines per Language</CardTitle>
 
-        <Select
+        {/* TODO:  Refactor this to apply filter globally*/}
+        {/* <Select
           defaultValue={period ?? "last-24-hours"}
           onValueChange={(value) => setPeriod(value as Period)}
         >
@@ -79,7 +74,7 @@ export const LinesPerPeriodChart = () => {
             <SelectItem value="last-7-days">Last 7 Days</SelectItem>
             <SelectItem value="last-30-days">Last 30 Days</SelectItem>
           </SelectContent>
-        </Select>
+        </Select> */}
       </CardHeader>
 
       <CardContent>

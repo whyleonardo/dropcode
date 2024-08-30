@@ -7,19 +7,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/analytics-card"
-import { Select, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export const NoData = () => {
   return (
     <Card className="bg-gray-2 size-fit h-[28rem] w-full lg:w-fit lg:min-w-[32rem]">
       <CardHeader className="relative items-start justify-center gap-2 pb-0">
         <CardTitle>Lines per Language</CardTitle>
-
-        <Select disabled>
+        {/* TODO:  Refactor this to apply filter globally */}
+        {/* <Select disabled>
           <SelectTrigger className="absolute right-4 top-2.5 w-44">
             <SelectValue placeholder="Select a period" />
           </SelectTrigger>
-        </Select>
+        </Select> */}
       </CardHeader>
 
       <CardContent className="flex-1 pb-0">
