@@ -1,6 +1,6 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
 
 import { authProcedure } from "@/actions/procedures"
 import { SameSlugError } from "@/errors/same-slug-error"
@@ -8,6 +8,7 @@ import { UnexpectedError } from "@/errors/unexpected-error"
 import { createSlug } from "@/utils/create-slug"
 
 import { db } from "@dropcode/db"
+import type { Collection } from "@dropcode/db/types"
 
 import { createCollectionSchema } from "./schema"
 
@@ -32,8 +33,10 @@ export const createCollection = authProcedure
       throw new SameSlugError("collection")
     }
 
+    let collection: Collection
+
     try {
-      await db.collection.create({
+      collection = await db.collection.create({
         data: {
           title,
           slug,
@@ -44,5 +47,5 @@ export const createCollection = authProcedure
       throw new UnexpectedError()
     }
 
-    revalidatePath("/collections")
+    redirect(`/collections/${collection.slug}`)
   })
