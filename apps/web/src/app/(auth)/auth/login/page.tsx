@@ -9,7 +9,7 @@ import { cn } from "@dropcode/tailwind/utils"
 
 const LoginPage = async () => {
   return (
-    <div className="container mx-auto flex h-screen flex-col items-center justify-center overflow-hidden">
+    <div className="container mx-auto flex h-full items-center justify-center overflow-y-hidden border">
       <Vignette className="right-[-36rem] top-[-36rem] -z-50 hidden size-[54rem] xl:size-[64rem] dark:block" />
       <Vignette className="bottom-[-36rem] left-[-36rem] -z-50 hidden size-[54rem] xl:size-[64rem] dark:block" />
 
@@ -25,7 +25,7 @@ const LoginPage = async () => {
       />
 
       <form
-        className="flex flex-col gap-8 p-12"
+        className="flex w-full flex-col gap-8 overflow-hidden p-12"
         action={async () => {
           "use server"
           await signIn("github")
@@ -46,7 +46,11 @@ const LoginPage = async () => {
           </span>
         </div>
 
-        <Button type="submit" variant="neutral" className="g:min-w-80 border">
+        <Button
+          type="submit"
+          variant="neutral"
+          className="g:min-w-80 ~/ border"
+        >
           <Icons.github className="fill-background mr-2 size-5" />
           Sign in with GitHub
         </Button>

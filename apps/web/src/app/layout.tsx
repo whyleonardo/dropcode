@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
-      <body className={cn(fontSans, fontMono, "overflow-hidden")}>
+      <body className={cn(fontSans, fontMono, "h-dvh overflow-hidden")}>
         <ThemeProvider>{children}</ThemeProvider>
         <ScreenSizeIndicator />
       </body>
