@@ -9,7 +9,7 @@ import { CreateNewCollectionModal } from "./_components/create-new-collection-mo
 const CollectionsPage = async () => {
   const [collections] = await fetchCollections({})
 
-  const collectionsIsEmpty = collections?.length === 0
+  const noCollections = collections?.length === 0
 
   return (
     <div className="relative flex size-full flex-col gap-4">
@@ -17,14 +17,14 @@ const CollectionsPage = async () => {
         Collections
       </span>
 
-      {!collectionsIsEmpty && (
+      {!noCollections && (
         <CreateNewCollectionModal triggerClassName="hidden min-h-10 w-fit self-end md:inline-flex" />
       )}
 
       <CreateNewCollectionDrawer
         triggerClassName={cn(
           "fixed md:hidden z-50 bottom-4 right-4",
-          collectionsIsEmpty && "hidden"
+          noCollections && "hidden"
         )}
       />
 
@@ -41,7 +41,7 @@ const CollectionsPage = async () => {
       <div
         className={cn(
           "fixed inset-x-2/4 top-2/4 size-fit -translate-x-1/2 space-y-2 text-center",
-          !collectionsIsEmpty && "hidden"
+          !noCollections && "hidden"
         )}
       >
         <span className="text-muted-foreground block min-w-max text-base">

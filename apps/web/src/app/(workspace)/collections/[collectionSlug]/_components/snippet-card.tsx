@@ -1,7 +1,6 @@
 import Link from "next/link"
 
 import { Tag } from "@/components/tag"
-import { buttonVariants } from "@/components/ui/button"
 import {
   CardDescription,
   CardFooter,
@@ -16,15 +15,7 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import {
   Tooltip,
   TooltipContent,
@@ -40,7 +31,7 @@ import { cn } from "@dropcode/tailwind/utils"
 
 import { MoreHorizontal, Pencil, Trash } from "lucide-react"
 
-import { DeleteSnippetButton } from "./delete-snippet-button"
+import { DeleteSnippetModal } from "./delete-snippet-modal"
 
 interface SnippetCardProps {
   snippet: SnippetWithFilesAndTags
@@ -59,11 +50,11 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
   return (
     <Dialog>
       <ContextMenu>
-        <ContextMenuTrigger className="w-full max-w-[332px]">
+        <ContextMenuTrigger asChild>
           <Link
             key={snippet.id}
             href={`${collectionSlug}/${snippet.slug}`}
-            className="group cursor-pointer select-none outline-none"
+            className="group w-full max-w-96 cursor-pointer select-none outline-none md:max-w-[332px]"
           >
             <CardRoot className="group-focus-visible:border-primary-10 min-h-40">
               <CardHeader>
@@ -166,33 +157,10 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
         </ContextMenuContent>
       </ContextMenu>
 
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            snippet and remove it from your collection.
-          </DialogDescription>
-        </DialogHeader>
-
-        <div className="flex items-center gap-2">
-          <DialogClose
-            type="button"
-            className={buttonVariants({
-              size: "sm",
-              variant: "ghost",
-              className: "ml-auto min-w-24 border",
-            })}
-          >
-            Cancel
-          </DialogClose>
-
-          <DeleteSnippetButton
-            snippetId={snippet.id}
-            collectionSlug={collectionSlug}
-          />
-        </div>
-      </DialogContent>
+      <DeleteSnippetModal
+        collectionSlug={collectionSlug}
+        snippetId={snippet.id}
+      />
     </Dialog>
   )
 }
