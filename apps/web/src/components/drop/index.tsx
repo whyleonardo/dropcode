@@ -1,4 +1,4 @@
-import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
+"use client"
 
 import { cn } from "@dropcode/tailwind/utils"
 import { Slot } from "@radix-ui/react-slot"
@@ -27,20 +27,22 @@ interface DropFileTriggerProps {
 
 const Drop = ({ children, className }: DropProps) => {
   return (
-    <ResizablePanelGroup
-      direction="horizontal"
-      className={cn("size-full rounded-xl border", className)}
+    <div
+      className={cn(
+        "flex size-full overflow-hidden rounded-xl border",
+        className
+      )}
     >
       {children}
-    </ResizablePanelGroup>
+    </div>
   )
 }
 
 const DropSidebar = ({ children, className }: DropSidebarProps) => {
   return (
-    <ResizablePanel defaultSize={20} maxSize={20} className={cn(className)}>
+    <div className={cn("scrollbar-thin scrollbar hidden md:block", className)}>
       {children}
-    </ResizablePanel>
+    </div>
   )
 }
 
@@ -54,8 +56,8 @@ const DropFileTrigger = ({
   return (
     <Comp
       className={cn(
-        "dark:hover:bg-gray-3 hover:bg-gray-3 inline-flex h-10 w-full items-center gap-3 space-x-2 overflow-hidden truncate rounded-lg p-2 font-mono text-sm transition-colors duration-200",
-        active && "dark:bg-gray-1 bg-gray-4",
+        "hover:bg-gray-4 inline-flex h-10 w-full items-center gap-3 space-x-2 overflow-hidden truncate rounded-lg p-2 font-mono text-sm transition-colors duration-200 dark:hover:opacity-75",
+        active && "dark:bg-gray-3 bg-gray-5",
         className
       )}
     >
@@ -66,9 +68,9 @@ const DropFileTrigger = ({
 
 const DropContent = ({ children, className }: DropContentProps) => {
   return (
-    <ResizablePanel defaultSize={80} maxSize={100} className={cn(className)}>
+    <div className={cn(className, "w-full overflow-y-auto overflow-x-hidden")}>
       {children}
-    </ResizablePanel>
+    </div>
   )
 }
 
