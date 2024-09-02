@@ -3,7 +3,7 @@ import { MostUsedLanguages } from "@/components/analytics/most-used-languages"
 
 const WorkspacePage = async () => {
   return (
-    <div className="flex flex-wrap justify-center gap-4">
+    <div className="mt-10 flex flex-wrap justify-center gap-4 md:mt-0">
       <LinesPerPeriodChart />
       <MostUsedLanguages />
     </div>

@@ -32,7 +32,10 @@ const SnippetSlugPage = async ({
   return (
     <div className="flex size-full flex-col items-center justify-center gap-4">
       <span
-        className={cn("text-muted-foreground text-lg", noFiles && "hidden")}
+        className={cn(
+          "text-muted-foreground select-none text-lg",
+          noFiles && "hidden"
+        )}
       >
         Select a file to view
       </span>

@@ -1,7 +1,6 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -41,6 +40,7 @@ export const DropMenuCommand = ({
 }: DropMenuCommandProps) => {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
 
   const fileSlug = pathname.split("/").at(4)
 
@@ -68,6 +68,11 @@ export const DropMenuCommand = ({
 
   const noFiles = files?.length === 0
 
+  const onTapCommandFileItem = (fileSlug: string) => {
+    setOpen(false)
+    router.push(`/collections/${collectionSlug}/${snippetSlug}/${fileSlug}`)
+  }
+
   return (
     <>
       <Button
@@ -83,8 +88,8 @@ export const DropMenuCommand = ({
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Commands">
-            {fileSlug && (
+          {fileSlug && (
+            <CommandGroup heading="File Commands">
               <CommandItem
                 onSelect={() => {
                   onCopyToClipboard(fileSlug)
@@ -93,12 +98,12 @@ export const DropMenuCommand = ({
                 <Clipboard className="mr-2 !size-3.5" />
                 Copy Content
               </CommandItem>
-            )}
 
-            {fileSlug && (
               <DeleteFileModal fileSlug={fileSlug} snippetSlug={snippetSlug} />
-            )}
+            </CommandGroup>
+          )}
 
+          <CommandGroup heading="New File">
             <CreateNewFileCommandItem />
           </CommandGroup>
 
@@ -108,27 +113,23 @@ export const DropMenuCommand = ({
 
               return (
                 <CommandItem
-                  onSelect={() => setOpen(false)}
+                  onSelect={() => onTapCommandFileItem(file.slug)}
                   key={file.id}
                   asChild
                 >
                   <span className="flex items-center gap-2">
                     <Icon className="!size-3.5" />
-                    <Link
-                      href={`/collections/${collectionSlug}/${snippetSlug}/${file.slug}`}
-                      className=""
-                    >
-                      {file.name}
 
-                      <span
-                        className={cn(
-                          "text-muted-foreground bg-muted border-gray-5 absolute right-0 right-4 top-1/2 z-50 hidden -translate-y-1/2 rounded-full border px-2 py-0.5 text-xs",
-                          fileSlug === file.slug && "block"
-                        )}
-                      >
-                        Current View
-                      </span>
-                    </Link>
+                    {file.name}
+
+                    <span
+                      className={cn(
+                        "text-muted-foreground bg-muted border-gray-5 absolute right-0 right-4 top-1/2 z-50 hidden -translate-y-1/2 rounded-full border px-2 py-0.5 text-xs",
+                        fileSlug === file.slug && "block"
+                      )}
+                    >
+                      Current View
+                    </span>
                   </span>
                 </CommandItem>
               )
