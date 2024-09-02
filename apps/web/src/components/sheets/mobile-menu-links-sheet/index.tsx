@@ -21,6 +21,8 @@ import { cn } from "@dropcode/tailwind/utils"
 
 import { Menu } from "lucide-react"
 
+import { SignOutButton } from "./sign-out-button"
+
 interface MobileMenuLinksSheetProps {
   triggerClassName?: string
 }
@@ -44,7 +46,7 @@ export const MobileMenuLinksSheet = ({
           <Menu className="size-4" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-full">
+      <SheetContent side="left" className="h-screen w-full overflow-hidden">
         <SheetHeader className="flex items-center justify-between">
           <SheetTitle className="sr-only">Dropcode Sheet Menu</SheetTitle>
 
@@ -64,7 +66,7 @@ export const MobileMenuLinksSheet = ({
 
         <Separator className="my-8 w-full" />
 
-        <div className="flex w-full flex-col gap-4">
+        <div className="flex h-[calc(100vh-21.5rem)] w-full flex-col gap-4">
           {sidebarMenuLinks.map((link) => {
             const Icon = link.icon
 
@@ -98,20 +100,8 @@ export const MobileMenuLinksSheet = ({
             )
           })}
         </div>
+        <SignOutButton />
       </SheetContent>
     </Sheet>
   )
 }
-// {
-//   sidebarMenuLinks.map((link) => {
-//     const Icon = link.icon
-
-//     return (
-//       <Button variant="ghost" key={`${link.label}-${link.href}`}>
-//         <Link className="" href={link.href}>
-//           {/* <Icon className="size-6" /> */}
-//         </Link>
-//       </Button>
-//     )
-//   })
-// }

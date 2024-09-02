@@ -1,3 +1,5 @@
+import type { Metadata } from "next/types"
+
 import { Icons } from "@/components/icons"
 import { DotPattern } from "@/components/ui/bg-dot-pattern"
 import { Button } from "@/components/ui/button"
@@ -6,6 +8,10 @@ import { Vignette } from "@/components/ui/vignette"
 
 import { signIn } from "@dropcode/auth"
 import { cn } from "@dropcode/tailwind/utils"
+
+export const metadata: Metadata = {
+  title: "Login",
+}
 
 const LoginPage = async () => {
   return (
