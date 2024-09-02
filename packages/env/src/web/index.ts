@@ -14,6 +14,8 @@ export const env = createEnv({
     AUTH_SECRET: z.string().min(1),
     AUTH_GITHUB_ID: z.string().min(1),
     AUTH_GITHUB_SECRET: z.string().min(1),
+    AUTH_GITLAB_ID: z.string().min(1),
+    AUTH_GITLAB_SECRET: z.string().min(1),
     UPSTASH_REDIS_URL: z.string().url(),
     UPSTASH_REDIS_TOKEN: z.string().min(1),
   },

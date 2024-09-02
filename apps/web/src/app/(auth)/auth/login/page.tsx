@@ -30,13 +30,7 @@ const LoginPage = async () => {
         )}
       />
 
-      <form
-        className="flex flex-col gap-8 overflow-hidden p-12"
-        action={async () => {
-          "use server"
-          await signIn("github")
-        }}
-      >
+      <div className="flex flex-col gap-8 overflow-hidden p-12">
         <Icons.logo className="fill-foreground mx-auto size-20 px-2" />
 
         <div className="text-center">
@@ -52,11 +46,34 @@ const LoginPage = async () => {
           </span>
         </div>
 
-        <Button type="submit" variant="neutral" className="max-w-80">
-          <Icons.github className="fill-background mr-2 size-5" />
-          Sign in with GitHub
-        </Button>
-      </form>
+        <div className="flex w-full flex-col items-center gap-2 border">
+          <form
+            className="w-full"
+            action={async () => {
+              "use server"
+              await signIn("github")
+            }}
+          >
+            <Button type="submit" variant="neutral" className="w-full max-w-80">
+              <Icons.github className="fill-background mr-2 size-5" />
+              Sign in with GitHub
+            </Button>
+          </form>
+
+          <form
+            className="w-full"
+            action={async () => {
+              "use server"
+              await signIn("gitlab")
+            }}
+          >
+            <Button type="submit" variant="neutral" className="w-full max-w-80">
+              <Icons.gitlab className="fill-background mr-2 size-5" />
+              Sign in with GitLab
+            </Button>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }
