@@ -24,8 +24,10 @@ import {
 
 import { cn } from "@dropcode/tailwind/utils"
 
-import { Clipboard, CommandIcon, Plus } from "lucide-react"
+import { Clipboard, CommandIcon } from "lucide-react"
 import { toast } from "sonner"
+
+import { CreateNewFileCommandItem } from "./create-new-file-command-item"
 
 interface DropMenuCommandProps {
   snippetSlug: string
@@ -63,6 +65,8 @@ export const DropMenuCommand = ({
     toast.info("Copied to clipboard!")
   }
 
+  const noFiles = files?.length === 0
+
   return (
     <>
       <Button
@@ -90,10 +94,7 @@ export const DropMenuCommand = ({
               </CommandItem>
             )}
 
-            <CommandItem>
-              <Plus className="mr-2 !size-3.5" />
-              New File
-            </CommandItem>
+            <CreateNewFileCommandItem />
           </CommandGroup>
 
           <CommandGroup heading="Files">
@@ -127,6 +128,15 @@ export const DropMenuCommand = ({
                 </CommandItem>
               )
             })}
+
+            <CommandItem
+              className={cn(
+                "pointer-events-none justify-center",
+                !noFiles && "hidden"
+              )}
+            >
+              No files
+            </CommandItem>
           </CommandGroup>
         </CommandList>
       </CommandDialog>

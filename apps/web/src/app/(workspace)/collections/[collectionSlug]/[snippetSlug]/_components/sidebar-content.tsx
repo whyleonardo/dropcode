@@ -1,5 +1,8 @@
 "use client"
 
+import { useState } from "react"
+
+import { CreateNewFileForm } from "@/components/forms/create-new-file-form"
 import {
   ContextMenu,
   ContextMenuContent,
@@ -7,7 +10,13 @@ import {
   ContextMenuLabel,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
-import { Dialog, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
 
 import { fetchFilesBySnippetSlug } from "@/actions/fetch-files-by-snippet-slug"
@@ -15,7 +24,6 @@ import { useServerActionQuery } from "@/hooks/server-action-hooks"
 
 import { FilePlus } from "lucide-react"
 
-import { CreateNewFileModal } from "./create-new-file-modal"
 import { FileItem } from "./file-item"
 
 interface SidebarContentProps {
@@ -27,6 +35,8 @@ export const SidebarContent = ({
   collectionSlug,
   snippetSlug,
 }: SidebarContentProps) => {
+  const [open, setOpen] = useState(false)
+
   const {
     data: files,
     isLoading: isLoadingFiles,
@@ -56,7 +66,7 @@ export const SidebarContent = ({
 
   return (
     <div className="h-full w-72 select-none">
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <ContextMenu>
           <ContextMenuTrigger className="size-full" asChild>
             <div className="bg-gray-2 flex size-full flex-col gap-3 p-4">
@@ -88,7 +98,13 @@ export const SidebarContent = ({
           </ContextMenuContent>
         </ContextMenu>
 
-        <CreateNewFileModal snippetSlug={snippetSlug} />
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Create a new file</DialogTitle>
+          </DialogHeader>
+
+          <CreateNewFileForm onOpenChange={setOpen} />
+        </DialogContent>
       </Dialog>
     </div>
   )
