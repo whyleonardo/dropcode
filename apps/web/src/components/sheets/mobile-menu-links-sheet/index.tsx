@@ -66,7 +66,7 @@ export const MobileMenuLinksSheet = ({
 
         <Separator className="my-8 w-full" />
 
-        <div className="flex h-[calc(100vh-21.5rem)] w-full flex-col gap-4">
+        <div className="flex h-[calc(100dvh-21.5rem)] w-full flex-col gap-4">
           {sidebarMenuLinks.map((link) => {
             const Icon = link.icon
 
