@@ -11,8 +11,8 @@ import { cn } from "@dropcode/tailwind/utils"
 
 export const metadata: Metadata = {
   title: {
-    default: "Next.js App",
-    template: "%s - Next.js App",
+    default: "Dropcode",
+    template: "Dropcode - %s",
   },
 }
 

@@ -11,6 +11,17 @@ interface SnippetSlugLayoutProps {
   children: React.ReactNode
 }
 
+export const generateMetadata = ({
+  params,
+}: {
+  params: { snippetSlug: string }
+}) => {
+  return {
+    title: `Snippet - ${params.snippetSlug}`,
+    template: `Snippet - ${params.snippetSlug} - %s`,
+  }
+}
+
 const SnippetSlugLayout = ({
   children,
   params: { snippetSlug, collectionSlug },

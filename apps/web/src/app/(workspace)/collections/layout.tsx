@@ -1,3 +1,12 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: {
+    default: "Collections",
+    template: "Collections - %s",
+  },
+}
+
 const CollectionsLayout = async ({
   children,
 }: {
