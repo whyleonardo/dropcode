@@ -1,10 +1,10 @@
 import type { HighlighterCoreOptions } from "shiki/bundle/web"
-import catppuccinLatte from "shiki/themes/catppuccin-latte.mjs"
 import minDark from "shiki/themes/min-dark.mjs"
+import minLight from "shiki/themes/min-light.mjs"
 import getWasm from "shiki/wasm"
 
 export const highlighterConfig: HighlighterCoreOptions = {
-  themes: [minDark, catppuccinLatte],
+  themes: [minDark, minLight],
   langs: [
     import("shiki/langs/angular-ts.mjs"),
     import("shiki/langs/astro.mjs"),
