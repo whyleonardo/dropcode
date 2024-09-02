@@ -20,7 +20,10 @@ export const Code = async ({ code, lang }: CodeProps) => {
 
   const html = highlighter.codeToHtml(code, {
     lang: langs[lang].id,
-    theme: "min-dark",
+    themes: {
+      light: "catppuccin-latte",
+      dark: "min-dark",
+    },
   })
   return (
     <div
