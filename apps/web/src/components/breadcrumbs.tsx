@@ -60,7 +60,8 @@ export const Breadcrumbs = () => {
           }
 
           return (
-            <Fragment key={segment}>
+            // biome-ignore lint/suspicious/noArrayIndexKey: Using index here with another information
+            <Fragment key={`${segment}-${index}`}>
               <BreadcrumbItem>
                 <BreadcrumbLink
                   asChild
