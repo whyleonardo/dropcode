@@ -24,7 +24,7 @@ const FileSlugPage = async ({
 
   return (
     <div className="size-full">
-      <ScrollArea className="size-full px-4 pt-4">
+      <ScrollArea className="size-full px-1 pt-4 md:px-4">
         <Code code={file?.content as string} lang={file?.language} />
 
         <ScrollBar className="h-2.5" orientation="horizontal" />

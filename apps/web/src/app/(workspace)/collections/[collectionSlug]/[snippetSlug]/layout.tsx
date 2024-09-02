@@ -36,7 +36,7 @@ const SnippetSlugLayout = ({
           />
         </DropSidebar>
 
-        <DropContent className="bg-background p-4">{children}</DropContent>
+        <DropContent className="bg-background">{children}</DropContent>
       </Drop>
 
       <div className="absolute bottom-4 right-4 md:hidden">
