@@ -23,6 +23,9 @@ export const Code = async ({ code, lang }: CodeProps) => {
     theme: "min-dark",
   })
   return (
-    <div className="select-none" dangerouslySetInnerHTML={{ __html: html }} />
+    <div
+      className="relative size-full select-none"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   )
 }
