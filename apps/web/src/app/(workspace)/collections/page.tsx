@@ -13,7 +13,7 @@ const CollectionsPage = async () => {
 
   return (
     <div className="relative flex size-full flex-col gap-4">
-      <span className="text-2xl font-semibold tracking-tight md:hidden">
+      <span className="mt-10 text-2xl font-semibold tracking-tight md:mt-0 md:hidden">
         Collections
       </span>
 

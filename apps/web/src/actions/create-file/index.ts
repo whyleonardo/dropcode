@@ -14,6 +14,10 @@ import { type File, Prisma } from "@dropcode/db/types"
 
 import { createFileSchema } from "./schema"
 
+const MAX_FILES_PER_SNIPPET = 5
+// TODO: Uncomment when we have pro features
+// const MAX_FILES_PER_SNIPPET_WITH_PRO = 10
+
 export const createFile = authProcedure
   .createServerAction()
   .input(createFileSchema)
@@ -42,6 +46,16 @@ export const createFile = authProcedure
 
     if (!snippet) {
       throw new ResourceNotFoundError()
+    }
+
+    const fileCount = await db.file.count({
+      where: {
+        snippetId: snippet.id,
+      },
+    })
+
+    if (fileCount >= MAX_FILES_PER_SNIPPET) {
+      throw new Error("You can't have more than 5 files per snippet")
     }
 
     let file: File

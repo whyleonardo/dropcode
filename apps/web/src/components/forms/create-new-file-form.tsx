@@ -49,7 +49,7 @@ export const CreateNewFileForm = ({ onOpenChange }: CreateNewFileFormProps) => {
   const queryClient = useQueryClient()
   const pathname = usePathname()
 
-  const snippetSlug = pathname.split("/").at(4) as string
+  const snippetSlug = pathname.split("/").at(3) as string
 
   const { mutateAsync, isPending } = useServerActionMutation(createFile, {
     onSuccess: () => {
@@ -81,6 +81,7 @@ export const CreateNewFileForm = ({ onOpenChange }: CreateNewFileFormProps) => {
   })
 
   const onSubmit = async (data: createFileFormData) => {
+    onOpenChange(false)
     await mutateAsync({
       name: data.name,
       content: data.content,
@@ -127,6 +128,7 @@ export const CreateNewFileForm = ({ onOpenChange }: CreateNewFileFormProps) => {
                 <FormControl>
                   <Input
                     type="text"
+                    autoComplete="off"
                     placeholder="Give your file a name"
                     {...field}
                   />
@@ -182,6 +184,7 @@ export const CreateNewFileForm = ({ onOpenChange }: CreateNewFileFormProps) => {
               <FormLabel>Content</FormLabel>
               <FormControl>
                 <Textarea
+                  autoComplete="off"
                   placeholder="Insert the content here"
                   className="h-96 resize-none"
                   {...field}

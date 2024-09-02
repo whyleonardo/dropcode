@@ -8,13 +8,13 @@ import { UnexpectedError } from "@/errors/unexpected-error"
 
 import { db } from "@dropcode/db"
 
-import { deleteFileByIdSchema } from "./schema"
+import { deleteFileBySlugSchema } from "./schema"
 
-export const deleteFileById = authProcedure
+export const deleteFileBySlug = authProcedure
   .createServerAction()
-  .input(deleteFileByIdSchema)
+  .input(deleteFileBySlugSchema)
   .handler(async ({ input, ctx }) => {
-    const { fileId, snippetId } = input
+    const { fileSlug, snippetSlug } = input
 
     const { user } = ctx
 
@@ -22,8 +22,10 @@ export const deleteFileById = authProcedure
       await db.file.delete({
         where: {
           userId: user.id,
-          id: fileId,
-          snippetId,
+          slug: fileSlug,
+          snippet: {
+            slug: snippetSlug,
+          },
         },
       })
     } catch {
@@ -31,7 +33,7 @@ export const deleteFileById = authProcedure
     }
 
     const snippet = await db.snippet.findUnique({
-      where: { id: snippetId, userId: user.id },
+      where: { slug: snippetSlug, userId: user.id },
       select: {
         slug: true,
         collection: {
@@ -51,6 +53,5 @@ export const deleteFileById = authProcedure
     if (!snippet) {
       throw new ResourceNotFoundError()
     }
-
     redirect(`/collections/${snippet.collection?.slug}/${snippet.slug}/`)
   })

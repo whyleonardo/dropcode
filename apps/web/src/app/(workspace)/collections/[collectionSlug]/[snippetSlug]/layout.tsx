@@ -16,7 +16,7 @@ const SnippetSlugLayout = ({
   params: { snippetSlug, collectionSlug },
 }: SnippetSlugLayoutProps) => {
   return (
-    <div className="relative h-full max-h-[calc(100dvh-5.5rem)]">
+    <div className="relative mt-10 h-full max-h-[calc(100dvh-5.5rem)] md:mt-0">
       <Drop>
         <DropSidebar>
           <SidebarContent

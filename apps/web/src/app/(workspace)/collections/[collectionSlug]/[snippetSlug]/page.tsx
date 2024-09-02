@@ -30,7 +30,7 @@ const SnippetSlugPage = async ({
   const noFiles = files?.length === 0
 
   return (
-    <div className="flex size-full flex-col gap-4">
+    <div className="flex size-full flex-col items-center justify-center gap-4">
       <span
         className={cn("text-muted-foreground text-lg", noFiles && "hidden")}
       >

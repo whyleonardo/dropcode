@@ -9,7 +9,7 @@ type SidebarMenuLink = {
 
 export const sidebarMenuLinks: SidebarMenuLink[] = [
   {
-    label: "Home",
+    label: "Dashboard",
     href: "/",
     icon: House,
     isDisabled: false,

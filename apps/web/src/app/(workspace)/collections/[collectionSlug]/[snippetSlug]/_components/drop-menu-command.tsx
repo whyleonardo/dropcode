@@ -28,6 +28,7 @@ import { Clipboard, CommandIcon } from "lucide-react"
 import { toast } from "sonner"
 
 import { CreateNewFileCommandItem } from "./create-new-file-command-item"
+import { DeleteFileModal } from "./delete-file-modal"
 
 interface DropMenuCommandProps {
   snippetSlug: string
@@ -94,6 +95,10 @@ export const DropMenuCommand = ({
               </CommandItem>
             )}
 
+            {fileSlug && (
+              <DeleteFileModal fileSlug={fileSlug} snippetSlug={snippetSlug} />
+            )}
+
             <CreateNewFileCommandItem />
           </CommandGroup>
 
@@ -121,7 +126,7 @@ export const DropMenuCommand = ({
                           fileSlug === file.slug && "block"
                         )}
                       >
-                        Actual Viewing
+                        Current View
                       </span>
                     </Link>
                   </span>
