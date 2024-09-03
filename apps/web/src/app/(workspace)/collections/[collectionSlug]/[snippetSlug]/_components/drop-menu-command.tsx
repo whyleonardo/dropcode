@@ -119,9 +119,8 @@ export const DropMenuCommand = ({
                 >
                   <span className="flex items-center gap-2">
                     <Icon className="!size-3.5" />
-
-                    {file.name}
-
+                    {file.name}.{langs[file.language].extension}
+                    <span className="sr-only">{file.id}</span>
                     <span
                       className={cn(
                         "text-muted-foreground bg-muted border-gray-5 absolute right-0 right-4 top-1/2 z-50 hidden -translate-y-1/2 rounded-full border px-2 py-0.5 text-xs",
