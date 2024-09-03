@@ -1,33 +1,29 @@
-import Link from "next/link"
-
+import { UserInfo } from "@/components/layout/sidebar/user-info"
 import { ThemeToggle } from "@/components/theme-toggle"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+
+import { getUserAccountProvider } from "@/actions/get-user-account-provider"
+
+import { auth } from "@dropcode/auth"
 
 import { NavMenuLinks } from "./nav-menu-links"
 import { SignOutButton } from "./sign-out-button"
-import { UserInfo } from "./user-info"
 
-export const Sidebar = () => {
+export const Sidebar = async () => {
+  const session = await auth()
+
+  if (!session?.user?.id) return null
+
+  const [provider] = await getUserAccountProvider({ userId: session.user.id })
+
+  const user = {
+    ...session.user,
+    ...provider,
+  }
+
   return (
     <aside className="bg-gray-2 flex hidden h-full w-14 flex-col items-center border-r px-2 py-4 md:flex">
-      <TooltipProvider delayDuration={30}>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Link
-              className="border-border pointer-events-none rounded-full border"
-              href="/me"
-            >
-              <UserInfo />
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right">User</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <UserInfo user={user} />
+
       <div className="mt-8 flex flex-col gap-2">
         <NavMenuLinks />
       </div>

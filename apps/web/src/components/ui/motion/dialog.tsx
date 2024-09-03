@@ -1,7 +1,5 @@
 "use client"
 
-import { usePathname } from "next/navigation"
-import { useRouter } from "next/navigation"
 import React, {
   useCallback,
   useContext,
@@ -129,12 +127,17 @@ type DialogContent = {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
+  lockClickOutside?: boolean
 }
 
-function DialogContent({ children, className, style }: DialogContent) {
+function DialogContent({
+  children,
+  className,
+  style,
+  lockClickOutside,
+}: DialogContent) {
   const { setIsOpen, isOpen, uniqueId, triggerRef } = useDialog()
-  const router = useRouter()
-  const pathname = usePathname()
+
   const containerRef = useRef<HTMLDivElement>(null)
   const [firstFocusableElement, setFirstFocusableElement] =
     useState<HTMLElement | null>(null)
@@ -191,11 +194,7 @@ function DialogContent({ children, className, style }: DialogContent) {
 
   useClickOutside(containerRef, () => {
     if (isOpen) {
-      setIsOpen(false)
-    }
-
-    if (pathname === "/workspace/me") {
-      router.back()
+      setIsOpen(lockClickOutside ?? false)
     }
   })
 
@@ -238,7 +237,7 @@ function DialogContainer({ children }: DialogContainerProps) {
         <>
           <motion.div
             key={`backdrop-${uniqueId}`}
-            className="fixed inset-0 h-full w-full bg-white/40 backdrop-blur-sm dark:bg-black/40"
+            className="fixed inset-0 z-[50] h-full w-full bg-white/40 backdrop-blur-sm dark:bg-black/40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

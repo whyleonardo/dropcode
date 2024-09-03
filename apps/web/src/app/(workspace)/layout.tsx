@@ -1,6 +1,6 @@
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { Sidebar } from "@/components/layout/sidebar"
-import { MobileMenuLinksSheet } from "@/components/sheets/mobile-menu-links-sheet"
+import { MobileMenuSheet } from "@/components/sheets/mobile-menu-sheet"
 import { DotPattern } from "@/components/ui/bg-dot-pattern"
 import { Toaster } from "@/components/ui/toaster"
 
@@ -26,7 +26,7 @@ const WorkspaceLayout = ({
             <Breadcrumbs />
           </header>
 
-          <MobileMenuLinksSheet />
+          <MobileMenuSheet />
 
           <main className="relative z-50 flex-1">
             {children}

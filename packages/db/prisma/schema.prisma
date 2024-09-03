@@ -117,7 +117,7 @@ model Snippet {
   collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   collectionId String?     @map("collection_id")
 
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @map("user_id")
 
   @@unique([collectionId, slug])

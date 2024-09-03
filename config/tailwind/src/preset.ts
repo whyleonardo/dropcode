@@ -80,8 +80,8 @@ export const dropcodeTailwindPreset: Config = {
         },
 
         destructive: {
-          DEFAULT: colors.alias("red.10"),
-          foreground: colors.alias("red.1"),
+          DEFAULT: colors.alias("red.9"),
+          foreground: colors.alias("red.2"),
           1: colors.alias("red.1"),
           2: colors.alias("red.2"),
           3: colors.alias("red.3"),
