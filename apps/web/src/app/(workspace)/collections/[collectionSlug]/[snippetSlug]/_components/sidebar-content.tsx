@@ -71,12 +71,12 @@ export const SidebarContent = ({
           <ContextMenuTrigger className="size-full" asChild>
             <div className="bg-gray-2 flex size-full flex-col gap-3 p-4">
               <div className="flex w-full items-center justify-between">
-                <span className="text-muted-foreground w-full truncate font-mono text-lg font-medium tracking-tighter">
+                <span className="w-full truncate font-mono text-lg font-medium tracking-tighter">
                   Files
                 </span>
 
                 <DialogTrigger>
-                  <Plus className="size-5" />
+                  <Plus className="text-muted-foreground hover:text-gray-12 size-5 transition-colors" />
                 </DialogTrigger>
               </div>
 
