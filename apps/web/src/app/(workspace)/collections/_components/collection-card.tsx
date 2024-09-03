@@ -95,6 +95,7 @@ export const CollectionCard = ({
           Delete
         </ContextMenuItem>
       </ContextMenuContent>
+
       <Dialog
         open={openDeleteCollectionModal}
         onOpenChange={setOpenDeleteCollectionModal}
