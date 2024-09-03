@@ -27,7 +27,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
 import type { z } from "zod"
 
-interface CreateNewCollectionFormProps {
+interface CreateNewSnippetFormProps {
   onOpenChange: (isOpen: boolean) => void
 }
 
@@ -37,7 +37,7 @@ const MAX_LENGTH_DESCRIPTION = 72
 
 export const CreateNewSnippetForm = ({
   onOpenChange,
-}: CreateNewCollectionFormProps) => {
+}: CreateNewSnippetFormProps) => {
   const pathname = usePathname()
 
   const collectionSlug = pathname.split("/").at(2) as string
