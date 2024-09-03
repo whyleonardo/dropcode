@@ -67,6 +67,7 @@ export const UpdateCollectionForm = ({
               <FormControl>
                 <Input
                   autoComplete="off"
+                  spellCheck="false"
                   type="text"
                   placeholder="Give your collection a title"
                   {...field}
@@ -87,6 +88,7 @@ export const UpdateCollectionForm = ({
               <FormControl>
                 <Input
                   autoComplete="off"
+                  spellCheck="false"
                   type="text"
                   placeholder="Give your collection a title"
                   {...field}

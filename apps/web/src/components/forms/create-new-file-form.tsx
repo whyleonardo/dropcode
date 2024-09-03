@@ -129,6 +129,7 @@ export const CreateNewFileForm = ({ onOpenChange }: CreateNewFileFormProps) => {
                   <Input
                     type="text"
                     autoComplete="off"
+                    spellCheck="false"
                     placeholder="Give your file a name"
                     {...field}
                   />
@@ -185,6 +186,7 @@ export const CreateNewFileForm = ({ onOpenChange }: CreateNewFileFormProps) => {
               <FormControl>
                 <Textarea
                   autoComplete="off"
+                  spellCheck="false"
                   placeholder="Insert the content here"
                   className="h-96 resize-none"
                   {...field}
