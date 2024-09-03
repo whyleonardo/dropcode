@@ -18,6 +18,13 @@ import {
 } from "@/components/ui/context-menu"
 import { Dialog } from "@/components/ui/dialog"
 import {
+  Drawer,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer"
+import {
   Sheet,
   SheetContent,
   SheetHeader,
@@ -43,6 +50,8 @@ export const CollectionCard = ({
     useState(false)
 
   const [openEditCollectionSheet, setOpenEditCollectionSheet] = useState(false)
+  const [openEditCollectionDrawer, setOpenEditCollectionDrawer] =
+    useState(false)
 
   return (
     <ContextMenu>
@@ -81,7 +90,15 @@ export const CollectionCard = ({
       <ContextMenuContent>
         <ContextMenuItem
           onSelect={() => setOpenEditCollectionSheet((state) => !state)}
-          className="cursor-pointer"
+          className="hidden cursor-pointer md:flex"
+        >
+          <Pencil className="mr-2 size-4" />
+          Edit
+        </ContextMenuItem>
+
+        <ContextMenuItem
+          onSelect={() => setOpenEditCollectionDrawer((state) => !state)}
+          className="cursor-pointer md:hidden"
         >
           <Pencil className="mr-2 size-4" />
           Edit
@@ -118,6 +135,24 @@ export const CollectionCard = ({
           />
         </SheetContent>
       </Sheet>
+
+      <Drawer
+        open={openEditCollectionDrawer}
+        onOpenChange={setOpenEditCollectionDrawer}
+      >
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Edit your collection</DrawerTitle>
+          </DrawerHeader>
+
+          <DrawerFooter>
+            <UpdateCollectionForm
+              initialData={collection}
+              onOpenChange={setOpenEditCollectionDrawer}
+            />
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </ContextMenu>
   )
 }

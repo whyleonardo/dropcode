@@ -21,6 +21,13 @@ import {
 } from "@/components/ui/context-menu"
 import { Dialog } from "@/components/ui/dialog"
 import {
+  Drawer,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer"
+import {
   Sheet,
   SheetContent,
   SheetHeader,
@@ -55,6 +62,8 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
   const [openDeleteSnippetModal, setOpenDeleteSnippetModal] = useState(false)
 
   const [openEditSnippetSheet, setOpenEditSnippetSheet] = useState(false)
+
+  const [openEditSnippetDrawer, setOpenEditSnippetDrawer] = useState(false)
 
   const onlyNotDuplicatedFilesIcons = snippet.files.filter(
     (file, index, array) =>
@@ -154,7 +163,15 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
       <ContextMenuContent>
         <ContextMenuItem
           onSelect={() => setOpenEditSnippetSheet((state) => !state)}
-          className="cursor-pointer"
+          className="hidden cursor-pointer md:flex"
+        >
+          <Pencil className="mr-2 size-4" />
+          Edit
+        </ContextMenuItem>
+
+        <ContextMenuItem
+          onSelect={() => setOpenEditSnippetDrawer((state) => !state)}
+          className="cursor-pointer md:hidden"
         >
           <Pencil className="mr-2 size-4" />
           Edit
@@ -192,6 +209,25 @@ export const SnippetCard = ({ snippet, collectionSlug }: SnippetCardProps) => {
           />
         </SheetContent>
       </Sheet>
+
+      <Drawer
+        open={openEditSnippetDrawer}
+        onOpenChange={setOpenEditSnippetDrawer}
+      >
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Edit your snippet</DrawerTitle>
+          </DrawerHeader>
+
+          <DrawerFooter>
+            <UpdateSnippetForm
+              initialData={snippet}
+              collectionSlug={collectionSlug}
+              onOpenChange={setOpenEditSnippetDrawer}
+            />
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </ContextMenu>
   )
 }
