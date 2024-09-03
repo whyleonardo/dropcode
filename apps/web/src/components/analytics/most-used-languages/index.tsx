@@ -28,6 +28,14 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
+const marginVariants = {
+  1: { top: 100, right: 24, left: 24, bottom: 100 },
+  2: { top: 80, right: 24, left: 24, bottom: 80 },
+  3: { top: 60, right: 24, left: 24, bottom: 60 },
+  4: { top: 40, right: 24, left: 24, bottom: 30 },
+  5: { top: 20, right: 24, left: 24, bottom: 20 },
+} as const
+
 export const MostUsedLanguages = () => {
   const { data, isLoading } = useServerActionQuery(fetchMostUsedLanguages, {
     queryKey: ["most-used-languages"],
@@ -37,6 +45,8 @@ export const MostUsedLanguages = () => {
   if (data?.length === 0) {
     return <NoData />
   }
+
+  const dataLength = data?.length
 
   return (
     <Card className="bg-gray-2 size-fit h-[28rem] w-full lg:w-fit lg:min-w-[32rem]">
@@ -55,15 +65,16 @@ export const MostUsedLanguages = () => {
         ) : (
           <ChartContainer
             config={chartConfig}
-            className="mt-12 h-72 min-h-44 w-full"
+            className="mt-12 flex h-72 min-h-44 w-full items-center justify-center"
           >
             <BarChart
               accessibilityLayer
               data={data}
               layout="vertical"
-              margin={{
-                left: 24,
-              }}
+              margin={
+                data &&
+                marginVariants[dataLength as keyof typeof marginVariants]
+              }
             >
               <YAxis
                 dataKey="language"
