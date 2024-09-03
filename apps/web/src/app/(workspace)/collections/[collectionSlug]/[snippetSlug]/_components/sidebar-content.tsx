@@ -71,7 +71,7 @@ export const SidebarContent = ({
           <ContextMenuTrigger className="size-full" asChild>
             <div className="bg-gray-2 flex size-full flex-col gap-3 p-4">
               <div className="flex w-full items-center justify-between">
-                <span className="text-muted-foreground w-full truncate font-mono text-lg font-medium tracking-tight">
+                <span className="text-muted-foreground w-full truncate font-mono text-lg font-medium tracking-tighter">
                   Files
                 </span>
 
