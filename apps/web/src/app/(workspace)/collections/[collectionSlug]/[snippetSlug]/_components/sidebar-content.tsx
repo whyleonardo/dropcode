@@ -22,7 +22,7 @@ import { Separator } from "@/components/ui/separator"
 import { fetchFilesBySnippetSlug } from "@/actions/fetch-files-by-snippet-slug"
 import { useServerActionQuery } from "@/hooks/server-action-hooks"
 
-import { FilePlus } from "lucide-react"
+import { FilePlus, Plus } from "lucide-react"
 
 import { FileItem } from "./file-item"
 
@@ -70,9 +70,15 @@ export const SidebarContent = ({
         <ContextMenu>
           <ContextMenuTrigger className="size-full" asChild>
             <div className="bg-gray-2 flex size-full flex-col gap-3 p-4">
-              <span className="text-muted-foreground w-full truncate font-mono text-lg font-medium tracking-tight">
-                Files
-              </span>
+              <div className="flex w-full items-center justify-between">
+                <span className="text-muted-foreground w-full truncate font-mono text-lg font-medium tracking-tight">
+                  Files
+                </span>
+
+                <DialogTrigger>
+                  <Plus className="size-5" />
+                </DialogTrigger>
+              </div>
 
               <Separator />
 
