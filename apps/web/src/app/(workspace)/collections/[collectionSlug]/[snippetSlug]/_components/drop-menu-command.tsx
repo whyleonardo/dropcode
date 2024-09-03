@@ -23,11 +23,12 @@ import {
 
 import { cn } from "@dropcode/tailwind/utils"
 
-import { Clipboard, CommandIcon } from "lucide-react"
+import { Clipboard, CommandIcon, Trash } from "lucide-react"
 import { toast } from "sonner"
 
 import { CreateNewFileCommandItem } from "./create-new-file-command-item"
 import { DeleteFileModal } from "./delete-file-modal"
+import { EditFileDrawer } from "./edit-file-drawer"
 
 interface DropMenuCommandProps {
   snippetSlug: string
@@ -38,7 +39,9 @@ export const DropMenuCommand = ({
   snippetSlug,
   collectionSlug,
 }: DropMenuCommandProps) => {
-  const [open, setOpen] = useState(false)
+  const [openCommandDialog, setOpenCommandDialog] = useState(false)
+  const [openDeleteFileModal, setOpenDeleteFileModal] = useState(false)
+
   const pathname = usePathname()
   const router = useRouter()
 
@@ -69,9 +72,11 @@ export const DropMenuCommand = ({
   const noFiles = files?.length === 0
 
   const onTapCommandFileItem = (fileSlug: string) => {
-    setOpen(false)
+    setOpenCommandDialog(false)
     router.push(`/collections/${collectionSlug}/${snippetSlug}/${fileSlug}`)
   }
+
+  const currentFile = files?.find((file) => file.slug === fileSlug)
 
   return (
     <>
@@ -79,16 +84,19 @@ export const DropMenuCommand = ({
         size="icon"
         variant="neutral"
         className="rounded-full"
-        onClick={() => setOpen((state) => !state)}
+        onClick={() => setOpenCommandDialog((state) => !state)}
       >
         <CommandIcon className="size-4" />
       </Button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog
+        open={openCommandDialog}
+        onOpenChange={setOpenCommandDialog}
+      >
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          {fileSlug && (
+          {fileSlug && currentFile && (
             <CommandGroup heading="File Commands">
               <CommandItem
                 onSelect={() => {
@@ -99,7 +107,22 @@ export const DropMenuCommand = ({
                 Copy Content
               </CommandItem>
 
-              <DeleteFileModal fileSlug={fileSlug} snippetSlug={snippetSlug} />
+              <CommandItem
+                onSelect={() => setOpenDeleteFileModal((state) => !state)}
+                className="text-destructive hover:text-destructive-11"
+              >
+                <Trash className="mr-2 !size-3.5" />
+                Delete File
+              </CommandItem>
+
+              <DeleteFileModal
+                open={openDeleteFileModal}
+                onOpenChange={setOpenDeleteFileModal}
+                snippetSlug={snippetSlug}
+                fileSlug={fileSlug}
+              />
+
+              <EditFileDrawer file={currentFile} snippetSlug={snippetSlug} />
             </CommandGroup>
           )}
 

@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
-import { CommandItem } from "@/components/ui/command"
 import {
   Dialog,
   DialogClose,
@@ -10,7 +9,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 
 import { deleteFileBySlug } from "@/actions/delete-file-by-slug"
@@ -21,17 +19,21 @@ import {
 
 import { useQueryClient } from "@tanstack/react-query"
 
-import { Loader2, Trash } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
 interface DeleteFileModalProps {
   snippetSlug: string
   fileSlug: string
+  open: boolean
+  onOpenChange: (isOpen: boolean) => void
 }
 
 export const DeleteFileModal = ({
   snippetSlug,
   fileSlug,
+  open,
+  onOpenChange,
 }: DeleteFileModalProps) => {
   const queryClient = useQueryClient()
 
@@ -62,17 +64,7 @@ export const DeleteFileModal = ({
   }
 
   return (
-    <Dialog>
-      <CommandItem
-        asChild
-        className="text-destructive hover:text-destructive-11"
-      >
-        <DialogTrigger className="w-full">
-          <Trash className="mr-2 !size-3.5" />
-          Delete File
-        </DialogTrigger>
-      </CommandItem>
-
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
