@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
-import { CoolMode } from "@/components/ui/motion/cool-mode"
 import {
   Tooltip,
   TooltipContent,
@@ -42,34 +41,28 @@ export const ClipboardCopyButton = ({ code }: ClipboardCopyButtonProps) => {
     <TooltipProvider delayDuration={30}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <CoolMode
-            options={{
-              size: 10,
-            }}
+          <Button
+            type="button"
+            size="icon"
+            variant="outline"
+            disabled={isCopied}
+            className="overflow- fixed right-8 top-20 z-[9999] hidden size-8 overflow-hidden disabled:opacity-100 md:inline-flex"
+            onClick={onClick}
           >
-            <Button
-              type="button"
-              size="icon"
-              variant="outline"
-              disabled={isCopied}
-              className="overflow- fixed right-8 top-20 z-[9999] hidden size-8 overflow-hidden disabled:opacity-100 md:inline-flex"
-              onClick={onClick}
-            >
-              <Check
-                className={cn(
-                  "absolute size-4 -translate-y-12 transition-transform",
-                  isCopied && "translate-y-0"
-                )}
-              />
+            <Check
+              className={cn(
+                "absolute size-4 -translate-y-12 transition-transform",
+                isCopied && "translate-y-0"
+              )}
+            />
 
-              <Clipboard
-                className={cn(
-                  "absolute size-4 transition-transform",
-                  isCopied && "translate-y-10"
-                )}
-              />
-            </Button>
-          </CoolMode>
+            <Clipboard
+              className={cn(
+                "absolute size-4 transition-transform",
+                isCopied && "translate-y-10"
+              )}
+            />
+          </Button>
         </TooltipTrigger>
 
         <TooltipContent side="left">Copy content to clipboard</TooltipContent>
