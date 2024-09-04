@@ -72,10 +72,12 @@ export const createFile = authProcedure
         },
       })
     } catch (error) {
+      console.error(error)
+
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === "P2002") {
           throw new Error(
-            "A file with the same language and name already exists"
+            "A file with the same language and name already exists on this snippet"
           )
         }
       }

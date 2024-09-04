@@ -130,7 +130,7 @@ model File {
   name     String
   language Language
   content  String
-  slug     String   @unique
+  slug     String
 
   snippet   Snippet @relation(fields: [snippetId], references: [id], onDelete: Cascade)
   snippetId String  @map("snippet_id")
@@ -141,6 +141,7 @@ model File {
   updatedAt DateTime @updatedAt @map("updated_at")
   createdAt DateTime @default(now()) @map("created_at")
 
+  @@unique([slug, snippetId])
   @@index([userId, snippetId])
   @@map("files")
 }
