@@ -5,7 +5,8 @@ export const updateFileSchema = z.object({
   name: z
     .string({ message: "Name is required" })
     .trim()
-    .min(1, { message: "Name is too short" }),
+    .min(1, { message: "Name is too short" })
+    .max(22, { message: "Name must be less than 22 characters" }),
   language: z.union(
     [
       z.literal("ANGULAR", { message: "Invalid language" }),

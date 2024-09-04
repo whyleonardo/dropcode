@@ -6,7 +6,7 @@ export const updateSnippetSchema = z.object({
     .string({ required_error: "Title is required" })
     .trim()
     .min(3, { message: "Title must be at least 3 characters" })
-    .max(14, { message: "Title must be less than 14 characters" }),
+    .max(22, { message: "Title must be less than 22 characters" }),
   description: z
     .string()
     .trim()
