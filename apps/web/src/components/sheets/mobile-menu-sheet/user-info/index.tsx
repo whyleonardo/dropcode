@@ -60,7 +60,7 @@ export const UserInfo = ({ user }: UserInfoProps) => {
             <DrawerTitle className="sr-only">Your Info</DrawerTitle>
           </DrawerHeader>
 
-          <ScrollArea className="h-[calc(100dvh-14rem)]">
+          <ScrollArea className="h-[calc(100dvh-6rem)]">
             <div className="flex flex-col items-center gap-2">
               <Avatar className="size-40">
                 {user?.image && (

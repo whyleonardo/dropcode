@@ -39,7 +39,7 @@ export const EditFileDrawer = ({ file, snippetSlug }: EditFileDrawerProps) => {
           <DrawerHeader>
             <DrawerTitle>Edit your file</DrawerTitle>
           </DrawerHeader>
-          <ScrollArea className="h-[calc(100dvh-12rem)]">
+          <ScrollArea className="h-[calc(100dvh-6rem)]">
             <DrawerFooter>
               <UpdateFileForm
                 initialData={file}
