@@ -1,81 +1,77 @@
-# Turborepo starter
+# Dropcode 🚀
 
-This is an official starter Turborepo.
+<br />
+<div align="center">
+  <a href="https://github.com/whyleonardo/dropcode">
+    <img src="apps/web/public/logo.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 
-## Using this example
+<br/>
+<br/>
+<br/>
 
-Run the following command:
+**Dropcode** is a powerful tool designed to store and manage code snippets effectively. Whether you're working on a small project or handling multiple files within the same context, Dropcode makes it easy to organize and retrieve your code.
 
-```sh
-npx create-turbo@latest
-```
+## Table of Contents 📚
 
-## What's inside?
+- [Motivation](#motivation)
+- [Features](#features)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
 
-This Turborepo includes the following packages/apps:
+## Motivation 💡
 
-### Apps and Packages
+The need for a reliable way to store code snippets inspired the creation of Dropcode. In many development environments, it's common to have isolated code snippets that serve specific purposes. However, the ability to store more than one snippet in the same context is often limited. To overcome this, Dropcode introduces the concept of storing files within snippets, enabling more organized and context-rich code management.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Built With 🛠️
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Dropcode is built using a combination of modern tools and technologies:
 
-### Utilities
+- **[Next.js](https://nextjs.org/)**: React framework for server-side rendering and static site generation.
+- **[React](https://reactjs.org/)**: JavaScript library for building user interfaces.
+- **[Turborepo](https://turborepo.org/)**: High-performance build system for managing monorepos.
+- **[Docker](https://www.docker.com/)**: Platform for containerizing applications.
+- **[Prisma](https://www.prisma.io/)**: ORM for database management.
+- **[Redis](https://redis.io/)**: In-memory data structure store for managing data.
+- **[TypeScript](https://www.typescriptlang.org/)**: A strongly typed programming language that builds on JavaScript.
+- **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for creating custom designs.
+- **[Shadcn](https://shadcn.dev/)**: Component library for modern UI elements.
+- **[Zustand](https://github.com/pmndrs/zustand)**: A small, fast state management library.
+- **[PostgreSQL](https://www.postgresql.org/)**: An open-source relational database system.
+- **[Auth.js](https://authjs.dev/)**: Authentication library for JavaScript and TypeScript applications.
+- **[Astro](https://astro.build/)**: A static site generator for building fast, modern websites.
+- **[Radix UI](https://www.radix-ui.com/)**: Low-level UI primitives for building high-quality design systems.
+- **[Nuqs](https://nuqs.47ng.com/)**: Type-safe search params state manager for Next.js.
+- **[Recharts](https://recharts.org/en-US/)**: A charting library built with React and D3.
+- **[Zod](https://zod.dev/)**: A TypeScript-first schema declaration and validation library.
+- **[ZSA](https://zsa.vercel.app/docs/introduction)**: A library for building typesafe server actions in NextJS.
+- **[React Query](https://react-query.tanstack.com/)**: A data-fetching and state management library for React.
+- **[React Hook Form](https://react-hook-form.com/)**: A library for managing form state in React.
+- **[Framer Motion](https://www.framer.com/api/motion/)**: A library for animations and interactions in React.
+- **[Shiki](https://shiki.matsu.io/)**: A syntax highlighter for code.
 
-This Turborepo has some additional tools already setup for you:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Roadmap 🛣️
 
-### Build
+### Upcoming Features
 
-To build all apps and packages, run the following command:
+- [ ] **Latest Snippets Page**: Implement a page that displays the latest snippets with infinite loading and filtering by programming language.
+- [ ] **Gist Integration**: Integrate with GitHub Gists to enable the retrieval and sending of code snippets.
+- [ ] **Search Functionality**: Quickly find snippets using tags and keywords.
 
-```
-cd my-turborepo
-pnpm build
-```
+## Contributing 🤝
 
-### Develop
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-To develop all apps and packages, run the following command:
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
