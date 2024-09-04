@@ -33,11 +33,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dropcode",
     description: "All-in-one-solution to store your thoughts.",
-    url: "https://dropcode-web.vercel.app",
+    url: "https://dropcode-web.vercel.app/og.png",
     siteName: "Dropcode",
     images: [
       {
-        url: "https://dropcode-web.vercel.app/app-screen.png",
+        url: "https://dropcode-web.vercel.app/og.png",
         width: 1200,
         height: 630,
         alt: "Dropcode",
