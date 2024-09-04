@@ -11,6 +11,10 @@ import { cn } from "@dropcode/tailwind/utils"
 
 export const metadata: Metadata = {
   title: "Login",
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 const LoginPage = async () => {
