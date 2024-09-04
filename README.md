@@ -1,14 +1,5 @@
 # Dropcode 🚀
 
-<br />
-
-
-<img src="apps/web/public/app-screen-login.png" alt="Logo" width="100%" height="100%" style="border-radius:8px;">
-
-<br/>
-
-<img src="apps/web/public/app-screen-content.png" alt="Logo" width="100%" height="100%">
-
 <br/>
 <br/>
 <br/>
@@ -19,6 +10,19 @@
   </a>
 </div>
 
+<details>
+  <summary>
+    Screens
+  </summary>
+  
+  <img src="apps/web/public/app-screen-login.png" alt="Logo" width="100%" height="100%" style="border-radius:8px;">
+
+<br/>
+
+<img src="apps/web/public/app-screen-content.png" alt="Logo" width="100%" height="100%">
+
+</details>
+
 <br/>
 <br/>
 
@@ -27,7 +31,6 @@
 ## Table of Contents 📚
 
 - [Motivation](#motivation)
-- [Features](#features)
 - [Built With](#built-with)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
@@ -73,6 +76,7 @@ Dropcode is built using a combination of modern tools and technologies:
 - [ ] **Latest Snippets Page**: Implement a page that displays the latest snippets with infinite loading and filtering by programming language.
 - [ ] **Gist Integration**: Integrate with GitHub Gists to enable the retrieval and sending of code snippets.
 - [ ] **Search Functionality**: Quickly find snippets using tags and keywords.
+- [ ] **Built-in editor**
 
 ## Contributing 🤝
 
