@@ -7,6 +7,12 @@
   </a>
 </div>
 
+<img src="apps/web/public/app-screen-login.png" alt="Logo" width="100%" height="100%" style="border-radius:8px;">
+
+<br/>
+
+<img src="apps/web/public/app-screen-content.png" alt="Logo" width="100%" height="100%">
+
 <br/>
 <br/>
 <br/>
