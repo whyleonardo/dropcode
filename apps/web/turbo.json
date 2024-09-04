@@ -14,7 +14,8 @@
         "AUTH_GITLAB_SECRET",
         "AUTH_SECRET",
         "UPSTASH_REDIS_URL",
-        "UPSTASH_REDIS_TOKEN"
+        "UPSTASH_REDIS_TOKEN",
+        "NEXT_PUBLIC_CLARITY_PROJECT_ID"
       ]
     }
   }
