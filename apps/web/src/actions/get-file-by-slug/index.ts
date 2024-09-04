@@ -17,7 +17,7 @@ export const getFileBySlug = authProcedure
       user: { id: userId },
     } = ctx
 
-    const file = await db.file.findUnique({
+    const file = await db.file.findFirstOrThrow({
       where: {
         slug: fileSlug,
         userId,
