@@ -29,7 +29,7 @@ export const ContextMenuBanner = () => {
   if (useContextMenuBannerTipStore?.hasSeenBanner) return null
 
   return (
-    <div className="text-blue-10 bg-blue-3 fixed inset-x-1/2 bottom-8 z-50 flex w-96 -translate-x-1/2 items-center justify-between rounded-lg p-4 shadow-lg">
+    <div className="text-blue-10 bg-blue-3 fixed inset-x-1/2 bottom-8 z-50 flex w-11/12 max-w-sm -translate-x-1/2 items-center justify-between rounded-lg p-4 shadow-lg">
       <p className="max-w-xs text-sm">
         <strong>Tip:</strong> Right-click or long-press in various areas to
         access context menus for quick actions.
