@@ -5,7 +5,9 @@ import { z } from "zod"
 
 export const env = createEnv({
   extends: [vercel()],
-  client: {},
+  client: {
+    NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().optional(),
+  },
   shared: {
     NODE_ENV: z.enum(["development", "test", "production"]).optional(),
   },
@@ -21,6 +23,7 @@ export const env = createEnv({
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    NEXT_PUBLIC_CLARITY_PROJECT_ID: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
   },
   emptyStringAsUndefined: true,
   skipValidation: !!process.env.SKIP_VALIDATION,
