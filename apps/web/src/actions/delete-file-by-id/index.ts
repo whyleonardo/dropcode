@@ -14,7 +14,7 @@ export const deleteFileById = authProcedure
   .createServerAction()
   .input(deleteFileByIdSchema)
   .handler(async ({ input, ctx }) => {
-    const { fileId, snippetId } = input
+    const { fileId, snippetSlug } = input
 
     const { user } = ctx
 
@@ -23,7 +23,9 @@ export const deleteFileById = authProcedure
         where: {
           userId: user.id,
           id: fileId,
-          snippetId,
+          snippet: {
+            slug: snippetSlug,
+          },
         },
       })
     } catch {
@@ -31,7 +33,7 @@ export const deleteFileById = authProcedure
     }
 
     const snippet = await db.snippet.findUnique({
-      where: { id: snippetId, userId: user.id },
+      where: { slug: snippetSlug, userId: user.id },
       select: {
         slug: true,
         collection: {

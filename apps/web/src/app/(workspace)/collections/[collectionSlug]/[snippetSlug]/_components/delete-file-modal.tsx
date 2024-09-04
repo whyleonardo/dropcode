@@ -11,7 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 
-import { deleteFileBySlug } from "@/actions/delete-file-by-slug"
+import { deleteFileById } from "@/actions/delete-file-by-id"
 import {
   QueryKeyFactory,
   useServerActionMutation,
@@ -24,21 +24,21 @@ import { toast } from "sonner"
 
 interface DeleteFileModalProps {
   snippetSlug: string
-  fileSlug: string
+  fileId: string
   open: boolean
   onOpenChange: (isOpen: boolean) => void
 }
 
 export const DeleteFileModal = ({
   snippetSlug,
-  fileSlug,
+  fileId,
   open,
   onOpenChange,
 }: DeleteFileModalProps) => {
   const queryClient = useQueryClient()
 
   const { mutateAsync: executeFileDelete, isPending: isDeletingFile } =
-    useServerActionMutation(deleteFileBySlug, {
+    useServerActionMutation(deleteFileById, {
       onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
@@ -56,7 +56,7 @@ export const DeleteFileModal = ({
 
   const onExecute = async () => {
     await executeFileDelete({
-      fileSlug,
+      fileId,
       snippetSlug,
     })
 

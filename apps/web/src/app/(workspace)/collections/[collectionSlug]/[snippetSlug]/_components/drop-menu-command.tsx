@@ -119,7 +119,7 @@ export const DropMenuCommand = ({
                 open={openDeleteFileModal}
                 onOpenChange={setOpenDeleteFileModal}
                 snippetSlug={snippetSlug}
-                fileSlug={fileSlug}
+                fileId={currentFile?.id}
               />
 
               <EditFileDrawer file={currentFile} snippetSlug={snippetSlug} />

@@ -79,7 +79,7 @@ export const FileItem = ({
         open={openDeleteFileModal}
         onOpenChange={setOpenDeleteFileModal}
         snippetSlug={snippetSlug}
-        fileSlug={file.slug}
+        fileId={file.id}
       />
 
       <Sheet open={openEditFileSheet} onOpenChange={setOpenEditFileSheet}>
