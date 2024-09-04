@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/whyleonardo/dropcode">
-    <img src="apps/web/public/logo.png" alt="Logo" width="80" height="80">
+    <img src="apps/web/public/logo.png" alt="Logo" width="172" height="172">
   </a>
 </div>
 
