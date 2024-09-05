@@ -1,6 +1,6 @@
-import Script from "next/script"
 import type { Metadata } from "next/types"
 
+import { MsClarity } from "@/components/ms-clarity"
 import { ScreenSizeIndicator } from "@/components/screen-size-indicator"
 
 import { fontMono, fontSans } from "@/styles/fonts"
@@ -8,7 +8,6 @@ import "@/styles/globals.css"
 
 import { ThemeProvider } from "@/providers/theme-provider"
 
-import { env } from "@dropcode/env/web"
 import { cn } from "@dropcode/tailwind/utils"
 import { Analytics } from "@vercel/analytics/react"
 
@@ -54,16 +53,6 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
-      <Script id="clarity-script" strategy="afterInteractive">
-        {`
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "${env.NEXT_PUBLIC_CLARITY_PROJECT_ID}");
-          `}
-      </Script>
-
       <body
         className={cn(
           fontSans,
@@ -78,6 +67,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         </ThemeProvider>
         <ScreenSizeIndicator />
       </body>
+
+      <MsClarity />
     </html>
   )
 }
