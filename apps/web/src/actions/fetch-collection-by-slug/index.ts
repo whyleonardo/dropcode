@@ -6,7 +6,7 @@ import { db } from "@dropcode/db"
 
 import { fetchCollectionBySlugSchema } from "./schema"
 
-export const fetchCollectionsBySlug = authProcedure
+export const fetchCollectionBySlug = authProcedure
   .createServerAction()
   .input(fetchCollectionBySlugSchema)
   .handler(async ({ input, ctx }) => {
