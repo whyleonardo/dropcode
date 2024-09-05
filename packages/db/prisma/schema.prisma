@@ -48,10 +48,8 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  snippets    Snippet[]
-  collections Collection[]
-  tags        Tag[]
-  files       File[]
+  snippets Snippet[]
+  files    File[]
 
   @@map("users")
 }
@@ -101,6 +99,7 @@ model VerificationToken {
 
 model Snippet {
   id          String  @id @default(uuid())
+  publicId    String  @unique @map("public_id") @db.VarChar(21)
   title       String
   description String?
   slug        String  @unique
@@ -108,29 +107,26 @@ model Snippet {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  tags  Tag[]
   files File[]
 
   isFavorite Boolean @default(false) @map("is_favorite")
   isPublic   Boolean @default(false) @map("is_public")
 
-  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
-  collectionId String?     @map("collection_id")
-
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @map("user_id")
 
-  @@unique([collectionId, slug])
+  @@unique([slug, userId])
   @@index([slug, userId])
   @@map("snippets")
 }
 
 model File {
-  id       String   @id @default(uuid())
+  id       String @id @default(uuid())
+  publicId String @unique @map("public_id") @db.VarChar(21)
+
   name     String
   language Language
   content  String
-  slug     String
 
   snippet   Snippet @relation(fields: [snippetId], references: [id], onDelete: Cascade)
   snippetId String  @map("snippet_id")
@@ -141,41 +137,7 @@ model File {
   updatedAt DateTime @updatedAt @map("updated_at")
   createdAt DateTime @default(now()) @map("created_at")
 
-  @@unique([slug, snippetId])
+  @@unique([name, language, snippetId])
   @@index([userId, snippetId])
   @@map("files")
-}
-
-model Tag {
-  id   String @id @default(uuid())
-  slug String @unique
-
-  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String @map("user_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  snippets Snippet[]
-
-  @@index([userId, slug])
-  @@map("tags")
-}
-
-model Collection {
-  id    String @id @default(uuid())
-  title String
-  slug  String @unique
-
-  snippets Snippet[]
-
-  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String @map("user_id")
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@index([userId])
-  @@index([slug, userId])
-  @@map("collections")
 }
