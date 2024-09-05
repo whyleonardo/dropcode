@@ -1,18 +1,8 @@
+import { QueryKeyFactory } from "@/lib/keys"
+
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query"
 
-import {
-  createServerActionsKeyFactory,
-  setupServerActionHooks,
-} from "zsa-react-query"
-
-export const QueryKeyFactory = createServerActionsKeyFactory({
-  fetchLinesCreatedInPeriod: () => ["lines-created-in-period"],
-  fetchMostUsedLanguages: () => ["most-used-languages"],
-  fetchFilesBySnippetSlug: ({ snippetSlug }: { snippetSlug: string }) => [
-    "files-by-snippet-slug",
-    snippetSlug,
-  ],
-})
+import { setupServerActionHooks } from "zsa-react-query"
 
 const {
   useServerActionQuery,
