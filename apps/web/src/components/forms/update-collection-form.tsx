@@ -13,12 +13,15 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+import { QueryKeyFactory } from "@/lib/keys"
+
 import { updateCollection } from "@/actions/update-collection"
 import { updateCollectionSchema } from "@/actions/update-collection/schema"
 import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import type { Collection } from "@dropcode/db/types"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useQueryClient } from "@tanstack/react-query"
 
 import { toast } from "sonner"
 import type { z } from "zod"
@@ -34,10 +37,16 @@ export const UpdateCollectionForm = ({
   onOpenChange,
   initialData,
 }: UpdateCollectionFormProps) => {
+  const queryClient = useQueryClient()
+
   const { mutateAsync, isPending } = useServerActionMutation(updateCollection, {
     mutationKey: ["update-collection"],
     onSuccess: () => {
       toast.success("Collection updated")
+
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchCollections(),
+      })
     },
     onError: (err) => {
       toast.error(err.message)
