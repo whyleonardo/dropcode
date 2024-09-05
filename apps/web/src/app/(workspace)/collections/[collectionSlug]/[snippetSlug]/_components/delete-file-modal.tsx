@@ -11,11 +11,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 
+import { QueryKeyFactory } from "@/lib/keys"
+
 import { deleteFileById } from "@/actions/delete-file-by-id"
-import {
-  QueryKeyFactory,
-  useServerActionMutation,
-} from "@/hooks/server-action-hooks"
+import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import { useQueryClient } from "@tanstack/react-query"
 

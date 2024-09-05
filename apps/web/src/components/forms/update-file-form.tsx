@@ -23,12 +23,11 @@ import { Textarea } from "@/components/ui/textarea"
 
 import { langs } from "@/config/langs"
 
+import { QueryKeyFactory } from "@/lib/keys"
+
 import { updateFile } from "@/actions/update-file"
 import { updateFileSchema } from "@/actions/update-file/schema"
-import {
-  QueryKeyFactory,
-  useServerActionMutation,
-} from "@/hooks/server-action-hooks"
+import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import type { File } from "@dropcode/db/types"
 import { zodResolver } from "@hookform/resolvers/zod"

@@ -15,11 +15,10 @@ import {
 
 import { langs } from "@/config/langs"
 
+import { QueryKeyFactory } from "@/lib/keys"
+
 import { fetchFilesBySnippetSlug } from "@/actions/fetch-files-by-snippet-slug"
-import {
-  QueryKeyFactory,
-  useServerActionQuery,
-} from "@/hooks/server-action-hooks"
+import { useServerActionQuery } from "@/hooks/server-action-hooks"
 
 import { cn } from "@dropcode/tailwind/utils"
 

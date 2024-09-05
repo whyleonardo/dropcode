@@ -1,7 +1,5 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
-
 import { authProcedure } from "@/actions/procedures"
 import { UnexpectedError } from "@/errors/unexpected-error"
 
@@ -13,7 +11,7 @@ export const deleteSnippetById = authProcedure
   .createServerAction()
   .input(deleteSnippetByIdSchema)
   .handler(async ({ input, ctx }) => {
-    const { snippetId, collectionSlug } = input
+    const { snippetId } = input
     const { user } = ctx
 
     try {
@@ -26,6 +24,4 @@ export const deleteSnippetById = authProcedure
     } catch {
       throw new UnexpectedError()
     }
-
-    revalidatePath(`/collection/${collectionSlug}`)
   })

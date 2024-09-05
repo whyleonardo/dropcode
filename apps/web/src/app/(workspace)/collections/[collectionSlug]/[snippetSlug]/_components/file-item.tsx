@@ -100,5 +100,5 @@ export const FileItem = ({
 }
 
 FileItem.Skeleton = () => {
-  return <div className="bg-gray-3 h-10 w-full rounded-lg" />
+  return <div className="bg-gray-3 h-10 w-full animate-pulse rounded-lg" />
 }

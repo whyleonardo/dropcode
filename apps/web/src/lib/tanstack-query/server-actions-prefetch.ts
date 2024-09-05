@@ -29,9 +29,10 @@ export const prefetchQuery = async <
   > & {
     input: inferServerActionInput<THandler>
     initialData?: TInitialData
-  }
+  },
+  passQueryClient?: QueryClient
 ): Promise<InstanceType<typeof QueryClient>> => {
-  const queryClient = getQueryClient()
+  const queryClient = passQueryClient ?? getQueryClient()
   await queryClient.prefetchQuery<
     inferServerActionReturnData<THandler>,
     inferServerActionError<THandler>,

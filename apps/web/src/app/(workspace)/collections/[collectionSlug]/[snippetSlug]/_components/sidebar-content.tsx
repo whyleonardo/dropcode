@@ -7,7 +7,6 @@ import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuLabel,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
 import {
@@ -18,12 +17,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
+import { Skeleton } from "@/components/ui/skeleton"
+
+import { QueryKeyFactory } from "@/lib/keys"
 
 import { fetchFilesBySnippetSlug } from "@/actions/fetch-files-by-snippet-slug"
 import { useServerActionQuery } from "@/hooks/server-action-hooks"
 
-import { FilePlus, Plus } from "lucide-react"
+import { FilePlus } from "lucide-react"
 
+import { CreateNewFileSidebar } from "./create-new-file-sidebar"
 import { FileItem } from "./file-item"
 
 interface SidebarContentProps {
@@ -37,32 +40,15 @@ export const SidebarContent = ({
 }: SidebarContentProps) => {
   const [open, setOpen] = useState(false)
 
-  const {
-    data: files,
-    isLoading: isLoadingFiles,
-    isFetching: isFetchingFiles,
-  } = useServerActionQuery(fetchFilesBySnippetSlug, {
-    queryKey: ["files-by-snippet-slug", snippetSlug],
-    input: {
-      snippetSlug,
-    },
-  })
-
-  if (isLoadingFiles || isFetchingFiles) {
-    return (
-      <div className="bg-gray-2 size-full w-72 space-y-3 p-4">
-        <span className="text-muted-foreground w-full truncate font-mono text-lg font-medium tracking-tight">
-          Files
-        </span>
-        <Separator />
-
-        <FileItem.Skeleton />
-        <FileItem.Skeleton />
-        <FileItem.Skeleton />
-        <FileItem.Skeleton />
-      </div>
-    )
-  }
+  const { data: files, isLoading: isLoadingFiles } = useServerActionQuery(
+    fetchFilesBySnippetSlug,
+    {
+      queryKey: QueryKeyFactory.fetchFilesBySnippetSlug({ snippetSlug }),
+      input: {
+        snippetSlug,
+      },
+    }
+  )
 
   return (
     <div className="h-full w-72 select-none">
@@ -75,9 +61,11 @@ export const SidebarContent = ({
                   Files
                 </span>
 
-                <DialogTrigger>
-                  <Plus className="text-muted-foreground hover:text-gray-12 size-5 transition-colors" />
-                </DialogTrigger>
+                {isLoadingFiles ? (
+                  <Skeleton className="dark:bg-gray-3 size-6 rounded-lg" />
+                ) : (
+                  <CreateNewFileSidebar />
+                )}
               </div>
 
               <Separator />
@@ -90,11 +78,18 @@ export const SidebarContent = ({
                   collectionSlug={collectionSlug}
                 />
               ))}
+
+              {isLoadingFiles && (
+                <>
+                  <FileItem.Skeleton />
+                  <FileItem.Skeleton />
+                  <FileItem.Skeleton />
+                  <FileItem.Skeleton />
+                </>
+              )}
             </div>
           </ContextMenuTrigger>
           <ContextMenuContent>
-            <ContextMenuLabel>Menu</ContextMenuLabel>
-
             <DialogTrigger asChild>
               <ContextMenuItem className="cursor-pointer">
                 <FilePlus className="mr-2 size-4" />

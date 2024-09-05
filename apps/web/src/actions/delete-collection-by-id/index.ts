@@ -1,7 +1,5 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
-
 import { authProcedure } from "@/actions/procedures"
 import { UnexpectedError } from "@/errors/unexpected-error"
 
@@ -27,6 +25,4 @@ export const deleteCollectionById = authProcedure
     } catch {
       throw new UnexpectedError()
     }
-
-    revalidatePath("/collections")
   })

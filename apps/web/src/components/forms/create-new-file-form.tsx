@@ -24,12 +24,11 @@ import { Textarea } from "@/components/ui/textarea"
 
 import { langs } from "@/config/langs"
 
+import { QueryKeyFactory } from "@/lib/keys"
+
 import { createFile } from "@/actions/create-file"
 import { createFileSchema } from "@/actions/create-file/schema"
-import {
-  QueryKeyFactory,
-  useServerActionMutation,
-} from "@/hooks/server-action-hooks"
+import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQueryClient } from "@tanstack/react-query"

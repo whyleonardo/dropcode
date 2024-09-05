@@ -6,6 +6,17 @@ export const QueryKeyFactory = customCreateServerActionsKeyFactory({
     "collection-by-slug",
     collectionSlug,
   ],
+  getSnippetBySlug: ({ snippetSlug }: { snippetSlug: string }) => [
+    "snippet-by-slug",
+    snippetSlug,
+  ],
+  getFileBySlug: ({
+    snippetSlug,
+    fileSlug,
+  }: {
+    snippetSlug: string
+    fileSlug: string
+  }) => ["file-by-slug", snippetSlug, fileSlug],
   fetchLinesCreatedInPeriod: () => ["lines-created-in-period"],
   fetchMostUsedLanguages: () => ["most-used-languages"],
   fetchFilesBySnippetSlug: ({ snippetSlug }: { snippetSlug: string }) => [
