@@ -13,11 +13,14 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
+import { QueryKeyFactory } from "@/lib/keys"
+
 import { createCollection } from "@/actions/create-collection"
 import { createCollectionSchema } from "@/actions/create-collection/schema"
 import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useQueryClient } from "@tanstack/react-query"
 
 import { toast } from "sonner"
 import type { z } from "zod"
@@ -31,10 +34,16 @@ type createCollectionFormData = z.infer<typeof createCollectionSchema>
 export const CreateNewCollectionForm = ({
   onOpenChange,
 }: CreateNewCollectionFormProps) => {
+  const queryClient = useQueryClient()
+
   const { mutateAsync, isPending } = useServerActionMutation(createCollection, {
     mutationKey: ["create-collection"],
     onSuccess: () => {
       toast.success("Collection created")
+
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchCollections(),
+      })
     },
     onError: (err) => {
       toast.error(err.message)

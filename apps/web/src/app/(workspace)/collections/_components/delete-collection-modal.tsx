@@ -9,11 +9,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 
+import { QueryKeyFactory } from "@/lib/keys"
+
 import { deleteCollectionById } from "@/actions/delete-collection-by-id"
-import {
-  QueryKeyFactory,
-  useServerActionMutation,
-} from "@/hooks/server-action-hooks"
+import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import { useQueryClient } from "@tanstack/react-query"
 
@@ -40,6 +39,10 @@ export const DeleteCollectionModal = ({
 
       queryClient.invalidateQueries({
         queryKey: QueryKeyFactory.fetchMostUsedLanguages(),
+      })
+
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchCollections(),
       })
 
       toast.info("Collection deleted")
