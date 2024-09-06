@@ -34,7 +34,7 @@ const Drop = ({ children, className }: DropProps) => {
   return (
     <div
       className={cn(
-        "from-gray-1 to-gray-2 ring-border flex size-full flex-col gap-4 overflow-hidden rounded-xl bg-gradient-to-tl p-4 py-6 shadow-sm ring-1 ring-inset dark:shadow-lg",
+        "from-gray-1 to-gray-2 ring-border flex size-full flex-col gap-4 overflow-hidden rounded-xl bg-gradient-to-tl p-6 shadow-sm ring-1 ring-inset dark:shadow-lg",
         className
       )}
     >
@@ -80,7 +80,7 @@ const DropFileTrigger = ({
 }
 
 const DropWrapper = ({ children, className }: DropContentProps) => {
-  return <div className={cn("flex size-full gap-4", className)}>{children}</div>
+  return <div className={cn("flex size-full gap-8", className)}>{children}</div>
 }
 
 const DropContent = ({ children, className }: DropContentProps) => {
