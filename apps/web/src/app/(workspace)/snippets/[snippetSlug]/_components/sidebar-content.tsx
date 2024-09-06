@@ -45,6 +45,8 @@ export const SidebarContent = ({ snippetSlug }: SidebarContentProps) => {
     }
   )
 
+  console.log({ files })
+
   return (
     <div className="h-full w-[16rem] select-none">
       <Dialog open={open} onOpenChange={setOpen}>

@@ -1,5 +1,7 @@
 "use server"
 
+import { revalidatePath } from "next/cache"
+
 import { authProcedure } from "@/lib/procedures"
 
 import { UnexpectedError } from "@/errors/unexpected-error"
@@ -25,4 +27,6 @@ export const deleteSnippetById = authProcedure
     } catch {
       throw new UnexpectedError()
     }
+
+    revalidatePath("/snippets")
   })

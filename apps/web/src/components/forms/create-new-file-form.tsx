@@ -64,6 +64,10 @@ export const CreateNewFileForm = ({
         queryKey: QueryKeyFactory.fetchFilesBySnippetSlug({ snippetSlug }),
       })
 
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchSnippets(),
+      })
+
       toast.success("File created")
     },
     onError: (err) => {

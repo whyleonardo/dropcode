@@ -70,6 +70,10 @@ export const UpdateFileForm = ({
       queryClient.invalidateQueries({
         queryKey: QueryKeyFactory.fetchFilesBySnippetSlug({ snippetSlug }),
       })
+
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchSnippets(),
+      })
     },
     onError: (err) => {
       toast.error(err.message)

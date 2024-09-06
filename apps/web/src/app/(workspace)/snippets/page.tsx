@@ -1,3 +1,7 @@
+import { Suspense } from "react"
+
+import { CardSkeleton } from "@/components/ui/card"
+
 import { QueryKeyFactory } from "@/lib/keys"
 import { prefetchQuery } from "@/lib/tanstack-query/server-actions-prefetch"
 
@@ -30,9 +34,24 @@ const SnippetPage = async () => {
           willHidden
         />
 
-        <SnippetsList />
         <NoSnippetsAction />
       </HydrationBoundary>
+
+      <Suspense
+        fallback={
+          <div className="flex flex-wrap justify-center gap-8">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        }
+      >
+        <SnippetsList />
+      </Suspense>
     </div>
   )
 }

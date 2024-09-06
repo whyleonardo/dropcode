@@ -33,7 +33,6 @@ const SnippetSlugLayout = async ({
   params: { snippetSlug },
 }: SnippetSlugLayoutProps) => {
   const queryClient = new QueryClient()
-
   await prefetchQuery(
     getSnippetBySlug,
     {

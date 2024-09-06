@@ -1,5 +1,7 @@
 "use server"
 
+import { revalidatePath } from "next/cache"
+
 import { authProcedure } from "@/lib/procedures"
 
 import { ResourceNotFoundError } from "@/errors/resource-not-found-error"
@@ -76,4 +78,6 @@ export const updateSnippet = authProcedure
         "An unexpected error occurred while updating your snippet"
       )
     }
+
+    revalidatePath("/snippets")
   })

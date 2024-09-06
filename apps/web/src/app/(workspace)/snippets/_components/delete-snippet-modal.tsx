@@ -42,6 +42,10 @@ export const DeleteSnippetModal = ({ snippetId }: DeleteSnippetButtonProps) => {
           queryKey: QueryKeyFactory.fetchSnippets(),
         })
 
+        queryClient.invalidateQueries({
+          queryKey: QueryKeyFactory.fetchSnippets(),
+        })
+
         toast.info("Snippet deleted")
       },
     })
