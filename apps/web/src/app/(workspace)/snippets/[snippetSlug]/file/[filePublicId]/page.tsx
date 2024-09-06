@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation"
+
 import { Code } from "@/components/code"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
@@ -17,9 +19,8 @@ const FilePublicIdPage = async ({
 }: FilePublicIdPageProps) => {
   const [file] = await getFileByPublicId({ snippetSlug, filePublicId })
 
-  // TODO - Handle 404
   if (!file) {
-    return null
+    redirect(`/snippets/${snippetSlug}`)
   }
 
   return (
