@@ -16,7 +16,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 
 import { QueryKeyFactory } from "@/lib/keys"
@@ -51,7 +50,7 @@ export const SidebarContent = ({ snippetSlug }: SidebarContentProps) => {
       <Dialog open={open} onOpenChange={setOpen}>
         <ContextMenu>
           <ContextMenuTrigger className="size-full" asChild>
-            <div className="flex size-full flex-col gap-3 p-4">
+            <div className="flex size-full flex-col gap-3">
               <div className="flex w-full items-center justify-between">
                 <span className="w-full truncate font-mono text-lg font-medium tracking-tighter">
                   Files
@@ -63,8 +62,6 @@ export const SidebarContent = ({ snippetSlug }: SidebarContentProps) => {
                   <CreateNewFileSidebarButton />
                 )}
               </div>
-
-              <Separator />
 
               {files?.map((file) => (
                 <FileItem key={file.id} file={file} snippetSlug={snippetSlug} />
