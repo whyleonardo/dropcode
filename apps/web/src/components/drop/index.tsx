@@ -53,7 +53,12 @@ const DropHeader = ({ children, className }: DropHeaderProps) => {
 
 const DropSidebar = ({ children, className }: DropSidebarProps) => {
   return (
-    <div className={cn("scrollbar-thin scrollbar hidden md:block", className)}>
+    <div
+      className={cn(
+        "scrollbar-thin scrollbar hidden w-full max-w-64 overflow-hidden md:block",
+        className
+      )}
+    >
       {children}
     </div>
   )

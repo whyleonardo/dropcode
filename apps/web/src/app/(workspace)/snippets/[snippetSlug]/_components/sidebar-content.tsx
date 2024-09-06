@@ -46,7 +46,7 @@ export const SidebarContent = ({ snippetSlug }: SidebarContentProps) => {
   )
 
   return (
-    <div className="h-full w-72 select-none">
+    <div className="h-full w-[16rem] select-none">
       <Dialog open={open} onOpenChange={setOpen}>
         <ContextMenu>
           <ContextMenuTrigger className="size-full" asChild>
