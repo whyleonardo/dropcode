@@ -50,6 +50,8 @@ export const DeleteFileModal = ({
         queryClient.invalidateQueries({
           queryKey: QueryKeyFactory.fetchFilesBySnippetSlug({ snippetSlug }),
         })
+
+        toast.info("File deleted")
       },
     })
 
@@ -58,8 +60,6 @@ export const DeleteFileModal = ({
       fileId,
       snippetSlug,
     })
-
-    toast.info("File deleted")
   }
 
   return (
