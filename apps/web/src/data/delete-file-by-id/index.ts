@@ -1,5 +1,7 @@
 "use server"
 
+import { redirect } from "next/navigation"
+
 import { authProcedure } from "@/lib/procedures"
 
 import { UnexpectedError } from "@/errors/unexpected-error"
@@ -26,4 +28,6 @@ export const deleteFileById = authProcedure
     } catch {
       throw new UnexpectedError()
     }
+
+    redirect(`/snippets/${snippetSlug}`)
   })
