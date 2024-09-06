@@ -8,6 +8,11 @@ interface DropProps {
   className?: string
 }
 
+interface DropHeaderProps {
+  children: React.ReactNode
+  className?: string
+}
+
 interface DropContentProps {
   children: React.ReactNode
   className?: string
@@ -29,12 +34,20 @@ const Drop = ({ children, className }: DropProps) => {
   return (
     <div
       className={cn(
-        "flex size-full overflow-hidden rounded-xl border",
+        "from-gray-1 to-gray-2 ring-border flex size-full flex-col gap-4 overflow-hidden rounded-xl bg-gradient-to-tl p-4 py-6 shadow-sm ring-1 ring-inset dark:shadow-lg",
         className
       )}
     >
       {children}
     </div>
+  )
+}
+
+const DropHeader = ({ children, className }: DropHeaderProps) => {
+  return (
+    <header className={cn("flex h-10 w-full items-center border", className)}>
+      {children}
+    </header>
   )
 }
 
@@ -66,12 +79,28 @@ const DropFileTrigger = ({
   )
 }
 
+const DropWrapper = ({ children, className }: DropContentProps) => {
+  return <div className={cn("flex size-full gap-4", className)}>{children}</div>
+}
+
 const DropContent = ({ children, className }: DropContentProps) => {
   return (
-    <div className={cn(className, "w-full overflow-y-auto overflow-x-hidden")}>
+    <div
+      className={cn(
+        "bg-gray-2 ring-gray-3 size-full overflow-y-auto overflow-x-hidden rounded-xl p-4 pb-0 shadow-sm ring-1 ring-inset dark:shadow-lg",
+        className
+      )}
+    >
       {children}
     </div>
   )
 }
 
-export { Drop, DropContent, DropSidebar, DropFileTrigger }
+export {
+  Drop,
+  DropHeader,
+  DropContent,
+  DropSidebar,
+  DropFileTrigger,
+  DropWrapper,
+}

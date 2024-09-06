@@ -1,4 +1,4 @@
-import type { fetchLinesCreatedInPeriodSchema } from "@/actions/analytics/fetch-lines-created-in-period/schema"
+import type { fetchLinesCreatedInPeriodSchema } from "@/data/analytics/fetch-lines-created-in-period/schema"
 
 import type { z } from "zod"
 

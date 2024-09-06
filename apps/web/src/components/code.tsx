@@ -27,7 +27,7 @@ export const Code = async ({ code, lang }: CodeProps) => {
   })
   return (
     <div
-      className="relative size-full select-none"
+      className="relative mb-2 size-full select-none"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )

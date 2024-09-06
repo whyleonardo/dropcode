@@ -102,7 +102,7 @@ model Snippet {
   publicId    String  @unique @map("public_id") @db.VarChar(21)
   title       String
   description String?
-  slug        String  @unique
+  slug        String
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

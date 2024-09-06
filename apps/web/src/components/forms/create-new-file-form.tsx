@@ -1,6 +1,5 @@
 "use client"
 
-import { usePathname } from "next/navigation"
 import { useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
@@ -26,8 +25,8 @@ import { langs } from "@/config/langs"
 
 import { QueryKeyFactory } from "@/lib/keys"
 
-import { createFile } from "@/actions/create-file"
-import { createFileSchema } from "@/actions/create-file/schema"
+import { createFile } from "@/data/create-file"
+import { createFileSchema } from "@/data/create-file/schema"
 import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -38,17 +37,18 @@ import type { z } from "zod"
 
 interface CreateNewFileFormProps {
   onOpenChange: (isOpen: boolean) => void
+  snippetSlug: string
 }
 
 type createFileFormData = z.infer<typeof createFileSchema>
 
 const languages = Object.values(langs)
 
-export const CreateNewFileForm = ({ onOpenChange }: CreateNewFileFormProps) => {
+export const CreateNewFileForm = ({
+  onOpenChange,
+  snippetSlug,
+}: CreateNewFileFormProps) => {
   const queryClient = useQueryClient()
-  const pathname = usePathname()
-
-  const snippetSlug = pathname.split("/").at(3) as string
 
   const { mutateAsync, isPending } = useServerActionMutation(createFile, {
     onSuccess: () => {

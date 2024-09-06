@@ -16,7 +16,7 @@ export type FileWithSnippetInfo = {
   updatedAt: Date
 }
 
-export type SnippetWithFilesAndTags = {
+export type SnippetWithFiles = {
   files: {
     id: string
     name: string
@@ -27,14 +27,8 @@ export type SnippetWithFilesAndTags = {
     updatedAt: Date
     createdAt: Date
   }[]
-  tags: {
-    id: string
-    slug: string
-    userId: string
-    createdAt: Date
-    updatedAt: Date
-  }[]
   id: string
+  publicId: string
   title: string
   description: string | null
   slug: string
@@ -42,6 +36,5 @@ export type SnippetWithFilesAndTags = {
   updatedAt: Date
   isFavorite: boolean
   isPublic: boolean
-  collectionId: string | null
   userId: string
 }

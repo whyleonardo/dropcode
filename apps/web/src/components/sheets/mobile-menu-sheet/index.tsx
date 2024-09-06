@@ -9,7 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 
-import { getUserAccountProvider } from "@/actions/get-user-account-provider"
+import { getUserAccountProvider } from "@/data/get-user-account-provider"
 
 import { auth } from "@dropcode/auth"
 import { cn } from "@dropcode/tailwind/utils"

@@ -1,6 +1,5 @@
 "use client"
 
-import { usePathname } from "next/navigation"
 import { useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
@@ -14,12 +13,11 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { MultiInput } from "@/components/ui/multi-input"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 
-import { createSnippet } from "@/actions/create-snippet"
-import { createSnippetSchema } from "@/actions/create-snippet/schema"
+import { createSnippet } from "@/data/create-snippet"
+import { createSnippetSchema } from "@/data/create-snippet/schema"
 import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -38,10 +36,6 @@ const MAX_LENGTH_DESCRIPTION = 72
 export const CreateNewSnippetForm = ({
   onOpenChange,
 }: CreateNewSnippetFormProps) => {
-  const pathname = usePathname()
-
-  const collectionSlug = pathname.split("/").at(2) as string
-
   const { mutateAsync, isPending } = useServerActionMutation(createSnippet, {
     onSuccess: () => {
       toast.success("Snippet created")
@@ -53,19 +47,13 @@ export const CreateNewSnippetForm = ({
 
   const form = useForm<createSnippetFormData>({
     resolver: zodResolver(createSnippetSchema),
-    defaultValues: {
-      collectionSlug,
-      tags: [],
-    },
   })
 
   const onSubmit = async (data: createSnippetFormData) => {
     await mutateAsync({
       title: data.title,
-      collectionSlug: data.collectionSlug,
       description: data.description,
       isPublic: data.isPublic ?? false,
-      tags: data.tags,
     })
 
     form.reset()
@@ -116,10 +104,7 @@ export const CreateNewSnippetForm = ({
           control={form.control}
           name="isPublic"
           render={({ field }) => (
-            <FormItem
-              className="flex hidden flex-row items-center justify-between rounded-lg border p-3 shadow-sm"
-              hidden
-            >
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
               <div className="space-y-0.5">
                 <FormLabel>Snippet Visibility</FormLabel>
                 <FormDescription>
@@ -132,45 +117,6 @@ export const CreateNewSnippetForm = ({
                   onCheckedChange={field.onChange}
                 />
               </FormControl>
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="collectionSlug"
-          render={({ field }) => (
-            <FormItem hidden>
-              <FormLabel>Collection Slug</FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  className="pointer-events-none"
-                  disabled
-                  placeholder="Give your collection a title"
-                  readOnly
-                  aria-readonly
-                  {...field}
-                  value={collectionSlug ?? ""}
-                />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="tags"
-          render={({ field }) => (
-            <FormItem className="space-y-0.5" hidden>
-              <FormLabel>Tags</FormLabel>
-              <FormControl>
-                <MultiInput hidden aria-hidden="true" {...field} />
-              </FormControl>
-
-              <FormMessage />
             </FormItem>
           )}
         />
