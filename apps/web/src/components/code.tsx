@@ -27,7 +27,9 @@ export const Code = async ({ code, lang }: CodeProps) => {
   })
   return (
     <div
-      className="relative mb-2 size-full select-none"
+      className="pointer-events-none relative mb-2 size-full"
+      aria-hidden="true"
+      tabIndex={-1}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )
