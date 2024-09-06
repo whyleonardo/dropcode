@@ -7,44 +7,44 @@ const FilePublicIdLoadingPage = () => {
         {/* Code Area */}
         <div className="space-y-2">
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-96" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-96" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-80" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-80" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-72" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-72" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-96" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-96" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-64" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-64" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-52" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-52" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-96" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-96" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-40" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-40" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-56" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-56" />
           </div>
           <div className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-8" />
-            <Skeleton className="h-4 w-48" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-8" />
+            <Skeleton className="dark:bg-gray-3 h-4 w-48" />
           </div>
         </div>
       </div>
