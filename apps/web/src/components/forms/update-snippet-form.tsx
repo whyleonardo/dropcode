@@ -16,12 +16,15 @@ import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 
-import { updateSnippet } from "@/actions/update-snippet"
-import { updateSnippetSchema } from "@/actions/update-snippet/schema"
+import { QueryKeyFactory } from "@/lib/keys"
+
+import { updateSnippet } from "@/data/update-snippet"
+import { updateSnippetSchema } from "@/data/update-snippet/schema"
 import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import type { Snippet } from "@dropcode/db/types"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useQueryClient } from "@tanstack/react-query"
 
 import { toast } from "sonner"
 import type { z } from "zod"
@@ -29,7 +32,6 @@ import type { z } from "zod"
 interface UpdateSnippetFormProps {
   onOpenChange: (isOpen: boolean) => void
   initialData: Pick<Snippet, "title" | "id" | "description" | "isPublic">
-  collectionSlug: string
 }
 
 type updateSnippetFormData = z.infer<typeof updateSnippetSchema>
@@ -39,12 +41,17 @@ const MAX_LENGTH_DESCRIPTION = 72
 export const UpdateSnippetForm = ({
   onOpenChange,
   initialData,
-  collectionSlug,
 }: UpdateSnippetFormProps) => {
+  const queryClient = useQueryClient()
+
   const { mutateAsync, isPending } = useServerActionMutation(updateSnippet, {
     mutationKey: ["update-snippet"],
     onSuccess: () => {
       toast.success("Snippet updated")
+
+      queryClient.invalidateQueries({
+        queryKey: QueryKeyFactory.fetchSnippets(),
+      })
     },
     onError: (err) => {
       toast.error(err.message)
@@ -55,18 +62,14 @@ export const UpdateSnippetForm = ({
     resolver: zodResolver(updateSnippetSchema),
     defaultValues: {
       ...initialData,
-      collectionSlug,
       description: initialData.description as string,
     },
   })
-
-  console.log(form.formState.errors)
 
   const onSubmit = async (data: updateSnippetFormData) => {
     await mutateAsync({
       id: initialData.id,
       title: data.title,
-      collectionSlug,
       description: data.description,
       isPublic: data.isPublic,
     })
@@ -122,11 +125,7 @@ export const UpdateSnippetForm = ({
           control={form.control}
           name="isPublic"
           render={({ field }) => (
-            <FormItem
-              className="flex hidden flex-row items-center justify-between rounded-lg border p-3 shadow-sm"
-              hidden
-              aria-hidden="true"
-            >
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
               <div className="space-y-0.5">
                 <FormLabel>Snippet Visibility</FormLabel>
                 <FormDescription className="max-w-52">

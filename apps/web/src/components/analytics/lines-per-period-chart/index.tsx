@@ -16,8 +16,10 @@ import {
 } from "@/components/ui/chart"
 import { Skeleton } from "@/components/ui/skeleton"
 
+import { QueryKeyFactory } from "@/lib/keys"
+
 import type { Period } from "@/@types/analytics"
-import { fetchLinesCreatedInPeriod } from "@/actions/analytics/fetch-lines-created-in-period"
+import { fetchLinesCreatedInPeriod } from "@/data/analytics/fetch-lines-created-in-period"
 import { useServerActionQuery } from "@/hooks/server-action-hooks"
 
 import { Label, Pie, PieChart } from "recharts"
@@ -43,7 +45,7 @@ export const LinesPerPeriodChart = () => {
   const [period] = useState<Period>("all-time")
 
   const { data, isLoading } = useServerActionQuery(fetchLinesCreatedInPeriod, {
-    queryKey: ["lines-created-in-period"],
+    queryKey: QueryKeyFactory.fetchLinesCreatedInPeriod(),
     input: {
       // TODO:  Refactor this to apply filter globally
       period: "all-time",

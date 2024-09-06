@@ -141,7 +141,6 @@ export const UserInfo = ({ user }: UserInfoProps) => {
       <DeleteAccountConfirmationModal
         open={openDeleteAccountAlertModal}
         onOpenChange={setOpenDeleteAccountAlertModal}
-        userId={user.id as string}
       />
     </>
   )

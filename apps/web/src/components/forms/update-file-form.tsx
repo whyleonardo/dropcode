@@ -25,8 +25,8 @@ import { langs } from "@/config/langs"
 
 import { QueryKeyFactory } from "@/lib/keys"
 
-import { updateFile } from "@/actions/update-file"
-import { updateFileSchema } from "@/actions/update-file/schema"
+import { updateFile } from "@/data/update-file"
+import { updateFileSchema } from "@/data/update-file/schema"
 import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import type { File } from "@dropcode/db/types"

@@ -15,7 +15,9 @@ import {
 } from "@/components/ui/chart"
 import { Skeleton } from "@/components/ui/skeleton"
 
-import { fetchMostUsedLanguages } from "@/actions/analytics/fetch-most-used-languages"
+import { QueryKeyFactory } from "@/lib/keys"
+
+import { fetchMostUsedLanguages } from "@/data/analytics/fetch-most-used-languages"
 import { useServerActionQuery } from "@/hooks/server-action-hooks"
 
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
@@ -38,7 +40,7 @@ const marginVariants = {
 
 export const MostUsedLanguages = () => {
   const { data, isLoading } = useServerActionQuery(fetchMostUsedLanguages, {
-    queryKey: ["most-used-languages"],
+    queryKey: QueryKeyFactory.fetchMostUsedLanguages(),
     input: {},
   })
 

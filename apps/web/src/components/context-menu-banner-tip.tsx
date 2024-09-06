@@ -24,7 +24,7 @@ export const ContextMenuBanner = () => {
 
   if (!isMounted) return null
 
-  if (!pathname.includes("/collections")) return null
+  if (!pathname.includes("/snippets")) return null
 
   if (useContextMenuBannerTipStore?.hasSeenBanner) return null
 

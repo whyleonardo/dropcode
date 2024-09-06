@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 
-import { signOut } from "@/actions/auth/sign-out"
+import { signOut } from "@/data/user-dto"
 
 import { LogOut } from "lucide-react"
 

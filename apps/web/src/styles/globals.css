@@ -48,11 +48,7 @@
 }
 
 ::selection {
-  background-color: #e0dffe;
-}
-
-.dark ::selection {
-  background-color: #e6e7ff4d;
+  @apply bg-gray-12 text-gray-1;
 }
 
 input:-webkit-autofill,

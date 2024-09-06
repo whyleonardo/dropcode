@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 
-import { deleteAccount } from "@/actions/delete-account"
+import { deleteAccount } from "@/data/delete-account"
 import { useServerActionMutation } from "@/hooks/server-action-hooks"
 
 import { Loader2 } from "lucide-react"
@@ -26,7 +26,6 @@ import { toast } from "sonner"
 interface DeleteAccountConfirmationModalProps {
   open: boolean
   onOpenChange: (isOpen: boolean) => void
-  userId: string
 }
 
 const SENTENCE_TO_DELETE_ACCOUNT = "delete my account"
@@ -34,7 +33,6 @@ const SENTENCE_TO_DELETE_ACCOUNT = "delete my account"
 export const DeleteAccountConfirmationModal = ({
   open,
   onOpenChange,
-  userId,
 }: DeleteAccountConfirmationModalProps) => {
   const [sentenceInput, setSentenceInput] = useState("")
 
@@ -77,11 +75,7 @@ export const DeleteAccountConfirmationModal = ({
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             disabled={isDeletingAccount || !sentenceInputMatches}
-            onClick={async () =>
-              executeAccountDelete({
-                userId,
-              })
-            }
+            onClick={async () => executeAccountDelete(undefined)}
             className={buttonVariants({ variant: "destructive" })}
           >
             {isDeletingAccount && (
